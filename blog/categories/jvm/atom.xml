@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: jvm, | Little struggles of growing hackaphysicist]]></title>
+  <link href="http://atteroTheGreatest.github.com/blog/categories/jvm/atom.xml" rel="self"/>
+  <link href="http://atteroTheGreatest.github.com/"/>
+  <updated>2013-04-29T21:03:47+02:00</updated>
+  <id>http://atteroTheGreatest.github.com/</id>
+  <author>
+    <name><![CDATA[Justyna Ilczuk]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[New love]]></title>
+    <link href="http://atteroTheGreatest.github.com/blog/2013/04/29/new-love/"/>
+    <updated>2013-04-29T19:56:00+02:00</updated>
+    <id>http://atteroTheGreatest.github.com/blog/2013/04/29/new-love</id>
+    <content type="html"><![CDATA[<h3>Java was tiring and painful</h3>
+
+<p>I was developing a small project in Java. It was okay. Java isn't very difficult to write in. But I had some strange problems. Mainly with ide, libraries, maven, ant and so on.</p>
+
+<p>I really hate build.xml. Oh, I do.</p>
+
+<p>I wanted to do something stimulating and mix some scala code into my existing java project to make it more enjoable.</p>
+
+<h3>Mixing scala and java</h3>
+
+<p>I can't see you! It was the main reaction of my netbeans IDE. Actually mixing scala into existing java project isn't so easy. I installed special plugins for Netbeans but it didn't work, I got strange ant errors and spent a few hours reading about maven and building with ant.</p>
+
+<p>It was too much for me. I returned to eclipse and installed ScalaIDE which is very nice, but still I don't know how to integrate there nicely a testing environment.</p>
+
+<p>I created new Scala project because I read it's a better way than other way round (Scala in java) and added some of my existing java files.</p>
+
+<p>I wanted to integrate a JavaFX, and then ScalaFX, but I had strange problems with those libraries.</p>
+
+<h3>Swinging with scala</h3>
+
+<p>Scala has swing library and its bindings are very intuitive and concise. So different from JavaFX!</p>
+
+<p>I don't know it well yet, but I grasped some basics, write a really simple gui and it WORKED.</p>
+
+<p><a href="http://scalatutorial.de/topic177.html">Simple German Swing tutorial</a></p>
+
+<p><a href="https://lampsvn.epfl.ch/trac/scala/browser/scala/trunk/src/swing/scala/swing/test?order=name">Working Sources</a></p>
+
+<p>Enjoy.</p>
+
+<h3>Concise and functional scala</h3>
+
+<p><a href="http://en.wikipedia.org/wiki/Scala_(programming_language">Scala on wiki</a>)</p>
+
+<p><a href="http://www.scala-lang.org/">Scala website</a></p>
+
+<p>On Scala website are links to learning materials, even free books like "Scala by example". There is also a brief tutorial (20 pages) which I recommend for the beginning, because it is a good overview. (Good start to fall in love with scala ;) )</p>
+
+<p>Reading scala book is quite entertaining, I've never programmed a functional language before (not counting javascript and some lisp) and learning new concepts in such an elegant form as in scala is just a pleasure.</p>
+
+<p>It's very expressive and still easy to use. Below you can see a small snippet of code I wrote today in the morning.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>splitContentToSentences - SummaryTool.scala </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">splitContentToSentences</span><span class="o">(</span><span class="n">content</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>    <span class="n">content</span><span class="o">.</span><span class="n">replaceAll</span><span class="o">(</span><span class="s">&quot;\n&quot;</span><span class="o">,</span> <span class="s">&quot;. &quot;</span><span class="o">).</span><span class="n">split</span><span class="o">(</span><span class="s">&quot;\\. &quot;</span><span class="o">).</span><span class="n">filterNot</span><span class="o">(</span><span class="n">x</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">x</span><span class="o">.</span><span class="n">matches</span><span class="o">(</span><span class="s">&quot;\\W+&quot;</span><span class="o">)).</span><span class="n">filterNot</span><span class="o">(</span><span class="n">x</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">x</span> <span class="o">==</span> <span class="s">&quot;&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><a href="https://github.com/atteroTheGreatest/laughing-archer/blob/master/src/analysis/SummaryTool.scala">SummaryTool.scala</a></p>
+
+<h3>Overall impression</h3>
+
+<p>Well, scala is cool. Rich type system, amazing api, conciseness make me a growing fan of scala. It's different from for example python, because it implements static typing which is usually a pain. Especially when writing with text editor not with speciallised IDE which analizes your code on the go. But in scala types are not just superfluous addition, they make code more understandable and functional and due to type inference you usually don't have to write them!</p>
+
+<p>Now I'll return to scala book written by Oderski (main designer of scala). Only over 600 pages to go!</p>
+]]></content>
+  </entry>
+  
+</feed>

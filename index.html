@@ -9,7 +9,7 @@
   <meta name="author" content="Justyna Ilczuk">
 
   
-  <meta name="description" content="Motivation One of my projects has to written in Java or similar JVM language (not python sadly). It&#8217;s a rich GUI application and I had to &hellip;">
+  <meta name="description" content="Java was tiring and painful I was developing a small project in Java. It was okay. Java isn&#8217;t very difficult to write in. But I had some &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,14 +18,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://atteroTheGreatest.github.com">
+  <link rel="canonical" href="http://atteroTheGreatest.github.com/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Little struggles of growing hackaphysicist" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Little struggles of growing hackaphysicist" type="application/atom+xml">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -36,10 +36,17 @@
 
 <body   >
   <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">{</div>
+  	<div id="logoText">mob</div>
+  	<div id="logoRight">}</div>
+  	<div class="clear"></div>
+  </div>
   <h1><a href="/">Little struggles of growing hackaphysicist</a></h1>
   
     <h2>adventures, physics, science, art and technology to wrap it up</h2>
   
+  <div class="clear"></div>
 </hgroup>
 
 </header>
@@ -71,7 +78,105 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/04/16/learning-javafx-1/">Learning JavaFx2 - Part 1</a></h1>
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2013/04/29/new-love/">New Love</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-29T19:56:00+02:00" pubdate data-updated="true">Apr 29<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>Java was tiring and painful</h3>
+
+<p>I was developing a small project in Java. It was okay. Java isn&#8217;t very difficult to write in. But I had some strange problems. Mainly with ide, libraries, maven, ant and so on.</p>
+
+<p>I really hate build.xml. Oh, I do.</p>
+
+<p>I wanted to do something stimulating and mix some scala code into my existing java project to make it more enjoable.</p>
+
+<h3>Mixing scala and java</h3>
+
+<p>I can&#8217;t see you! It was the main reaction of my netbeans IDE. Actually mixing scala into existing java project isn&#8217;t so easy. I installed special plugins for Netbeans but it didn&#8217;t work, I got strange ant errors and spent a few hours reading about maven and building with ant.</p>
+
+<p>It was too much for me. I returned to eclipse and installed ScalaIDE which is very nice, but still I don&#8217;t know how to integrate there nicely a testing environment.</p>
+
+<p>I created new Scala project because I read it&#8217;s a better way than other way round (Scala in java) and added some of my existing java files.</p>
+
+<p>I wanted to integrate a JavaFX, and then ScalaFX, but I had strange problems with those libraries.</p>
+
+<h3>Swinging with scala</h3>
+
+<p>Scala has swing library and its bindings are very intuitive and concise. So different from JavaFX!</p>
+
+<p>I don&#8217;t know it well yet, but I grasped some basics, write a really simple gui and it WORKED.</p>
+
+<p><a href="http://scalatutorial.de/topic177.html">Simple German Swing tutorial</a></p>
+
+<p><a href="https://lampsvn.epfl.ch/trac/scala/browser/scala/trunk/src/swing/scala/swing/test?order=name">Working Sources</a></p>
+
+<p>Enjoy.</p>
+
+<h3>Concise and functional scala</h3>
+
+<p><a href="http://en.wikipedia.org/wiki/Scala_(programming_language">Scala on wiki</a>)</p>
+
+<p><a href="http://www.scala-lang.org/">Scala website</a></p>
+
+<p>On Scala website are links to learning materials, even free books like &#8220;Scala by example&#8221;. There is also a brief tutorial (20 pages) which I recommend for the beginning, because it is a good overview. (Good start to fall in love with scala ;) )</p>
+
+<p>Reading scala book is quite entertaining, I&#8217;ve never programmed a functional language before (not counting javascript and some lisp) and learning new concepts in such an elegant form as in scala is just a pleasure.</p>
+
+<p>It&#8217;s very expressive and still easy to use. Below you can see a small snippet of code I wrote today in the morning.</p>
+
+<figure class='code'><figcaption><span>splitContentToSentences - SummaryTool.scala </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">splitContentToSentences</span><span class="o">(</span><span class="n">content</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">content</span><span class="o">.</span><span class="n">replaceAll</span><span class="o">(</span><span class="s">&quot;\n&quot;</span><span class="o">,</span> <span class="s">&quot;. &quot;</span><span class="o">).</span><span class="n">split</span><span class="o">(</span><span class="s">&quot;\\. &quot;</span><span class="o">).</span><span class="n">filterNot</span><span class="o">(</span><span class="n">x</span> <span class="k">=&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">matches</span><span class="o">(</span><span class="s">&quot;\\W+&quot;</span><span class="o">)).</span><span class="n">filterNot</span><span class="o">(</span><span class="n">x</span> <span class="k">=&gt;</span> <span class="n">x</span> <span class="o">==</span> <span class="s">&quot;&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="https://github.com/atteroTheGreatest/laughing-archer/blob/master/src/analysis/SummaryTool.scala">SummaryTool.scala</a></p>
+
+<h3>Overall impression</h3>
+
+<p>Well, scala is cool. Rich type system, amazing api, conciseness make me a growing fan of scala. It&#8217;s different from for example python, because it implements static typing which is usually a pain. Especially when writing with text editor not with speciallised IDE which analizes your code on the go. But in scala types are not just superfluous addition, they make code more understandable and functional and due to type inference you usually don&#8217;t have to write them!</p>
+
+<p>Now I&#8217;ll return to scala book written by Oderski (main designer of scala). Only over 600 pages to go!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2013/04/16/learning-javafx-1/">Learning JavaFx2 - Part 1</a></h1>
+      
     
     
       <p class="meta">
@@ -396,7 +501,9 @@ designed constructor? When construction of an object takes 50 lines of code, I s
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/04/08/latex-in-use/">Latex in Use</a></h1>
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2013/04/08/latex-in-use/">Latex in Use</a></h1>
+      
     
     
       <p class="meta">
@@ -491,7 +598,9 @@ because community is huge.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/04/07/learning-markdown/">Learning Markdown</a></h1>
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2013/04/07/learning-markdown/">Learning Markdown</a></h1>
+      
     
     
       <p class="meta">
@@ -540,7 +649,9 @@ At least for me. But there are solutions for this problem - markup languages!</p
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/04/07/start/">Start</a></h1>
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2013/04/07/start/">Start</a></h1>
+      
     
     
       <p class="meta">
@@ -583,6 +694,10 @@ At least for me. But there are solutions for this problem - markup languages!</p
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/04/29/new-love/">New love</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/04/16/learning-javafx-1/">Learning JavaFx2 - Part 1</a>
