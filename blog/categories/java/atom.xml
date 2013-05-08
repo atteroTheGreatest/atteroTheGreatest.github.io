@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java, | Tiny struggles of a growing hackaphysicist]]></title>
   <link href="http://atteroTheGreatest.github.com/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://atteroTheGreatest.github.com/"/>
-  <updated>2013-05-06T18:58:54+02:00</updated>
+  <updated>2013-05-08T16:35:12+02:00</updated>
   <id>http://atteroTheGreatest.github.com/</id>
   <author>
     <name><![CDATA[Justyna Ilczuk]]></name>
@@ -42,38 +42,23 @@
 
 <p>I wanted to add some warning dialogs into my scalafx application, but scalafx or javafx don't support it by default. I found dialogs library for javafx and tried to use it to show dialog in my scalafx app. Guess what? It worked and doing it was really simple.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>splitContentToSentences - MainApp.scala </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">import</span> <span class="nn">javafx.scene.control.Dialogs</span>
-</span><span class='line'><span class="o">(...)</span>
-</span><span class='line'><span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">&quot;Submit&quot;</span><span class="o">)</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">onAction</span> <span class="k">=</span> <span class="o">{</span><span class="n">e</span><span class="k">:</span> <span class="kt">ActionEvent</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>    <span class="k">val</span> <span class="n">emptyFields</span> <span class="k">=</span> <span class="n">getEmptyFields</span><span class="o">()</span>
-</span><span class='line'>    <span class="k">if</span><span class="o">(!</span><span class="n">emptyFields</span><span class="o">.</span><span class="n">isEmpty</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="nc">Dialogs</span><span class="o">.</span><span class="n">showWarningDialog</span><span class="o">(</span><span class="n">stage</span><span class="o">,</span>
-</span><span class='line'>            <span class="n">emptyFields</span><span class="o">.</span><span class="n">mkString</span><span class="o">(</span><span class="s">&quot;, &quot;</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot; cannot be empty.&quot;</span><span class="o">,</span>
-</span><span class='line'>            <span class="s">&quot;Book couldn&#39;t be added.&quot;</span><span class="o">,</span> <span class="s">&quot;Adding failure&quot;</span><span class="o">);</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;(...)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock splitContentToSentences - MainApp.scala %}
+import javafx.scene.control.Dialogs
+(...)
+new Button("Submit") {</p>
+
+<pre><code>onAction = {e: ActionEvent =&gt; 
+    val emptyFields = getEmptyFields() 
+    if(!emptyFields.isEmpty) {
+        Dialogs.showWarningDialog(stage,
+            emptyFields.mkString(", ") + " cannot be empty.",
+            "Book couldn't be added.", "Adding failure");
+        }
+    }
+</code></pre>
+
+<p>(...)
+{% endcodeblock %}</p>
 
 <p>Here's the library: <a href="https://github.com/marcojakob/javafx-ui-sandbox/tree/master/javafx-dialogs">javafx-dialogs</a></p>
 
