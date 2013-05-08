@@ -9,7 +9,7 @@
   <meta name="author" content="Justyna Ilczuk">
 
   
-  <meta name="description" content="Installation There is a scalafx webpage and it has detailed tutorial how to install scalafx and get started. However it is actually even simples as &hellip;">
+  <meta name="description" content="A&#8230; what? Preon is a Java library which aims to provide a framework for dealing with binary encoded data. Repository Actually reading binary &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,158 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2013/05/08/readingwithpreon/">Reading With Preon</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-08T16:00:00+02:00" pubdate data-updated="true">May 8<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>A&#8230; what?</h3>
+
+<p>Preon is a Java library which aims to provide a framework for dealing with binary encoded data. <a href="https://github.com/preon/preon">Repository</a></p>
+
+<p>Actually reading binary files in Java isn&#8217;t very comfortable. I love a python way to deal with binary files - <a href="http://docs.python.org/2/library/struct.html">struct</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import struct
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  #How exemplary data is packed
+</span><span class='line'>  format = "&lt;IIH2s"
+</span><span class='line'>
+</span><span class='line'>  #How long it is
+</span><span class='line'>  how_many_bytes = calcsize(format)
+</span><span class='line'>
+</span><span class='line'>  #unpacking
+</span><span class='line'>  something = struct.unpack(format, string_with_binary_data)
+</span><span class='line'>
+</span><span class='line'>  #packing
+</span><span class='line'>  packed =  pack('llh0l', 1, 2, 3)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Nice and clean. What about Java? There are many ways to read binary files with Java. Almost all are very tedious. I decided to use preon. <a href="http://www.scribd.com/doc/8128172/Preon-Introduction">Here</a> and <a href="http://www.scribd.com/doc/7988375/Preon-Under-the-Hood">there</a> you can read some publications about preon.</p>
+
+<h3>How to use preon?</h3>
+
+<p>I think that from user point of view, the most important part of preon library are codecs.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>//Create codec based on previously defined class
+</span><span class='line'>  Codec&lt;EXTHHeader> codec = Codecs.create(EXTHHeader.class);
+</span><span class='line'>//Create buffer with data to be read
+</span><span class='line'>  RandomAccessFile fp = new RandomAccessFile(file, "r");
+</span><span class='line'>  fp.seek(offset);
+</span><span class='line'>  byte[] buff= new  byte[headers.mobiHeaderSize];
+</span><span class='line'>  fp.read(buff, 0, headers.exthHeaderSize);
+</span><span class='line'>//Decode your object from buffer
+</span><span class='line'>  EXTHHeader exthHeader = Codecs.decode(codec, buff);</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>import nl.flotsam.preon.annotation.BoundNumber;
+</span><span class='line'>//There is something like big and little endian (default is little)
+</span><span class='line'>import nl.flotsam.preon.buffer.ByteOrder;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>public class EXTHHeader {
+</span><span class='line'>  //I use long with size 32 to represent unsigned 32 bit int
+</span><span class='line'>  //Reading signed int is identical except from using int instead of long
+</span><span class='line'>    @BoundNumber(size="32", byteOrder=ByteOrder.BigEndian)
+</span><span class='line'>    long identifier;
+</span><span class='line'>    @BoundNumber(size="32", byteOrder=ByteOrder.BigEndian)
+</span><span class='line'>    long headerLength;
+</span><span class='line'>    @BoundNumber(size="32", byteOrder=ByteOrder.BigEndian)
+</span><span class='line'>    long recordCount;
+</span><span class='line'>    
+</span><span class='line'>  @Override
+</span><span class='line'>  public String toString() {
+</span><span class='line'>      return "EXTHHeader [identifier=" + identifier + ", headerLength="
+</span><span class='line'>              + headerLength + ", recordCount=" + recordCount + "]";
+</span><span class='line'>  }
+</span><span class='line'>  
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can define byte order, size, type&#8230; and even lists with size based on value from one of fields. You can also add different methods to class (like toString).</p>
+
+<p>I forgot to mention, Preon has lots of dependencies, you have to include them in your project or it won&#8217;t work.</p>
+
+<p>Not so hard, isn&#8217;t it? And it has lot&#8217;s more functionalities, but those above are the most common ones.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -790,6 +942,10 @@ At least for me. But there are solutions for this problem - markup languages!</p
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/08/readingwithpreon/">Reading With Preon</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/06/scalafx-gui-development/">GUI development in scalafx </a>
       </li>
     
@@ -803,10 +959,6 @@ At least for me. But there are solutions for this problem - markup languages!</p
     
       <li class="post">
         <a href="/blog/2013/04/08/latex-in-use/">Latex in use</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/07/learning-markdown/">Learning markdown</a>
       </li>
     
   </ul>
