@@ -4,7 +4,7 @@
   <title><![CDATA[Tiny struggles of a growing hackaphysicist]]></title>
   <link href="http://atteroTheGreatest.github.com/atom.xml" rel="self"/>
   <link href="http://atteroTheGreatest.github.com/"/>
-  <updated>2013-05-08T18:49:52+02:00</updated>
+  <updated>2013-05-08T18:50:45+02:00</updated>
   <id>http://atteroTheGreatest.github.com/</id>
   <author>
     <name><![CDATA[Justyna Ilczuk]]></name>
@@ -38,20 +38,20 @@
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'> <span class="kn">import</span> <span class="nn">struct</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>   <span class="kn">import</span> <span class="nn">struct</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>  <span class="err">#</span><span class="n">How</span> <span class="n">exemplary</span> <span class="n">data</span> <span class="n">is</span> <span class="n">packed</span>
+</span><span class='line'>  <span class="c">#How exemplary data is packed</span>
 </span><span class='line'>  <span class="n">format</span> <span class="o">=</span> <span class="s">&quot;&lt;IIH2s&quot;</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="err">#</span><span class="n">How</span> <span class="kt">long</span> <span class="n">it</span> <span class="n">is</span>
-</span><span class='line'>  <span class="n">how_many_bytes</span> <span class="o">=</span> <span class="n">calcsize</span><span class="o">(</span><span class="n">format</span><span class="o">)</span>
+</span><span class='line'>  <span class="c">#How long it is</span>
+</span><span class='line'>  <span class="n">how_many_bytes</span> <span class="o">=</span> <span class="n">calcsize</span><span class="p">(</span><span class="n">format</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="err">#</span><span class="n">unpacking</span>
-</span><span class='line'>  <span class="n">something</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="na">unpack</span><span class="o">(</span><span class="n">format</span><span class="o">,</span> <span class="n">string_with_binary_data</span><span class="o">)</span>
+</span><span class='line'>  <span class="c">#unpacking</span>
+</span><span class='line'>  <span class="n">something</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">format</span><span class="p">,</span> <span class="n">string_with_binary_data</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="err">#</span><span class="n">packing</span>
-</span><span class='line'>  <span class="n">packed</span> <span class="o">=</span>  <span class="n">pack</span><span class="o">(</span><span class="err">&#39;</span><span class="n">llh0l</span><span class="err">&#39;</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+</span><span class='line'>  <span class="c">#packing</span>
+</span><span class='line'>  <span class="n">packed</span> <span class="o">=</span>  <span class="n">pack</span><span class="p">(</span><span class="s">&#39;llh0l&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
