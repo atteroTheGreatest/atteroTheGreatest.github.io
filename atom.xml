@@ -4,7 +4,7 @@
   <title><![CDATA[Tiny struggles of a growing hackaphysicist]]></title>
   <link href="http://atteroTheGreatest.github.com/atom.xml" rel="self"/>
   <link href="http://atteroTheGreatest.github.com/"/>
-  <updated>2013-05-08T19:11:08+02:00</updated>
+  <updated>2013-05-08T19:59:04+02:00</updated>
   <id>http://atteroTheGreatest.github.com/</id>
   <author>
     <name><![CDATA[Justyna Ilczuk]]></name>
@@ -625,9 +625,13 @@ It even was in my repository (and I don&#8217;t have ubuntu, but some odd, rare 
 
 <h2>Problems</h2>
 
-<p>First problem I encountered was encoding. I writed my report in Polish, a language which contains lots of strange characters i.e. &#8220;ę&#8221;, &#8220;ó&#8221; and they were invisible in pdf I generated.</p>
+<p>First problem I encountered was encoding. I wrote my report in Polish, a language which contains lots of strange characters i.e. &#8220;ę&#8221;, &#8220;ó&#8221; and they were invisible in pdf I generated.</p>
 
 <p>Quick search in google helped. There are packages for encoding! One with utf-8 helped.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>\usepackage[utf8]{inputenc}</span></code></pre></td></tr></table></div></figure>
+
 
 <p>My second problem was inserting tables. I had to create a fancy table with spanning cells and wrapped content.
 Latex is not table friendly by default. I even tried to use my Texmaker ide, which have table wizard, but it was tedious and didn&#8217;t
