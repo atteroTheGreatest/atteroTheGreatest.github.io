@@ -106,7 +106,7 @@
 
 <p>Actually reading binary files in Java isn&#8217;t very comfortable. I love a python way to deal with binary files - <a href="http://docs.python.org/2/library/struct.html">struct</a></p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -120,20 +120,21 @@
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>import struct
+</pre></td><td class='code'><pre><code class='java'><span class='line'> <span class="kn">import</span> <span class="nn">struct</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>  #How exemplary data is packed
-</span><span class='line'>  format = "&lt;IIH2s"
+</span><span class='line'>  <span class="err">#</span><span class="n">How</span> <span class="n">exemplary</span> <span class="n">data</span> <span class="n">is</span> <span class="n">packed</span>
+</span><span class='line'>  <span class="n">format</span> <span class="o">=</span> <span class="s">&quot;&lt;IIH2s&quot;</span>
 </span><span class='line'>
-</span><span class='line'>  #How long it is
-</span><span class='line'>  how_many_bytes = calcsize(format)
+</span><span class='line'>  <span class="err">#</span><span class="n">How</span> <span class="kt">long</span> <span class="n">it</span> <span class="n">is</span>
+</span><span class='line'>  <span class="n">how_many_bytes</span> <span class="o">=</span> <span class="n">calcsize</span><span class="o">(</span><span class="n">format</span><span class="o">)</span>
 </span><span class='line'>
-</span><span class='line'>  #unpacking
-</span><span class='line'>  something = struct.unpack(format, string_with_binary_data)
+</span><span class='line'>  <span class="err">#</span><span class="n">unpacking</span>
+</span><span class='line'>  <span class="n">something</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="na">unpack</span><span class="o">(</span><span class="n">format</span><span class="o">,</span> <span class="n">string_with_binary_data</span><span class="o">)</span>
 </span><span class='line'>
-</span><span class='line'>  #packing
-</span><span class='line'>  packed =  pack('llh0l', 1, 2, 3)</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>  <span class="err">#</span><span class="n">packing</span>
+</span><span class='line'>  <span class="n">packed</span> <span class="o">=</span>  <span class="n">pack</span><span class="o">(</span><span class="err">&#39;</span><span class="n">llh0l</span><span class="err">&#39;</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>Nice and clean. What about Java? There are many ways to read binary files with Java. Almost all are very tedious. I decided to use preon. <a href="http://www.scribd.com/doc/8128172/Preon-Introduction">Here</a> and <a href="http://www.scribd.com/doc/7988375/Preon-Under-the-Hood">there</a> you can read some publications about preon.</p>
@@ -142,7 +143,7 @@
 
 <p>I think that from user point of view, the most important part of preon library are codecs.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -151,20 +152,21 @@
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>//Create codec based on previously defined class
-</span><span class='line'>  Codec&lt;EXTHHeader> codec = Codecs.create(EXTHHeader.class);
-</span><span class='line'>//Create buffer with data to be read
-</span><span class='line'>  RandomAccessFile fp = new RandomAccessFile(file, "r");
-</span><span class='line'>  fp.seek(offset);
-</span><span class='line'>  byte[] buff= new  byte[headers.mobiHeaderSize];
-</span><span class='line'>  fp.read(buff, 0, headers.exthHeaderSize);
-</span><span class='line'>//Decode your object from buffer
-</span><span class='line'>  EXTHHeader exthHeader = Codecs.decode(codec, buff);</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//Create codec based on previously defined class</span>
+</span><span class='line'>  <span class="n">Codec</span><span class="o">&lt;</span><span class="n">EXTHHeader</span><span class="o">&gt;</span> <span class="n">codec</span> <span class="o">=</span> <span class="n">Codecs</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">EXTHHeader</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//Create buffer with data to be read</span>
+</span><span class='line'>  <span class="n">RandomAccessFile</span> <span class="n">fp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="s">&quot;r&quot;</span><span class="o">);</span>
+</span><span class='line'>  <span class="n">fp</span><span class="o">.</span><span class="na">seek</span><span class="o">(</span><span class="n">offset</span><span class="o">);</span>
+</span><span class='line'>  <span class="kt">byte</span><span class="o">[]</span> <span class="n">buff</span><span class="o">=</span> <span class="k">new</span>  <span class="kt">byte</span><span class="o">[</span><span class="n">headers</span><span class="o">.</span><span class="na">mobiHeaderSize</span><span class="o">];</span>
+</span><span class='line'>  <span class="n">fp</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buff</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">headers</span><span class="o">.</span><span class="na">exthHeaderSize</span><span class="o">);</span>
+</span><span class='line'><span class="c1">//Decode your object from buffer</span>
+</span><span class='line'>  <span class="n">EXTHHeader</span> <span class="n">exthHeader</span> <span class="o">=</span> <span class="n">Codecs</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">codec</span><span class="o">,</span> <span class="n">buff</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -186,28 +188,29 @@
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>import nl.flotsam.preon.annotation.BoundNumber;
-</span><span class='line'>//There is something like big and little endian (default is little)
-</span><span class='line'>import nl.flotsam.preon.buffer.ByteOrder;
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">nl.flotsam.preon.annotation.BoundNumber</span><span class="o">;</span>
+</span><span class='line'><span class="c1">//There is something like big and little endian (default is little)</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">nl.flotsam.preon.buffer.ByteOrder</span><span class="o">;</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'>public class EXTHHeader {
-</span><span class='line'>  //I use long with size 32 to represent unsigned 32 bit int
-</span><span class='line'>  //Reading signed int is identical except from using int instead of long
-</span><span class='line'>    @BoundNumber(size="32", byteOrder=ByteOrder.BigEndian)
-</span><span class='line'>    long identifier;
-</span><span class='line'>    @BoundNumber(size="32", byteOrder=ByteOrder.BigEndian)
-</span><span class='line'>    long headerLength;
-</span><span class='line'>    @BoundNumber(size="32", byteOrder=ByteOrder.BigEndian)
-</span><span class='line'>    long recordCount;
-</span><span class='line'>    
-</span><span class='line'>  @Override
-</span><span class='line'>  public String toString() {
-</span><span class='line'>      return "EXTHHeader [identifier=" + identifier + ", headerLength="
-</span><span class='line'>              + headerLength + ", recordCount=" + recordCount + "]";
-</span><span class='line'>  }
-</span><span class='line'>  
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EXTHHeader</span> <span class="o">{</span>
+</span><span class='line'>  <span class="c1">//I use long with size 32 to represent unsigned 32 bit int</span>
+</span><span class='line'>  <span class="c1">//Reading signed int is identical except from using int instead of long</span>
+</span><span class='line'>    <span class="nd">@BoundNumber</span><span class="o">(</span><span class="n">size</span><span class="o">=</span><span class="s">&quot;32&quot;</span><span class="o">,</span> <span class="n">byteOrder</span><span class="o">=</span><span class="n">ByteOrder</span><span class="o">.</span><span class="na">BigEndian</span><span class="o">)</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="n">identifier</span><span class="o">;</span>
+</span><span class='line'>    <span class="nd">@BoundNumber</span><span class="o">(</span><span class="n">size</span><span class="o">=</span><span class="s">&quot;32&quot;</span><span class="o">,</span> <span class="n">byteOrder</span><span class="o">=</span><span class="n">ByteOrder</span><span class="o">.</span><span class="na">BigEndian</span><span class="o">)</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="n">headerLength</span><span class="o">;</span>
+</span><span class='line'>    <span class="nd">@BoundNumber</span><span class="o">(</span><span class="n">size</span><span class="o">=</span><span class="s">&quot;32&quot;</span><span class="o">,</span> <span class="n">byteOrder</span><span class="o">=</span><span class="n">ByteOrder</span><span class="o">.</span><span class="na">BigEndian</span><span class="o">)</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="n">recordCount</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nd">@Override</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="s">&quot;EXTHHeader [identifier=&quot;</span> <span class="o">+</span> <span class="n">identifier</span> <span class="o">+</span> <span class="s">&quot;, headerLength=&quot;</span>
+</span><span class='line'>              <span class="o">+</span> <span class="n">headerLength</span> <span class="o">+</span> <span class="s">&quot;, recordCount=&quot;</span> <span class="o">+</span> <span class="n">recordCount</span> <span class="o">+</span> <span class="s">&quot;]&quot;</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>You can define byte order, size, type&#8230; and even lists with size based on value from one of fields. You can also add different methods to class (like toString).</p>
