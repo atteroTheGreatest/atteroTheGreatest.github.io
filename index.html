@@ -9,7 +9,7 @@
   <meta name="author" content="Justyna Ilczuk">
 
   
-  <meta name="description" content="A&#8230; what? Preon is a Java library which aims to provide a framework for dealing with binary encoded data. Repository Actually reading binary &hellip;">
+  <meta name="description" content="This is a plan of the main campus of my university, Politechnika Warszawska, Warsaw University of Technology, WUT. On the left is a building of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2013/05/08/lastphotos/">The Spring Has Come</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-08T18:57:00+02:00" pubdate data-updated="true">May 8<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is a plan of the main campus of my university, Politechnika Warszawska, Warsaw University of Technology, WUT.</p>
+
+<p><img src="https://lh3.googleusercontent.com/-LHRYbwGdPKw/UYpa64V84jI/AAAAAAAABNk/2MLptE4Xdno/w691-h518-no/SAM_0749.JPG"></p>
+
+<p><img class="left" src="https://lh3.googleusercontent.com/-EDWL2nDetss/UYpa4Kh7x_I/AAAAAAAABNU/HJeOv5fXBQM/w691-h518-no/SAM_0746.JPG" width="250" height="400"></p>
+
+<p>On the left is a building of faculty of Physics, where I go five times a week. Pretty nice place.</p>
+
+<p><img class="right" src="https://lh6.googleusercontent.com/--4fFZmbWjPM/UYpa8brZY1I/AAAAAAAABNs/0dofxmf17mQ/w691-h518-no/SAM_0750.JPG" width="300" height="600"></p>
+
+<p>The bad news is that <a href="hackerspace.pl">Warsaw hackerspace</a> becomes hotter and hotter and our servers don&#8217;t like that :|.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -160,7 +208,7 @@
 </span><span class='line'><span class="c1">//Create buffer with data to be read</span>
 </span><span class='line'>  <span class="n">RandomAccessFile</span> <span class="n">fp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="s">&quot;r&quot;</span><span class="o">);</span>
 </span><span class='line'>  <span class="n">fp</span><span class="o">.</span><span class="na">seek</span><span class="o">(</span><span class="n">offset</span><span class="o">);</span>
-</span><span class='line'>  <span class="kt">byte</span><span class="o">[]</span> <span class="n">buff</span><span class="o">=</span> <span class="k">new</span>  <span class="kt">byte</span><span class="o">[</span><span class="n">headers</span><span class="o">.</span><span class="na">mobiHeaderSize</span><span class="o">];</span>
+</span><span class='line'>  <span class="kt">byte</span><span class="o">[]</span> <span class="n">buff</span><span class="o">=</span> <span class="k">new</span>  <span class="kt">byte</span><span class="o">[</span><span class="n">headers</span><span class="o">.</span><span class="na">size</span><span class="o">];</span>
 </span><span class='line'>  <span class="n">fp</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buff</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">headers</span><span class="o">.</span><span class="na">exthHeaderSize</span><span class="o">);</span>
 </span><span class='line'><span class="c1">//Decode your object from buffer</span>
 </span><span class='line'>  <span class="n">EXTHHeader</span> <span class="n">exthHeader</span> <span class="o">=</span> <span class="n">Codecs</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">codec</span><span class="o">,</span> <span class="n">buff</span><span class="o">);</span>
@@ -945,6 +993,10 @@ At least for me. But there are solutions for this problem - markup languages!</p
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/08/lastphotos/">The spring has come</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/08/readingwithpreon/">Reading With Preon</a>
       </li>
     
@@ -958,10 +1010,6 @@ At least for me. But there are solutions for this problem - markup languages!</p
     
       <li class="post">
         <a href="/blog/2013/04/16/learning-javafx-1/">Learning JavaFx2 - Part 1</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/08/latex-in-use/">Latex in use</a>
       </li>
     
   </ul>

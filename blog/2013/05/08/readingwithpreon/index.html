@@ -157,7 +157,7 @@
 </span><span class='line'><span class="c1">//Create buffer with data to be read</span>
 </span><span class='line'>  <span class="n">RandomAccessFile</span> <span class="n">fp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="s">&quot;r&quot;</span><span class="o">);</span>
 </span><span class='line'>  <span class="n">fp</span><span class="o">.</span><span class="na">seek</span><span class="o">(</span><span class="n">offset</span><span class="o">);</span>
-</span><span class='line'>  <span class="kt">byte</span><span class="o">[]</span> <span class="n">buff</span><span class="o">=</span> <span class="k">new</span>  <span class="kt">byte</span><span class="o">[</span><span class="n">headers</span><span class="o">.</span><span class="na">mobiHeaderSize</span><span class="o">];</span>
+</span><span class='line'>  <span class="kt">byte</span><span class="o">[]</span> <span class="n">buff</span><span class="o">=</span> <span class="k">new</span>  <span class="kt">byte</span><span class="o">[</span><span class="n">headers</span><span class="o">.</span><span class="na">size</span><span class="o">];</span>
 </span><span class='line'>  <span class="n">fp</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buff</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">headers</span><span class="o">.</span><span class="na">exthHeaderSize</span><span class="o">);</span>
 </span><span class='line'><span class="c1">//Decode your object from buffer</span>
 </span><span class='line'>  <span class="n">EXTHHeader</span> <span class="n">exthHeader</span> <span class="o">=</span> <span class="n">Codecs</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">codec</span><span class="o">,</span> <span class="n">buff</span><span class="o">);</span>
@@ -260,6 +260,8 @@
         <a class="basic-alignment left articlenav" href="/blog/2013/05/06/scalafx-gui-development/" title="Previous Post: GUI development in scalafx ">&laquo; GUI development in scalafx </a>
       
       
+        <a class="basic-alignment right articlenav" href="/blog/2013/05/08/lastphotos/" title="Next Post: The spring has come">The spring has come &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -271,6 +273,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/05/08/lastphotos/">The spring has come</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/05/08/readingwithpreon/">Reading With Preon</a>
@@ -286,10 +292,6 @@
     
       <li class="post">
         <a href="/blog/2013/04/16/learning-javafx-1/">Learning JavaFx2 - Part 1</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/08/latex-in-use/">Latex in use</a>
       </li>
     
   </ul>
