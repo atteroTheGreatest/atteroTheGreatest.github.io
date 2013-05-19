@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: scala, | Tiny struggles of a growing hackaphysicist]]></title>
-  <link href="http://atteroTheGreatest.github.com/blog/categories/scala/atom.xml" rel="self"/>
+  <title><![CDATA[Category: nlp | Tiny struggles of a growing hackaphysicist]]></title>
+  <link href="http://atteroTheGreatest.github.com/blog/categories/nlp/atom.xml" rel="self"/>
   <link href="http://atteroTheGreatest.github.com/"/>
   <updated>2013-05-19T20:46:44+02:00</updated>
   <id>http://atteroTheGreatest.github.com/</id>
@@ -357,148 +357,6 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>It took some code, but it's actually pretty simple and works well. Scala offers really nice api to work with this kind of problems.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[GUI development in scalafx ]]></title>
-    <link href="http://atteroTheGreatest.github.com/blog/2013/05/06/scalafx-gui-development/"/>
-    <updated>2013-05-06T18:05:00+02:00</updated>
-    <id>http://atteroTheGreatest.github.com/blog/2013/05/06/scalafx-gui-development</id>
-    <content type="html"><![CDATA[<h3>Installation</h3>
-
-<p>There is a scalafx <a href="https://code.google.com/p/scalafx/">webpage</a> and it has detailed tutorial how to <a href="https://code.google.com/p/scalafx/wiki/GettingStarted">install scalafx and get started</a>. However it is actually even simples as described there. When you have working scala environment (eclipse with scala IDE for example) make sure that you use jdk from oracle (includes javafx by default and you need javafx to use scalafx) and just download scalafx jars and include them in your project.</p>
-
-<h3>Available learning resources</h3>
-
-<p>Creating gui with scalafx isn't hard when you know how to use it.</p>
-
-<p>If you know javafx you've probably seen ProJavaFX book. Good news! There's a <a href="https://github.com/jsacha/ProScalaFX/">scalafx equivalent in source code</a></p>
-
-<p>A better scalafx API overview is <a href="https://github.com/jugchennai/scalafx-ensemble">ensemble project</a>.</p>
-
-<h3>When help from available examples is not enough</h3>
-
-<p>Asking google doesn't provide many helpful examples. I tried to resolve some of my problems, but I couldn't find right answer usually. Which is different from for example problems with java, because there are usually lots of questions with answers.</p>
-
-<p>But... it's not so bad. Scalafx source code is available and well written and you can just skim it and get your answers or translate your problem to javafx problem and then look for answer in java community.</p>
-
-<h3>Mixing scalafx with javafx</h3>
-
-<p>I didn't all issues in my code(I have some problems with responsivness with observable buffers) but I can already tell that scalafx works well with javafx.</p>
-
-<p>I wanted to add some warning dialogs into my scalafx application, but scalafx or javafx don't support it by default. I found dialogs library for javafx and tried to use it to show dialog in my scalafx app. Guess what? It worked and doing it was really simple.</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>splitContentToSentences - MainApp.scala </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">import</span> <span class="nn">javafx.scene.control.Dialogs</span>
-</span><span class='line'><span class="o">(...)</span>
-</span><span class='line'><span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">&quot;Submit&quot;</span><span class="o">)</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">onAction</span> <span class="k">=</span> <span class="o">{</span><span class="n">e</span><span class="k">:</span> <span class="kt">ActionEvent</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'>    <span class="k">val</span> <span class="n">emptyFields</span> <span class="k">=</span> <span class="n">getEmptyFields</span><span class="o">()</span>
-</span><span class='line'>    <span class="k">if</span><span class="o">(!</span><span class="n">emptyFields</span><span class="o">.</span><span class="n">isEmpty</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="nc">Dialogs</span><span class="o">.</span><span class="n">showWarningDialog</span><span class="o">(</span><span class="n">stage</span><span class="o">,</span>
-</span><span class='line'>            <span class="n">emptyFields</span><span class="o">.</span><span class="n">mkString</span><span class="o">(</span><span class="s">&quot;, &quot;</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot; cannot be empty.&quot;</span><span class="o">,</span>
-</span><span class='line'>            <span class="s">&quot;Book couldn&#39;t be added.&quot;</span><span class="o">,</span> <span class="s">&quot;Adding failure&quot;</span><span class="o">);</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;(...)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>Here's the library: <a href="https://github.com/marcojakob/javafx-ui-sandbox/tree/master/javafx-dialogs">javafx-dialogs</a></p>
-
-<p>and descriptive <a href="http://edu.makery.ch/blog/2012/10/30/javafx-2-dialogs/">blog post</a> about how to use it.</p>
-
-<p>And I forgot to add - scalafx looks quite well (like javafx) opposed to scala swing which looks just horrible. Scala swing sounds nice, it's simple, is available by default, has scaladoc... but don't get deceived. Scala swing looks old, api makes strange suprises, and its development is a lie. Just use something else instead, for example scalafx.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[New love]]></title>
-    <link href="http://atteroTheGreatest.github.com/blog/2013/04/29/new-love/"/>
-    <updated>2013-04-29T19:56:00+02:00</updated>
-    <id>http://atteroTheGreatest.github.com/blog/2013/04/29/new-love</id>
-    <content type="html"><![CDATA[<h3>Java was tiring and painful</h3>
-
-<p>I was developing a small project in Java. It was okay. Java isn't very difficult to write in. But I had some strange problems. Mainly with ide, libraries, maven, ant and so on.</p>
-
-<p>I really hate build.xml. Oh, I do.</p>
-
-<p>I wanted to do something stimulating and mix some scala code into my existing java project to make it more enjoable.</p>
-
-<h3>Mixing scala and java</h3>
-
-<p>I can't see you! It was the main reaction of my netbeans IDE. Actually mixing scala into existing java project isn't so easy. I installed special plugins for Netbeans but it didn't work, I got strange ant errors and spent a few hours reading about maven and building with ant.</p>
-
-<p>It was too much for me. I returned to eclipse and installed ScalaIDE which is very nice, but still I don't know how to integrate there nicely a testing environment.</p>
-
-<p>I created new Scala project because I read it's a better way than other way round (Scala in java) and added some of my existing java files.</p>
-
-<p>I wanted to integrate a JavaFX, and then ScalaFX, but I had strange problems with those libraries.</p>
-
-<h3>Swinging with scala</h3>
-
-<p>Scala has swing library and its bindings are very intuitive and concise. So different from JavaFX!</p>
-
-<p>I don't know it well yet, but I grasped some basics, write a really simple gui and it WORKED.</p>
-
-<p><a href="http://scalatutorial.de/topic177.html">Simple German Swing tutorial</a></p>
-
-<p><a href="https://lampsvn.epfl.ch/trac/scala/browser/scala/trunk/src/swing/scala/swing/test?order=name">Working Sources</a></p>
-
-<p>Enjoy.</p>
-
-<h3>Concise and functional scala</h3>
-
-<p><a href="http://en.wikipedia.org/wiki/Scala_(programming_language">Scala on wiki</a>)</p>
-
-<p><a href="http://www.scala-lang.org/">Scala website</a></p>
-
-<p>On Scala website are links to learning materials, even free books like "Scala by example". There is also a brief tutorial (20 pages) which I recommend for the beginning, because it is a good overview. (Good start to fall in love with scala ;) )</p>
-
-<p>Reading scala book is quite entertaining, I've never programmed a functional language before (not counting javascript and some lisp) and learning new concepts in such an elegant form as in scala is just a pleasure.</p>
-
-<p>It's very expressive and still easy to use. Below you can see a small snippet of code I wrote today in the morning.</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>splitContentToSentences - SummaryTool.scala </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">splitContentToSentences</span><span class="o">(</span><span class="n">content</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>    <span class="n">content</span><span class="o">.</span><span class="n">replaceAll</span><span class="o">(</span><span class="s">&quot;\n&quot;</span><span class="o">,</span> <span class="s">&quot;. &quot;</span><span class="o">).</span><span class="n">split</span><span class="o">(</span><span class="s">&quot;\\. &quot;</span><span class="o">).</span><span class="n">filterNot</span><span class="o">(</span><span class="n">x</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">x</span><span class="o">.</span><span class="n">matches</span><span class="o">(</span><span class="s">&quot;\\W+&quot;</span><span class="o">)).</span><span class="n">filterNot</span><span class="o">(</span><span class="n">x</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">x</span> <span class="o">==</span> <span class="s">&quot;&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p><a href="https://github.com/atteroTheGreatest/laughing-archer/blob/master/src/analysis/SummaryTool.scala">SummaryTool.scala</a></p>
-
-<h3>Overall impression</h3>
-
-<p>Well, scala is cool. Rich type system, amazing api, conciseness make me a growing fan of scala. It's different from for example python, because it implements static typing which is usually a pain. Especially when writing with text editor not with speciallised IDE which analizes your code on the go. But in scala types are not just superfluous addition, they make code more understandable and functional and due to type inference you usually don't have to write them!</p>
-
-<p>Now I'll return to scala book written by Oderski (main designer of scala). Only over 600 pages to go!</p>
 ]]></content>
   </entry>
   
