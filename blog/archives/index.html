@@ -9,9 +9,9 @@
   <meta name="author" content="Justyna Ilczuk">
 
   
-  <meta name="description" content="Blog Archive 2013 Fitting text into categories
-May 19 2013 posted in nlp, programming,, scala, The spring has come
-May 08 2013 Reading With Preon &hellip;">
+  <meta name="description" content="Blog Archive 2013 latex-in-octopress
+Jun 18 2013 Fitting text into categories
+May 19 2013 posted in nlp, programming,, scala, The spring has come &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -31,6 +31,38 @@ May 08 2013 Reading With Preon &hellip;">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
   
 
@@ -86,6 +118,16 @@ May 08 2013 Reading With Preon &hellip;">
 
   
   <h2>2013</h2>
+
+<article>
+  
+<h1><a href="/blog/2013/06/18/latex-in-octopress/">latex-in-octopress</a></h1>
+<time datetime="2013-06-18T20:18:00+02:00" pubdate><span class='month'>Jun</span> <span class='day'>18</span> <span class='year'>2013</span></time>
+
+
+</article>
+
+
 
 <article>
   
@@ -191,6 +233,10 @@ May 08 2013 Reading With Preon &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/18/latex-in-octopress/">latex-in-octopress</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/19/categories/">Fitting text into categories</a>
       </li>
     
@@ -204,10 +250,6 @@ May 08 2013 Reading With Preon &hellip;">
     
       <li class="post">
         <a href="/blog/2013/05/06/scalafx-gui-development/">GUI development in scalafx </a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/29/new-love/">New love</a>
       </li>
     
   </ul>

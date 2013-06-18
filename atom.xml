@@ -4,7 +4,7 @@
   <title><![CDATA[Tiny struggles of a growing hackaphysicist]]></title>
   <link href="http://atteroTheGreatest.github.com/atom.xml" rel="self"/>
   <link href="http://atteroTheGreatest.github.com/"/>
-  <updated>2013-05-19T20:46:44+02:00</updated>
+  <updated>2013-06-18T20:24:35+02:00</updated>
   <id>http://atteroTheGreatest.github.com/</id>
   <author>
     <name><![CDATA[Justyna Ilczuk]]></name>
@@ -12,6 +12,42 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[latex-in-octopress]]></title>
+    <link href="http://atteroTheGreatest.github.com/blog/2013/06/18/latex-in-octopress/"/>
+    <updated>2013-06-18T20:18:00+02:00</updated>
+    <id>http://atteroTheGreatest.github.com/blog/2013/06/18/latex-in-octopress</id>
+    <content type="html"><![CDATA[<p>Oh well, it should be latex.</p>
+
+<p>I used this post: http://chuchao333.github.io/blog/2012/08/18/supporting-latex-in-octopress/</p>
+
+<p>On my screen it really doesn&#8217;t look right.</p>
+
+<p>$$
+\begin{align*}
+  &amp; \phi(x,y) = \phi \left(\sum<em>{i=1}<sup>n</sup> x_ie_i, \sum</em>{j=1}<sup>n</sup> y_je_j \right)
+  = \sum<em>{i=1}<sup>n</sup> \sum</em>{j=1}<sup>n</sup> x_i y_j \phi(e_i, e_j) = \
+  &amp; (x_1, \ldots, x_n) \left( \begin{array}{ccc}</p>
+
+<pre><code>  \phi(e_1, e_1) &amp; \cdots &amp; \phi(e_1, e_n) \\
+  \vdots &amp; \ddots &amp; \vdots \\
+  \phi(e_n, e_1) &amp; \cdots &amp; \phi(e_n, e_n)
+\end{array} \right)
+</code></pre>
+
+<p>  \left( \begin{array}{c}</p>
+
+<pre><code>  y_1 \\
+  \vdots \\
+  y_n
+\end{array} \right)
+</code></pre>
+
+<p>\end{align*}
+$$</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Fitting text into categories]]></title>
