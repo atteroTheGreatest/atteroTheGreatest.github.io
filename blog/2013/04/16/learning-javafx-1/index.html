@@ -9,7 +9,8 @@
   <meta name="author" content="Justyna Ilczuk">
 
   
-  <meta name="description" content="Motivation One of my projects has to written in Java or similar JVM language (not python sadly). It&#8217;s a rich GUI application and I had to &hellip;">
+  <meta name="description" content="Motivation
+One of my projects has to written in Java or similar JVM language (not python sadly). It’s a rich GUI application and I had to choose &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -134,296 +135,290 @@
   </header>
 
 
-<div class="entry-content"><h3>Motivation</h3>
-
-<p>One of my projects has to written in Java or similar JVM language (not python sadly). It&#8217;s a rich GUI application and I had to choose
+<div class="entry-content"><h3 id="motivation">Motivation</h3>
+<p>One of my projects has to written in Java or similar JVM language (not python sadly). It’s a rich GUI application and I had to choose 
 appropriate framework to develop user interface. After some research I found JavaFx.</p>
 
-<p>I first wanted to do it in <a href="http://groovy.codehaus.org/">Groovy</a>, dynamic language for JVM, but after I saw documentation of GroovyFx&#8230;
+<p>I first wanted to do it in <a href="http://groovy.codehaus.org/">Groovy</a>, dynamic language for JVM, but after I saw documentation of GroovyFx…
 I decided not to, because lots of subsection of this documentation was simply empty.</p>
 
-<p>My project is not exceptionally ambitious and I wanted to do GUI as easily and fast and possible and then focus on major functionality of my app. I have developed some GUI&#8217;s before
+<p>My project is not exceptionally ambitious and I wanted to do GUI as easily and fast and possible and then focus on major functionality of my app. I have developed some GUI’s before
 in C++ and Python. And it was rather simple and intuitive process (I love <a href="http://qt-project.org/wiki/Category:LanguageBindings::PySide">Pyside</a>!).</p>
 
-<h3>First impressions</h3>
-
-<p>I remember that I had some problems. I encountered very strange behavior of Intellij Ide, it was switching off after attempts to launch javafx project and I still don&#8217;t know why. After some re-installations (SDK from Oracle and Netbeans IDE, which has default support for javafx) I started learning from the book: <a href="http://www.apress.com/9781430268727">Pro JavaFX 2</a> which kindly provides source <a href="http://www.apress.com/downloadable/download/sample/sample_id/1253/">code</a>.</p>
+<h3 id="first-impressions">First impressions</h3>
+<p>I remember that I had some problems. I encountered very strange behavior of Intellij Ide, it was switching off after attempts to launch javafx project and I still don’t know why. After some re-installations (SDK from Oracle and Netbeans IDE, which has default support for javafx) I started learning from the book: <a href="http://www.apress.com/9781430268727">Pro JavaFX 2</a> which kindly provides source <a href="http://www.apress.com/downloadable/download/sample/sample_id/1253/">code</a>.</p>
 
 <p>I had custom installation of a development platform and I followed a tutorial, was it successful? Not. Some of the first examples from this
-book just doesn&#8217;t compile on my computer. I lost lots of time, and found out that further examples works. WUT?</p>
+book just doesn’t compile on my computer. I lost lots of time, and found out that further examples works. WUT?</p>
 
-<h3>Philosophy</h3>
+<h3 id="philosophy">Philosophy</h3>
+<p>I think that’s the main reason why JavaFX is so strange for me it’s its javaland philosophy, which I’m not used to. I prefer thinking in terms of problem not in terms of framework. An approach where framework has so many solutions for me and is itself huge and has its own complicated philosophy is for me overwhelming.</p>
 
-<p>I think that&#8217;s the main reason why JavaFX is so strange for me it&#8217;s its javaland philosophy, which I&#8217;m not used to. I prefer thinking in terms of problem not in terms of framework. An approach where framework has so many solutions for me and is itself huge and has its own complicated philosophy is for me overwhelming.</p>
+<p>Maybe I need more time for learning it and then using will be a piece of cake. I truly hope so. </p>
 
-<p>Maybe I need more time for learning it and then using will be a piece of cake. I truly hope so.</p>
+<h3 id="suprises">Suprises</h3>
+<p>I read Pro JavaFx book to be able to build nice, simple and clean GUI. Documentation of Java libraries is usually not very friendly in my opinion, because it’s usually automatically generated and there’s too small
+signal to noise ratio whith all those classes and methods I usually doesn’t need.</p>
 
-<h3>Suprises</h3>
+<p>Funny thing is that one of the first application examples is a metronome, which uses a lots of transitions, which are quite funny in javafx. There a class and factory for everything. I usually think in terms on 2D canvas, but there it’s implemented in different way. Nodes are binded to transitions and there is no trace of canvas.</p>
 
-<p>I read Pro JavaFx book to be able to build nice, simple and clean GUI. Documentation of Java libraries is usually not very friendly in my opinion, because it&#8217;s usually automatically generated and there&#8217;s too small
-signal to noise ratio whith all those classes and methods I usually doesn&#8217;t need.</p>
+<p>Binding in JavaFx is a bit overwhelming. I’ve seen already at least 60 methods of public api connected with it. Nightmare! But it’s quite useful when you get used to specific way of thinking about dynamic properties, which are observable, have event handlers and so on.</p>
 
-<p>Funny thing is that one of the first application examples is a metronome, which uses a lots of transitions, which are quite funny in javafx. There a class and factory for everything. I usually think in terms on 2D canvas, but there it&#8217;s implemented in different way. Nodes are binded to transitions and there is no trace of canvas.</p>
-
-<p>Binding in JavaFx is a bit overwhelming. I&#8217;ve seen already at least 60 methods of public api connected with it. Nightmare! But it&#8217;s quite useful when you get used to specific way of thinking about dynamic properties, which are observable, have event handlers and so on.</p>
-
-<p>Chaining and builders are quite handy but they&#8217;re not my favorite way of building objects, why not a wisely
-designed constructor? When construction of an object takes 50 lines of code, I simply get lost.</p>
+<p>Chaining and builders are quite handy but they’re not my favorite way of building objects, why not a wisely
+designed constructor? When construction of an object takes 50 lines of code, I simply get lost. </p>
 
 <p>Here is an example of such code:</p>
 
-<figure class='code'><figcaption><span>Some random node written in JavaFx </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-<span class='line-number'>103</span>
-<span class='line-number'>104</span>
-<span class='line-number'>105</span>
-<span class='line-number'>106</span>
-<span class='line-number'>107</span>
-<span class='line-number'>108</span>
-<span class='line-number'>109</span>
-<span class='line-number'>110</span>
-<span class='line-number'>111</span>
-<span class='line-number'>112</span>
-<span class='line-number'>113</span>
-<span class='line-number'>114</span>
-<span class='line-number'>115</span>
-<span class='line-number'>116</span>
-<span class='line-number'>117</span>
-<span class='line-number'>118</span>
-<span class='line-number'>119</span>
-<span class='line-number'>120</span>
-<span class='line-number'>121</span>
-<span class='line-number'>122</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">VBox</span> <span class="n">variousControls</span> <span class="o">=</span> <span class="n">VBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">padding</span><span class="o">(</span><span class="k">new</span> <span class="n">Insets</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">))</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">spacing</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">children</span><span class="o">(</span>
-</span><span class='line'>        <span class="n">ButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;Button&quot;</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>              <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot; occurred on Button&quot;</span><span class="o">);</span>
-</span><span class='line'>              <span class="o">}</span>
-</span><span class='line'>            <span class="o">})</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">checkBox</span> <span class="o">=</span> <span class="n">CheckBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;CheckBox&quot;</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>              <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot; occurred on CheckBox&quot;</span><span class="o">);</span>
-</span><span class='line'>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&quot;, and selectedProperty is: &quot;</span><span class="o">);</span>
-</span><span class='line'>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">checkBox</span><span class="o">.</span><span class="na">selectedProperty</span><span class="o">().</span><span class="na">getValue</span><span class="o">());</span>
-</span><span class='line'>              <span class="o">}</span>
-</span><span class='line'>            <span class="o">})</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">HBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">spacing</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">children</span><span class="o">(</span>
-</span><span class='line'>            <span class="n">RadioButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;RadioButton1&quot;</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">toggleGroup</span><span class="o">(</span><span class="n">radioToggleGroup</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>            <span class="n">RadioButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;RadioButton2&quot;</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">toggleGroup</span><span class="o">(</span><span class="n">radioToggleGroup</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">build</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">HyperlinkBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;Hyperlink&quot;</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>              <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot; occurred on Hyperlink&quot;</span><span class="o">);</span>
-</span><span class='line'>              <span class="o">}</span>
-</span><span class='line'>            <span class="o">})</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">choiceBox</span> <span class="o">=</span> <span class="n">ChoiceBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">items</span><span class="o">(</span><span class="n">model</span><span class="o">.</span><span class="na">choiceBoxItems</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">MenuButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuButton&quot;</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">items</span><span class="o">(</span>
-</span><span class='line'>            <span class="n">MenuItemBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuItem A&quot;</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span>
-</span><span class='line'>                                       <span class="s">&quot; occurred on Menu Item A&quot;</span><span class="o">);</span>
-</span><span class='line'>                  <span class="o">}</span>
-</span><span class='line'>                <span class="o">})</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>            <span class="n">MenuItemBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuItem B&quot;</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">build</span><span class="o">()</span>
-</span><span class='line'>           <span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">SplitMenuButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;SplitMenuButton&quot;</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>            <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>              <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span>
-</span><span class='line'>                                 <span class="s">&quot; occurred on SplitMenuButton&quot;</span><span class="o">);</span>
-</span><span class='line'>            <span class="o">}</span>
-</span><span class='line'>          <span class="o">})</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">items</span><span class="o">(</span>
-</span><span class='line'>            <span class="n">MenuItemBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuItem A&quot;</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span>
-</span><span class='line'>                                       <span class="s">&quot; occurred on Menu Item A&quot;</span><span class="o">);</span>
-</span><span class='line'>                  <span class="o">}</span>
-</span><span class='line'>                <span class="o">})</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>            <span class="n">MenuItemBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuItem B&quot;</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">build</span><span class="o">()</span>
-</span><span class='line'>           <span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">textField</span> <span class="o">=</span> <span class="n">TextFieldBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">promptText</span><span class="o">(</span><span class="s">&quot;Enter user name&quot;</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">prefColumnCount</span><span class="o">(</span><span class="mi">16</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">passwordField</span> <span class="o">=</span> <span class="n">PasswordFieldBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">promptText</span><span class="o">(</span><span class="s">&quot;Enter password&quot;</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">prefColumnCount</span><span class="o">(</span><span class="mi">16</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">HBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">spacing</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">children</span><span class="o">(</span>
-</span><span class='line'>            <span class="k">new</span> <span class="nf">Label</span><span class="o">(</span><span class="s">&quot;TextArea:&quot;</span><span class="o">),</span>
-</span><span class='line'>            <span class="n">textArea</span> <span class="o">=</span> <span class="n">TextAreaBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">prefColumnCount</span><span class="o">(</span><span class="mi">12</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">prefRowCount</span><span class="o">(</span><span class="mi">4</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">build</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">progressIndicator</span> <span class="o">=</span> <span class="n">ProgressIndicatorBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">prefWidth</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">slider</span> <span class="o">=</span> <span class="n">SliderBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">prefWidth</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">min</span><span class="o">(-</span><span class="mi">1</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">model</span><span class="o">.</span><span class="na">maxRpm</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">progressBar</span> <span class="o">=</span> <span class="n">ProgressBarBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">prefWidth</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">scrollBar</span> <span class="o">=</span> <span class="n">ScrollBarBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">prefWidth</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">min</span><span class="o">(-</span><span class="mi">1</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">model</span><span class="o">.</span><span class="na">maxKph</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">()</span>
-</span><span class='line'>      <span class="o">)</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Some random node written in JavaFx </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+<span class="line-number">79</span>
+<span class="line-number">80</span>
+<span class="line-number">81</span>
+<span class="line-number">82</span>
+<span class="line-number">83</span>
+<span class="line-number">84</span>
+<span class="line-number">85</span>
+<span class="line-number">86</span>
+<span class="line-number">87</span>
+<span class="line-number">88</span>
+<span class="line-number">89</span>
+<span class="line-number">90</span>
+<span class="line-number">91</span>
+<span class="line-number">92</span>
+<span class="line-number">93</span>
+<span class="line-number">94</span>
+<span class="line-number">95</span>
+<span class="line-number">96</span>
+<span class="line-number">97</span>
+<span class="line-number">98</span>
+<span class="line-number">99</span>
+<span class="line-number">100</span>
+<span class="line-number">101</span>
+<span class="line-number">102</span>
+<span class="line-number">103</span>
+<span class="line-number">104</span>
+<span class="line-number">105</span>
+<span class="line-number">106</span>
+<span class="line-number">107</span>
+<span class="line-number">108</span>
+<span class="line-number">109</span>
+<span class="line-number">110</span>
+<span class="line-number">111</span>
+<span class="line-number">112</span>
+<span class="line-number">113</span>
+<span class="line-number">114</span>
+<span class="line-number">115</span>
+<span class="line-number">116</span>
+<span class="line-number">117</span>
+<span class="line-number">118</span>
+<span class="line-number">119</span>
+<span class="line-number">120</span>
+<span class="line-number">121</span>
+<span class="line-number">122</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="n">VBox</span> <span class="n">variousControls</span> <span class="o">=</span> <span class="n">VBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">      <span class="o">.</span><span class="na">padding</span><span class="o">(</span><span class="k">new</span> <span class="n">Insets</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">))</span>
+</span><span class="line">      <span class="o">.</span><span class="na">spacing</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
+</span><span class="line">      <span class="o">.</span><span class="na">children</span><span class="o">(</span>
+</span><span class="line">        <span class="n">ButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;Button&quot;</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span><span class="line">              <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot; occurred on Button&quot;</span><span class="o">);</span>
+</span><span class="line">              <span class="o">}</span>
+</span><span class="line">            <span class="o">})</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">checkBox</span> <span class="o">=</span> <span class="n">CheckBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;CheckBox&quot;</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span><span class="line">              <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot; occurred on CheckBox&quot;</span><span class="o">);</span>
+</span><span class="line">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&quot;, and selectedProperty is: &quot;</span><span class="o">);</span>
+</span><span class="line">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">checkBox</span><span class="o">.</span><span class="na">selectedProperty</span><span class="o">().</span><span class="na">getValue</span><span class="o">());</span>
+</span><span class="line">              <span class="o">}</span>
+</span><span class="line">            <span class="o">})</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">HBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">spacing</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">children</span><span class="o">(</span>
+</span><span class="line">            <span class="n">RadioButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;RadioButton1&quot;</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">toggleGroup</span><span class="o">(</span><span class="n">radioToggleGroup</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">            <span class="n">RadioButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;RadioButton2&quot;</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">toggleGroup</span><span class="o">(</span><span class="n">radioToggleGroup</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+</span><span class="line">          <span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">HyperlinkBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;Hyperlink&quot;</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span><span class="line">              <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot; occurred on Hyperlink&quot;</span><span class="o">);</span>
+</span><span class="line">              <span class="o">}</span>
+</span><span class="line">            <span class="o">})</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">choiceBox</span> <span class="o">=</span> <span class="n">ChoiceBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">items</span><span class="o">(</span><span class="n">model</span><span class="o">.</span><span class="na">choiceBoxItems</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">MenuButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuButton&quot;</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">items</span><span class="o">(</span>
+</span><span class="line">            <span class="n">MenuItemBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuItem A&quot;</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span><span class="line">                  <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span>
+</span><span class="line">                                       <span class="s">&quot; occurred on Menu Item A&quot;</span><span class="o">);</span>
+</span><span class="line">                  <span class="o">}</span>
+</span><span class="line">                <span class="o">})</span>
+</span><span class="line">              <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">            <span class="n">MenuItemBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuItem B&quot;</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+</span><span class="line">           <span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">SplitMenuButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;SplitMenuButton&quot;</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span><span class="line">            <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">              <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span>
+</span><span class="line">                                 <span class="s">&quot; occurred on SplitMenuButton&quot;</span><span class="o">);</span>
+</span><span class="line">            <span class="o">}</span>
+</span><span class="line">          <span class="o">})</span>
+</span><span class="line">          <span class="o">.</span><span class="na">items</span><span class="o">(</span>
+</span><span class="line">            <span class="n">MenuItemBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuItem A&quot;</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span><span class="line">                  <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span>
+</span><span class="line">                                       <span class="s">&quot; occurred on Menu Item A&quot;</span><span class="o">);</span>
+</span><span class="line">                  <span class="o">}</span>
+</span><span class="line">                <span class="o">})</span>
+</span><span class="line">              <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">            <span class="n">MenuItemBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuItem B&quot;</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+</span><span class="line">           <span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">textField</span> <span class="o">=</span> <span class="n">TextFieldBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">promptText</span><span class="o">(</span><span class="s">&quot;Enter user name&quot;</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">prefColumnCount</span><span class="o">(</span><span class="mi">16</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">passwordField</span> <span class="o">=</span> <span class="n">PasswordFieldBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">promptText</span><span class="o">(</span><span class="s">&quot;Enter password&quot;</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">prefColumnCount</span><span class="o">(</span><span class="mi">16</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">HBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">spacing</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">children</span><span class="o">(</span>
+</span><span class="line">            <span class="k">new</span> <span class="nf">Label</span><span class="o">(</span><span class="s">&quot;TextArea:&quot;</span><span class="o">),</span>
+</span><span class="line">            <span class="n">textArea</span> <span class="o">=</span> <span class="n">TextAreaBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">              <span class="o">.</span><span class="na">prefColumnCount</span><span class="o">(</span><span class="mi">12</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">prefRowCount</span><span class="o">(</span><span class="mi">4</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+</span><span class="line">          <span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">progressIndicator</span> <span class="o">=</span> <span class="n">ProgressIndicatorBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">prefWidth</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">slider</span> <span class="o">=</span> <span class="n">SliderBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">prefWidth</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">min</span><span class="o">(-</span><span class="mi">1</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">model</span><span class="o">.</span><span class="na">maxRpm</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">progressBar</span> <span class="o">=</span> <span class="n">ProgressBarBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">prefWidth</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">scrollBar</span> <span class="o">=</span> <span class="n">ScrollBarBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">prefWidth</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">min</span><span class="o">(-</span><span class="mi">1</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">model</span><span class="o">.</span><span class="na">maxKph</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+</span><span class="line">      <span class="o">)</span>
+</span><span class="line">      <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<p>It’s too long and it’s ugly and my head’s starting to ache. </p>
 
-<p>It&#8217;s too long and it&#8217;s ugly and my head&#8217;s starting to ache.</p>
-
-<h3>Summary</h3>
-
-<p>I really start getting used to JavaFx peculiarities. Maybe I&#8217;ll create beautiful GUI with it. I would really try but it may take some time. Stay tuned!</p>
+<h3 id="summary">Summary</h3>
+<p>I really start getting used to JavaFx peculiarities. Maybe I’ll create beautiful GUI with it. I would really try but it may take some time. Stay tuned!</p>
 </div>
 
 
@@ -489,7 +484,7 @@ designed constructor? When construction of an object takes 50 lines of code, I s
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/06/18/latex-in-octopress/">latex-in-octopress</a>
+        <a href="/blog/2013/06/18/latex-in-octopress/">Latex in octopress</a>
       </li>
     
       <li class="post">

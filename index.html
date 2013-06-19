@@ -9,7 +9,7 @@
   <meta name="author" content="Justyna Ilczuk">
 
   
-  <meta name="description" content="Oh well, it should be latex. I used this post: http://chuchao333.github.io/blog/2012/08/18/supporting-latex-in-octopress/ On my screen it really &hellip;">
+  <meta name="description" content="Oh well, it should be latex. I used this post: supporting latex in octopress To enable this, I used kramdown and mathjax, look at changing markdown &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -111,7 +111,7 @@
   <header>
     
       <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
-        <h1 class="entry-title"><a href="/blog/2013/06/18/latex-in-octopress/">Latex-in-octopress</a></h1>
+        <h1 class="entry-title"><a href="/blog/2013/06/18/latex-in-octopress/">Latex in Octopress</a></h1>
       
     
     
@@ -137,34 +137,21 @@
   </header>
 
 
-  <div class="entry-content"><p>Oh well, it should be latex.</p>
+  <div class="entry-content"><h1 id="oh-well-it-should-be-latex">Oh well, it should be latex.</h1>
 
-<p>I used this post: http://chuchao333.github.io/blog/2012/08/18/supporting-latex-in-octopress/</p>
+<p>I used this post: <a href="http://chuchao333.github.io/blog/2012/08/18/supporting-latex-in-octopress/">supporting latex in octopress</a></p>
 
-<p>On my screen it really doesn&#8217;t look right.</p>
+<p>To enable this, I used kramdown and mathjax, look at <a href="://jeffvautin.com/blog/2012/12/30/changing-the-octopress-markdown-engine/">changing markdown to kramdown http</a></p>
 
-<p>$$
-\begin{align*}
-  &amp; \phi(x,y) = \phi \left(\sum<em>{i=1}<sup>n</sup> x_ie_i, \sum</em>{j=1}<sup>n</sup> y_je_j \right)
-  = \sum<em>{i=1}<sup>n</sup> \sum</em>{j=1}<sup>n</sup> x_i y_j \phi(e_i, e_j) = \
-  &amp; (x_1, \ldots, x_n) \left( \begin{array}{ccc}</p>
+<p>Here is a very simple example of latex:</p>
 
-<pre><code>  \phi(e_1, e_1) &amp; \cdots &amp; \phi(e_1, e_n) \\
-  \vdots &amp; \ddots &amp; \vdots \\
-  \phi(e_n, e_1) &amp; \cdots &amp; \phi(e_n, e_n)
-\end{array} \right)
-</code></pre>
+<script type="math/tex; mode=display">
+ \xi = 15 \\
+ \frac{d^2f}{dx^2} = 6xf - 88
+</script>
 
-<p>  \left( \begin{array}{c}</p>
-
-<pre><code>  y_1 \\
-  \vdots \\
-  y_n
-\end{array} \right)
-</code></pre>
-
-<p>\end{align*}
-$$</p>
+<p>I love writing articles in latex and after writing some recently, I thought about reposting it here.
+Now I have my tools. Stay tuned.</p>
 </div>
   
   
@@ -204,303 +191,299 @@ $$</p>
   </header>
 
 
-  <div class="entry-content"><h3>How to classify?</h3>
+  <div class="entry-content"><h3 id="how-to-classify">How to classify?</h3>
+<p>You can use various methods to classify objects. There are many tools in machine learning and natural language processing packages. But sometimes it’s hard to find one, which suits your problem well. I wanted to write category classifier in scala, making it as simple as possible. I could use <a href="http://www.scalanlp.org/">breeze</a>, but at first glance it’s quite overwhelming and documentation isn’t really user friendly. (I love python <a href="http://scikit-learn.org/stable/">scikit-learn</a>, which is in my opinion the best machine learning library in the world)</p>
 
-<p>You can use various methods to classify objects. There are many tools in machine learning and natural language processing packages. But sometimes it&#8217;s hard to find one, which suits your problem well. I wanted to write category classifier in scala, making it as simple as possible. I could use <a href="http://www.scalanlp.org/">breeze</a>, but at first glance it&#8217;s quite overwhelming and documentation isn&#8217;t really user friendly. (I love python <a href="http://scikit-learn.org/stable/">scikit-learn</a>, which is in my opinion the best machine learning library in the world)</p>
+<p>I decided to implement it all by myself using only basic SDK of scala. </p>
 
-<p>I decided to implement it all by myself using only basic SDK of scala.</p>
+<h3 id="main-idea-behind-my-script">Main idea behind my script</h3>
+<p>In written language exist lots of common words such as: “the”, “and”, “this”, etc. Specialised article or book contains lots of vocabulary connected to the field.</p>
 
-<h3>Main idea behind my script</h3>
+<p>I did some web crawling to collect some articles with typical vocabulary for three basic fields: physics, electronics and mathematics. As a sample of normaly used vocabulary (not conected with any specialised field) I used some random articles from Guardian. </p>
 
-<p>In written language exist lots of common words such as: &#8220;the&#8221;, &#8220;and&#8221;, &#8220;this&#8221;, etc. Specialised article or book contains lots of vocabulary connected to the field.</p>
+<p>After collecting articles I could compute the most common worlds for each category. My classifying algorithm basically chooses a category, which vocabulary has the biggest intersection with given text, if intersection is very small it returns category “boring”.</p>
 
-<p>I did some web crawling to collect some articles with typical vocabulary for three basic fields: physics, electronics and mathematics. As a sample of normaly used vocabulary (not conected with any specialised field) I used some random articles from Guardian.</p>
+<h3 id="implementation">Implementation</h3>
 
-<p>After collecting articles I could compute the most common worlds for each category. My classifying algorithm basically chooses a category, which vocabulary has the biggest intersection with given text, if intersection is very small it returns category &#8220;boring&#8221;.</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>splitContentToSentences - commonVocabulary.scala </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+<span class="line-number">79</span>
+<span class="line-number">80</span>
+<span class="line-number">81</span>
+<span class="line-number">82</span>
+<span class="line-number">83</span>
+<span class="line-number">84</span>
+<span class="line-number">85</span>
+<span class="line-number">86</span>
+<span class="line-number">87</span>
+<span class="line-number">88</span>
+<span class="line-number">89</span>
+<span class="line-number">90</span>
+<span class="line-number">91</span>
+<span class="line-number">92</span>
+<span class="line-number">93</span>
+<span class="line-number">94</span>
+<span class="line-number">95</span>
+<span class="line-number">96</span>
+<span class="line-number">97</span>
+<span class="line-number">98</span>
+<span class="line-number">99</span>
+<span class="line-number">100</span>
+<span class="line-number">101</span>
+<span class="line-number">102</span>
+<span class="line-number">103</span>
+<span class="line-number">104</span>
+<span class="line-number">105</span>
+<span class="line-number">106</span>
+<span class="line-number">107</span>
+<span class="line-number">108</span>
+<span class="line-number">109</span>
+<span class="line-number">110</span>
+<span class="line-number">111</span>
+<span class="line-number">112</span>
+<span class="line-number">113</span>
+<span class="line-number">114</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">import</span> <span class="nn">java.io.RandomAccessFile</span>
+</span><span class="line"><span class="k">import</span> <span class="nn">scala.collection.mutable.HashMap</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="n">removePunctuation</span><span class="o">(</span><span class="n">text</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class="line">	<span class="k">val</span> <span class="n">punct</span> <span class="k">=</span> <span class="s">&quot;,.?;:!\&quot;&quot;</span>
+</span><span class="line">	<span class="n">text</span><span class="o">.</span><span class="n">toList</span><span class="o">.</span><span class="n">filterNot</span><span class="o">(</span><span class="n">char</span> <span class="k">=&gt;</span> <span class="n">punct</span> <span class="n">contains</span> <span class="n">char</span><span class="o">).</span><span class="n">mkString</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="o">}</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="n">getWordsFromRawText</span><span class="o">(</span><span class="n">text</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class="line">	<span class="n">removePunctuation</span><span class="o">(</span><span class="n">text</span><span class="o">).</span><span class="n">toLowerCase</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">&quot;\\s+&quot;</span><span class="o">).</span><span class="n">toList</span>
+</span><span class="line"><span class="o">}</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="n">getAllWords</span><span class="o">(</span><span class="n">basePath</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class="line">	<span class="k">import</span> <span class="nn">java.io.File</span>
+</span><span class="line">	<span class="k">val</span> <span class="n">baseDir</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">basePath</span><span class="o">)</span>
+</span><span class="line">	<span class="k">val</span> <span class="n">paths</span> <span class="k">=</span> <span class="n">baseDir</span><span class="o">.</span><span class="n">listFiles</span><span class="o">.</span><span class="n">toList</span><span class="o">.</span><span class="n">sorted</span>
+</span><span class="line">	<span class="k">var</span> <span class="n">words</span> <span class="k">=</span> <span class="nc">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]()</span>
+</span><span class="line">	<span class="k">for</span><span class="o">(</span> <span class="n">path</span> <span class="k">&lt;-</span> <span class="n">paths</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">		<span class="k">val</span> <span class="n">raf</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">RandomAccessFile</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="s">&quot;r&quot;</span><span class="o">)</span>
+</span><span class="line">		<span class="k">val</span> <span class="n">buff</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Array</span><span class="o">[</span><span class="kt">Byte</span><span class="o">](</span><span class="n">raf</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">toInt</span><span class="o">)</span>
+</span><span class="line">		<span class="n">raf</span><span class="o">.</span><span class="n">readFully</span><span class="o">(</span><span class="n">buff</span><span class="o">)</span>
+</span><span class="line">		<span class="n">words</span> <span class="k">=</span> <span class="n">words</span> <span class="o">++:</span> <span class="n">getWordsFromRawText</span><span class="o">(</span><span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="n">buff</span><span class="o">))</span>
+</span><span class="line">	<span class="o">}</span>
+</span><span class="line">	<span class="n">words</span>
+</span><span class="line"><span class="o">}</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="n">rankWords</span><span class="o">(</span><span class="n">words</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">],</span> <span class="n">normalVocabulary</span><span class="k">:</span> <span class="kt">Set</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class="line">	<span class="k">var</span> <span class="n">wordOccurences</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">[</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">]()</span>
+</span><span class="line">	<span class="k">for</span><span class="o">(</span><span class="n">word</span> <span class="k">&lt;-</span> <span class="n">words</span> <span class="k">if</span> <span class="o">!(</span> <span class="n">normalVocabulary</span> <span class="n">contains</span> <span class="n">word</span><span class="o">)</span> <span class="o">){</span>
+</span><span class="line">		<span class="k">if</span> <span class="o">(</span><span class="n">wordOccurences</span> <span class="n">contains</span> <span class="n">word</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">			<span class="n">wordOccurences</span><span class="o">(</span><span class="n">word</span><span class="o">)</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class="line">		<span class="o">}</span>
+</span><span class="line">		<span class="k">else</span>
+</span><span class="line">			<span class="n">wordOccurences</span><span class="o">(</span><span class="n">word</span><span class="o">)</span> <span class="k">=</span> <span class="mi">1</span>
+</span><span class="line">	<span class="o">}</span>
+</span><span class="line">	<span class="n">wordOccurences</span><span class="o">.</span><span class="n">toList</span><span class="o">.</span><span class="n">sortBy</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">_2</span><span class="o">).</span><span class="n">reverse</span>
+</span><span class="line"><span class="o">}</span>
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="n">basePath</span> <span class="k">=</span> <span class="s">&quot;articles/physics/&quot;</span>
+</span><span class="line"><span class="k">val</span> <span class="n">normalVocabulary</span> <span class="k">=</span> <span class="n">getAllWords</span><span class="o">(</span><span class="s">&quot;articles/random/&quot;</span><span class="o">)</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="n">commonNormalVoc</span> <span class="k">=</span> <span class="o">(</span><span class="k">for</span> <span class="o">{</span><span class="n">word</span> <span class="k">&lt;-</span>
+</span><span class="line">	<span class="n">rankWords</span><span class="o">(</span><span class="n">normalVocabulary</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">)).</span><span class="n">slice</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">400</span><span class="o">)}</span>
+</span><span class="line">	 <span class="k">yield</span> <span class="n">word</span><span class="o">.</span><span class="n">_1</span><span class="o">).</span><span class="n">toSet</span>
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="n">physicsVocabulary</span> <span class="k">=</span> <span class="n">getAllWords</span><span class="o">(</span><span class="s">&quot;articles/physics/&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="k">val</span> <span class="n">commonPhysicsVoc</span> <span class="k">=</span> <span class="o">(</span><span class="k">for</span> <span class="o">{</span><span class="n">word</span> <span class="k">&lt;-</span> <span class="n">rankWords</span><span class="o">(</span><span class="n">physicsVocabulary</span><span class="o">,</span>
+</span><span class="line">	<span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">slice</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">400</span><span class="o">)}</span> <span class="k">yield</span> <span class="n">word</span><span class="o">.</span><span class="n">_1</span><span class="o">).</span><span class="n">toSet</span>
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="n">electronicsVocabulary</span> <span class="k">=</span> <span class="n">getAllWords</span><span class="o">(</span><span class="s">&quot;articles/electronics/&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="k">val</span> <span class="n">commonElectronicsVoc</span> <span class="k">=</span> <span class="o">(</span><span class="k">for</span> <span class="o">{</span><span class="n">word</span> <span class="k">&lt;-</span>
+</span><span class="line">	<span class="n">rankWords</span><span class="o">(</span><span class="n">electronicsVocabulary</span><span class="o">,</span>
+</span><span class="line">	<span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">slice</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">400</span><span class="o">)}</span> <span class="k">yield</span> <span class="n">word</span><span class="o">.</span><span class="n">_1</span><span class="o">).</span><span class="n">toSet</span>
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="n">mathVocabulary</span> <span class="k">=</span> <span class="n">getAllWords</span><span class="o">(</span><span class="s">&quot;articles/math/&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="k">val</span> <span class="n">commonMathVoc</span> <span class="k">=</span> <span class="o">(</span><span class="k">for</span> <span class="o">{</span><span class="n">word</span> <span class="k">&lt;-</span> <span class="n">rankWords</span><span class="o">(</span><span class="n">mathVocabulary</span><span class="o">,</span>
+</span><span class="line"> <span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">slice</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">400</span><span class="o">)}</span> <span class="k">yield</span> <span class="n">word</span><span class="o">.</span><span class="n">_1</span><span class="o">).</span><span class="n">toSet</span>
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="n">testArticleAboutPhysics</span> <span class="k">=</span> <span class="s">&quot;&quot;&quot;</span>
+</span><span class="line"><span class="s">Thermodynamics is a branch of natural science </span>
+</span><span class="line"><span class="s">concerned (...) or statistical mechanics, gave</span>
+</span><span class="line"><span class="s"> explanations of macroscopic thermodynamics by </span>
+</span><span class="line"><span class="s"> statistical predictions of the collective motion </span>
+</span><span class="line"><span class="s"> of particles based on the mechanics of their </span>
+</span><span class="line"><span class="s"> microscopic behavior.</span>
+</span><span class="line"><span class="s">&quot;&quot;&quot;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="n">testArticleAboutMath</span> <span class="k">=</span> <span class="s">&quot;&quot;&quot;</span>
+</span><span class="line"><span class="s">Algebra can essentially be considered </span>
+</span><span class="line"><span class="s">as doing computations (...) a polynomial </span>
+</span><span class="line"><span class="s">in a single variable.</span>
+</span><span class="line"><span class="s">&quot;&quot;&quot;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="n">testArticleAboutElectronics</span> <span class="k">=</span> <span class="s">&quot;&quot;&quot;</span>
+</span><span class="line"><span class="s">Wheatstone bridge</span>
+</span><span class="line"><span class="s">(...) zero the voltage.</span>
+</span><span class="line"><span class="s">&quot;&quot;&quot;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="n">typicalGuardianArticle</span> <span class="k">=</span> <span class="s">&quot;&quot;&quot;</span>
+</span><span class="line"><span class="s">The French president, (...) have legalised same-sex marriage.</span>
+</span><span class="line"><span class="s">&quot;&quot;&quot;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="n">matchCategory</span><span class="o">(</span><span class="n">text</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class="line">	<span class="k">val</span> <span class="n">words</span> <span class="k">=</span> <span class="n">getWordsFromRawText</span><span class="o">(</span><span class="n">text</span><span class="o">).</span><span class="n">toSet</span>
+</span><span class="line">	<span class="k">val</span> <span class="n">wordsCount</span> <span class="k">=</span> <span class="n">words</span><span class="o">.</span><span class="n">size</span>
+</span><span class="line">	<span class="k">val</span> <span class="n">categories</span> <span class="k">=</span>  <span class="nc">HashMap</span><span class="o">(</span><span class="s">&quot;physics&quot;</span> <span class="o">-&gt;</span>
+</span><span class="line">	 <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonPhysicsVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span> <span class="o">/</span>
+</span><span class="line">	 <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">,</span>
+</span><span class="line">	<span class="s">&quot;electronics&quot;</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonElectronicsVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span>
+</span><span class="line">	<span class="o">/</span> <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">,</span>
+</span><span class="line">	<span class="s">&quot;math&quot;</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonMathVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span> <span class="o">/</span>
+</span><span class="line">	 <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">).</span><span class="n">toList</span><span class="o">.</span><span class="n">sortBy</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">_2</span><span class="o">).</span><span class="n">reverse</span>
+</span><span class="line">	
+</span><span class="line">	<span class="k">val</span> <span class="n">winningCategory</span> <span class="k">=</span> <span class="k">if</span> <span class="o">(</span><span class="n">categories</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="n">_2</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="o">)</span>
+</span><span class="line">	 <span class="n">categories</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+</span><span class="line">	<span class="k">else</span>
+</span><span class="line">		<span class="o">(</span><span class="s">&quot;boring&quot;</span><span class="o">,</span> <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span>
+</span><span class="line">		 <span class="o">/</span> <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">)</span>
+</span><span class="line">	<span class="n">println</span><span class="o">(</span><span class="s">&quot;Article matches category: &quot;</span> <span class="o">+</span> <span class="n">winningCategory</span><span class="o">)</span>
+</span><span class="line">	<span class="n">println</span><span class="o">(</span><span class="n">categories</span><span class="o">)</span>
+</span><span class="line">	<span class="n">println</span><span class="o">(</span><span class="s">&quot;Similarity to normal vocabulary: &quot;</span> <span class="o">+</span>
+</span><span class="line">	 <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span>
+</span><span class="line">	 <span class="o">/</span> <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">)</span>
+</span><span class="line"><span class="o">}</span>
+</span><span class="line">
+</span><span class="line"><span class="n">println</span><span class="o">(</span><span class="s">&quot;Testing article about physics:&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="n">matchCategory</span><span class="o">(</span><span class="n">testArticleAboutPhysics</span><span class="o">)</span>
+</span><span class="line"><span class="n">println</span><span class="o">(</span><span class="s">&quot;\nTesting article about math:&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="n">matchCategory</span><span class="o">(</span><span class="n">testArticleAboutMath</span><span class="o">)</span>
+</span><span class="line"><span class="n">println</span><span class="o">(</span><span class="s">&quot;\nTesting article about electronics:&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="n">matchCategory</span><span class="o">(</span><span class="n">testArticleAboutElectronics</span><span class="o">)</span>
+</span><span class="line"><span class="n">println</span><span class="o">(</span><span class="s">&quot;\nTesting typical guardian article:&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="n">matchCategory</span><span class="o">(</span><span class="n">typicalGuardianArticle</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h3>Implementation</h3>
+<p>I stored collected articles in directory “articles/{category}” and used them to generate vocabulary sets.</p>
 
-<figure class='code'><figcaption><span>splitContentToSentences - commonVocabulary.scala </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-<span class='line-number'>103</span>
-<span class='line-number'>104</span>
-<span class='line-number'>105</span>
-<span class='line-number'>106</span>
-<span class='line-number'>107</span>
-<span class='line-number'>108</span>
-<span class='line-number'>109</span>
-<span class='line-number'>110</span>
-<span class='line-number'>111</span>
-<span class='line-number'>112</span>
-<span class='line-number'>113</span>
-<span class='line-number'>114</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">import</span> <span class="nn">java.io.RandomAccessFile</span>
-</span><span class='line'><span class="k">import</span> <span class="nn">scala.collection.mutable.HashMap</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="n">removePunctuation</span><span class="o">(</span><span class="n">text</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
-</span><span class='line'>  <span class="k">val</span> <span class="n">punct</span> <span class="k">=</span> <span class="s">&quot;,.?;:!\&quot;&quot;</span>
-</span><span class='line'>  <span class="n">text</span><span class="o">.</span><span class="n">toList</span><span class="o">.</span><span class="n">filterNot</span><span class="o">(</span><span class="n">char</span> <span class="k">=&gt;</span> <span class="n">punct</span> <span class="n">contains</span> <span class="n">char</span><span class="o">).</span><span class="n">mkString</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="n">getWordsFromRawText</span><span class="o">(</span><span class="n">text</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
-</span><span class='line'>  <span class="n">removePunctuation</span><span class="o">(</span><span class="n">text</span><span class="o">).</span><span class="n">toLowerCase</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">&quot;\\s+&quot;</span><span class="o">).</span><span class="n">toList</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="n">getAllWords</span><span class="o">(</span><span class="n">basePath</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
-</span><span class='line'>  <span class="k">import</span> <span class="nn">java.io.File</span>
-</span><span class='line'>  <span class="k">val</span> <span class="n">baseDir</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">basePath</span><span class="o">)</span>
-</span><span class='line'>  <span class="k">val</span> <span class="n">paths</span> <span class="k">=</span> <span class="n">baseDir</span><span class="o">.</span><span class="n">listFiles</span><span class="o">.</span><span class="n">toList</span><span class="o">.</span><span class="n">sorted</span>
-</span><span class='line'>  <span class="k">var</span> <span class="n">words</span> <span class="k">=</span> <span class="nc">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]()</span>
-</span><span class='line'>  <span class="k">for</span><span class="o">(</span> <span class="n">path</span> <span class="k">&lt;-</span> <span class="n">paths</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">val</span> <span class="n">raf</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">RandomAccessFile</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="s">&quot;r&quot;</span><span class="o">)</span>
-</span><span class='line'>      <span class="k">val</span> <span class="n">buff</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Array</span><span class="o">[</span><span class="kt">Byte</span><span class="o">](</span><span class="n">raf</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">toInt</span><span class="o">)</span>
-</span><span class='line'>      <span class="n">raf</span><span class="o">.</span><span class="n">readFully</span><span class="o">(</span><span class="n">buff</span><span class="o">)</span>
-</span><span class='line'>      <span class="n">words</span> <span class="k">=</span> <span class="n">words</span> <span class="o">++:</span> <span class="n">getWordsFromRawText</span><span class="o">(</span><span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="n">buff</span><span class="o">))</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="n">words</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="n">rankWords</span><span class="o">(</span><span class="n">words</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">],</span> <span class="n">normalVocabulary</span><span class="k">:</span> <span class="kt">Set</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="k">=</span> <span class="o">{</span>
-</span><span class='line'>  <span class="k">var</span> <span class="n">wordOccurences</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">[</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">]()</span>
-</span><span class='line'>  <span class="k">for</span><span class="o">(</span><span class="n">word</span> <span class="k">&lt;-</span> <span class="n">words</span> <span class="k">if</span> <span class="o">!(</span> <span class="n">normalVocabulary</span> <span class="n">contains</span> <span class="n">word</span><span class="o">)</span> <span class="o">){</span>
-</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">wordOccurences</span> <span class="n">contains</span> <span class="n">word</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="n">wordOccurences</span><span class="o">(</span><span class="n">word</span><span class="o">)</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>      <span class="k">else</span>
-</span><span class='line'>          <span class="n">wordOccurences</span><span class="o">(</span><span class="n">word</span><span class="o">)</span> <span class="k">=</span> <span class="mi">1</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="n">wordOccurences</span><span class="o">.</span><span class="n">toList</span><span class="o">.</span><span class="n">sortBy</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">_2</span><span class="o">).</span><span class="n">reverse</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">val</span> <span class="n">basePath</span> <span class="k">=</span> <span class="s">&quot;articles/physics/&quot;</span>
-</span><span class='line'><span class="k">val</span> <span class="n">normalVocabulary</span> <span class="k">=</span> <span class="n">getAllWords</span><span class="o">(</span><span class="s">&quot;articles/random/&quot;</span><span class="o">)</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">val</span> <span class="n">commonNormalVoc</span> <span class="k">=</span> <span class="o">(</span><span class="k">for</span> <span class="o">{</span><span class="n">word</span> <span class="k">&lt;-</span>
-</span><span class='line'>  <span class="n">rankWords</span><span class="o">(</span><span class="n">normalVocabulary</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">)).</span><span class="n">slice</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">400</span><span class="o">)}</span>
-</span><span class='line'>   <span class="k">yield</span> <span class="n">word</span><span class="o">.</span><span class="n">_1</span><span class="o">).</span><span class="n">toSet</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">val</span> <span class="n">physicsVocabulary</span> <span class="k">=</span> <span class="n">getAllWords</span><span class="o">(</span><span class="s">&quot;articles/physics/&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="k">val</span> <span class="n">commonPhysicsVoc</span> <span class="k">=</span> <span class="o">(</span><span class="k">for</span> <span class="o">{</span><span class="n">word</span> <span class="k">&lt;-</span> <span class="n">rankWords</span><span class="o">(</span><span class="n">physicsVocabulary</span><span class="o">,</span>
-</span><span class='line'>  <span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">slice</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">400</span><span class="o">)}</span> <span class="k">yield</span> <span class="n">word</span><span class="o">.</span><span class="n">_1</span><span class="o">).</span><span class="n">toSet</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">val</span> <span class="n">electronicsVocabulary</span> <span class="k">=</span> <span class="n">getAllWords</span><span class="o">(</span><span class="s">&quot;articles/electronics/&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="k">val</span> <span class="n">commonElectronicsVoc</span> <span class="k">=</span> <span class="o">(</span><span class="k">for</span> <span class="o">{</span><span class="n">word</span> <span class="k">&lt;-</span>
-</span><span class='line'>  <span class="n">rankWords</span><span class="o">(</span><span class="n">electronicsVocabulary</span><span class="o">,</span>
-</span><span class='line'>  <span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">slice</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">400</span><span class="o">)}</span> <span class="k">yield</span> <span class="n">word</span><span class="o">.</span><span class="n">_1</span><span class="o">).</span><span class="n">toSet</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">val</span> <span class="n">mathVocabulary</span> <span class="k">=</span> <span class="n">getAllWords</span><span class="o">(</span><span class="s">&quot;articles/math/&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="k">val</span> <span class="n">commonMathVoc</span> <span class="k">=</span> <span class="o">(</span><span class="k">for</span> <span class="o">{</span><span class="n">word</span> <span class="k">&lt;-</span> <span class="n">rankWords</span><span class="o">(</span><span class="n">mathVocabulary</span><span class="o">,</span>
-</span><span class='line'> <span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">slice</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">400</span><span class="o">)}</span> <span class="k">yield</span> <span class="n">word</span><span class="o">.</span><span class="n">_1</span><span class="o">).</span><span class="n">toSet</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">val</span> <span class="n">testArticleAboutPhysics</span> <span class="k">=</span> <span class="s">&quot;&quot;&quot;</span>
-</span><span class='line'><span class="s">Thermodynamics is a branch of natural science </span>
-</span><span class='line'><span class="s">concerned (...) or statistical mechanics, gave</span>
-</span><span class='line'><span class="s"> explanations of macroscopic thermodynamics by </span>
-</span><span class='line'><span class="s"> statistical predictions of the collective motion </span>
-</span><span class='line'><span class="s"> of particles based on the mechanics of their </span>
-</span><span class='line'><span class="s"> microscopic behavior.</span>
-</span><span class='line'><span class="s">&quot;&quot;&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">val</span> <span class="n">testArticleAboutMath</span> <span class="k">=</span> <span class="s">&quot;&quot;&quot;</span>
-</span><span class='line'><span class="s">Algebra can essentially be considered </span>
-</span><span class='line'><span class="s">as doing computations (...) a polynomial </span>
-</span><span class='line'><span class="s">in a single variable.</span>
-</span><span class='line'><span class="s">&quot;&quot;&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">val</span> <span class="n">testArticleAboutElectronics</span> <span class="k">=</span> <span class="s">&quot;&quot;&quot;</span>
-</span><span class='line'><span class="s">Wheatstone bridge</span>
-</span><span class='line'><span class="s">(...) zero the voltage.</span>
-</span><span class='line'><span class="s">&quot;&quot;&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">val</span> <span class="n">typicalGuardianArticle</span> <span class="k">=</span> <span class="s">&quot;&quot;&quot;</span>
-</span><span class='line'><span class="s">The French president, (...) have legalised same-sex marriage.</span>
-</span><span class='line'><span class="s">&quot;&quot;&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="n">matchCategory</span><span class="o">(</span><span class="n">text</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
-</span><span class='line'>  <span class="k">val</span> <span class="n">words</span> <span class="k">=</span> <span class="n">getWordsFromRawText</span><span class="o">(</span><span class="n">text</span><span class="o">).</span><span class="n">toSet</span>
-</span><span class='line'>  <span class="k">val</span> <span class="n">wordsCount</span> <span class="k">=</span> <span class="n">words</span><span class="o">.</span><span class="n">size</span>
-</span><span class='line'>  <span class="k">val</span> <span class="n">categories</span> <span class="k">=</span>  <span class="nc">HashMap</span><span class="o">(</span><span class="s">&quot;physics&quot;</span> <span class="o">-&gt;</span>
-</span><span class='line'>   <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonPhysicsVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span> <span class="o">/</span>
-</span><span class='line'>   <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">,</span>
-</span><span class='line'>  <span class="s">&quot;electronics&quot;</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonElectronicsVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span>
-</span><span class='line'>  <span class="o">/</span> <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">,</span>
-</span><span class='line'>  <span class="s">&quot;math&quot;</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonMathVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span> <span class="o">/</span>
-</span><span class='line'>   <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">).</span><span class="n">toList</span><span class="o">.</span><span class="n">sortBy</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">_2</span><span class="o">).</span><span class="n">reverse</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">val</span> <span class="n">winningCategory</span> <span class="k">=</span> <span class="k">if</span> <span class="o">(</span><span class="n">categories</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="n">_2</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="o">)</span>
-</span><span class='line'>   <span class="n">categories</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
-</span><span class='line'>  <span class="k">else</span>
-</span><span class='line'>      <span class="o">(</span><span class="s">&quot;boring&quot;</span><span class="o">,</span> <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span>
-</span><span class='line'>       <span class="o">/</span> <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">)</span>
-</span><span class='line'>  <span class="n">println</span><span class="o">(</span><span class="s">&quot;Article matches category: &quot;</span> <span class="o">+</span> <span class="n">winningCategory</span><span class="o">)</span>
-</span><span class='line'>  <span class="n">println</span><span class="o">(</span><span class="n">categories</span><span class="o">)</span>
-</span><span class='line'>  <span class="n">println</span><span class="o">(</span><span class="s">&quot;Similarity to normal vocabulary: &quot;</span> <span class="o">+</span>
-</span><span class='line'>   <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span>
-</span><span class='line'>   <span class="o">/</span> <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">)</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">println</span><span class="o">(</span><span class="s">&quot;Testing article about physics:&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="n">matchCategory</span><span class="o">(</span><span class="n">testArticleAboutPhysics</span><span class="o">)</span>
-</span><span class='line'><span class="n">println</span><span class="o">(</span><span class="s">&quot;\nTesting article about math:&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="n">matchCategory</span><span class="o">(</span><span class="n">testArticleAboutMath</span><span class="o">)</span>
-</span><span class='line'><span class="n">println</span><span class="o">(</span><span class="s">&quot;\nTesting article about electronics:&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="n">matchCategory</span><span class="o">(</span><span class="n">testArticleAboutElectronics</span><span class="o">)</span>
-</span><span class='line'><span class="n">println</span><span class="o">(</span><span class="s">&quot;\nTesting typical guardian article:&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="n">matchCategory</span><span class="o">(</span><span class="n">typicalGuardianArticle</span><span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I stored collected articles in directory &#8220;articles/{category}&#8221; and used them to generate vocabulary sets.</p>
-
-<p>There are two important functions in this code: &#8220;rankWords&#8221; and &#8220;match category&#8221;. Ranking is based of how many times given word occurs in the text. Matching categories using set intersections to estimate which category suits the best.</p>
+<p>There are two important functions in this code: “rankWords” and “match category”. Ranking is based of how many times given word occurs in the text. Matching categories using set intersections to estimate which category suits the best.</p>
 
 <p>Here is the output of this script (test files were much longer):</p>
 
-<figure class='code'><figcaption><span>commonVocabulary.scala output</span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="nc">Testing</span> <span class="n">article</span> <span class="n">about</span> <span class="n">physics</span><span class="k">:</span>
-</span><span class='line'><span class="kt">Article</span> <span class="kt">matches</span> <span class="kt">category:</span> <span class="o">(</span><span class="kt">physics</span><span class="o">,</span><span class="err">34</span><span class="kt">.</span><span class="err">66666666666667</span><span class="o">)</span>
-</span><span class='line'><span class="nc">List</span><span class="o">((</span><span class="n">physics</span><span class="o">,</span><span class="mf">34.66666666666667</span><span class="o">),</span> <span class="o">(</span><span class="n">electronics</span><span class="o">,</span><span class="mf">10.222222222222223</span><span class="o">),</span> <span class="o">(</span><span class="n">math</span><span class="o">,</span><span class="mf">8.0</span><span class="o">))</span>
-</span><span class='line'><span class="nc">Similarity</span> <span class="n">to</span> <span class="n">normal</span> <span class="n">vocabulary</span><span class="k">:</span> <span class="err">23</span><span class="kt">.</span><span class="err">11111111111111</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">Testing</span> <span class="kt">article</span> <span class="kt">about</span> <span class="kt">math:</span>
-</span><span class='line'><span class="nc">Article</span> <span class="n">matches</span> <span class="n">category</span><span class="k">:</span> <span class="o">(</span><span class="kt">math</span><span class="o">,</span><span class="err">26</span><span class="kt">.</span><span class="err">01880877742947</span><span class="o">)</span>
-</span><span class='line'><span class="nc">List</span><span class="o">((</span><span class="n">math</span><span class="o">,</span><span class="mf">26.01880877742947</span><span class="o">),</span> <span class="o">(</span><span class="n">physics</span><span class="o">,</span><span class="mf">21.003134796238246</span><span class="o">),</span> <span class="o">(</span><span class="n">electronics</span><span class="o">,</span><span class="mf">13.793103448275861</span><span class="o">))</span>
-</span><span class='line'><span class="nc">Similarity</span> <span class="n">to</span> <span class="n">normal</span> <span class="n">vocabulary</span><span class="k">:</span> <span class="err">23</span><span class="kt">.</span><span class="err">824451410658305</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">Testing</span> <span class="kt">article</span> <span class="kt">about</span> <span class="kt">electronics:</span>
-</span><span class='line'><span class="nc">Article</span> <span class="n">matches</span> <span class="n">category</span><span class="k">:</span> <span class="o">(</span><span class="kt">electronics</span><span class="o">,</span><span class="err">23</span><span class="kt">.</span><span class="err">717948717948715</span><span class="o">)</span>
-</span><span class='line'><span class="nc">List</span><span class="o">((</span><span class="n">electronics</span><span class="o">,</span><span class="mf">23.717948717948715</span><span class="o">),</span> <span class="o">(</span><span class="n">physics</span><span class="o">,</span><span class="mf">16.666666666666664</span><span class="o">),</span> <span class="o">(</span><span class="n">math</span><span class="o">,</span><span class="mf">14.102564102564102</span><span class="o">))</span>
-</span><span class='line'><span class="nc">Similarity</span> <span class="n">to</span> <span class="n">normal</span> <span class="n">vocabulary</span><span class="k">:</span> <span class="err">27</span><span class="kt">.</span><span class="err">564102564102566</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">Testing</span> <span class="kt">typical</span> <span class="kt">guardian</span> <span class="kt">article:</span>
-</span><span class='line'><span class="nc">Article</span> <span class="n">matches</span> <span class="n">category</span><span class="k">:</span> <span class="o">(</span><span class="kt">boring</span><span class="o">,</span><span class="err">30</span><span class="kt">.</span><span class="err">45977011494253</span><span class="o">)</span>
-</span><span class='line'><span class="nc">List</span><span class="o">((</span><span class="n">electronics</span><span class="o">,</span><span class="mf">2.8735632183908044</span><span class="o">),</span> <span class="o">(</span><span class="n">math</span><span class="o">,</span><span class="mf">2.2988505747126435</span><span class="o">),</span> <span class="o">(</span><span class="n">physics</span><span class="o">,</span><span class="mf">2.2988505747126435</span><span class="o">))</span>
-</span><span class='line'><span class="nc">Similarity</span> <span class="n">to</span> <span class="n">normal</span> <span class="n">vocabulary</span><span class="k">:</span> <span class="err">30</span><span class="kt">.</span><span class="err">45977011494253</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>commonVocabulary.scala output</span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="nc">Testing</span> <span class="n">article</span> <span class="n">about</span> <span class="n">physics</span><span class="k">:</span>
+</span><span class="line"><span class="kt">Article</span> <span class="kt">matches</span> <span class="kt">category:</span> <span class="o">(</span><span class="kt">physics</span><span class="o">,</span><span class="err">34</span><span class="kt">.</span><span class="err">66666666666667</span><span class="o">)</span>
+</span><span class="line"><span class="nc">List</span><span class="o">((</span><span class="n">physics</span><span class="o">,</span><span class="mf">34.66666666666667</span><span class="o">),</span> <span class="o">(</span><span class="n">electronics</span><span class="o">,</span><span class="mf">10.222222222222223</span><span class="o">),</span> <span class="o">(</span><span class="n">math</span><span class="o">,</span><span class="mf">8.0</span><span class="o">))</span>
+</span><span class="line"><span class="nc">Similarity</span> <span class="n">to</span> <span class="n">normal</span> <span class="n">vocabulary</span><span class="k">:</span> <span class="err">23</span><span class="kt">.</span><span class="err">11111111111111</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">Testing</span> <span class="kt">article</span> <span class="kt">about</span> <span class="kt">math:</span>
+</span><span class="line"><span class="nc">Article</span> <span class="n">matches</span> <span class="n">category</span><span class="k">:</span> <span class="o">(</span><span class="kt">math</span><span class="o">,</span><span class="err">26</span><span class="kt">.</span><span class="err">01880877742947</span><span class="o">)</span>
+</span><span class="line"><span class="nc">List</span><span class="o">((</span><span class="n">math</span><span class="o">,</span><span class="mf">26.01880877742947</span><span class="o">),</span> <span class="o">(</span><span class="n">physics</span><span class="o">,</span><span class="mf">21.003134796238246</span><span class="o">),</span> <span class="o">(</span><span class="n">electronics</span><span class="o">,</span><span class="mf">13.793103448275861</span><span class="o">))</span>
+</span><span class="line"><span class="nc">Similarity</span> <span class="n">to</span> <span class="n">normal</span> <span class="n">vocabulary</span><span class="k">:</span> <span class="err">23</span><span class="kt">.</span><span class="err">824451410658305</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">Testing</span> <span class="kt">article</span> <span class="kt">about</span> <span class="kt">electronics:</span>
+</span><span class="line"><span class="nc">Article</span> <span class="n">matches</span> <span class="n">category</span><span class="k">:</span> <span class="o">(</span><span class="kt">electronics</span><span class="o">,</span><span class="err">23</span><span class="kt">.</span><span class="err">717948717948715</span><span class="o">)</span>
+</span><span class="line"><span class="nc">List</span><span class="o">((</span><span class="n">electronics</span><span class="o">,</span><span class="mf">23.717948717948715</span><span class="o">),</span> <span class="o">(</span><span class="n">physics</span><span class="o">,</span><span class="mf">16.666666666666664</span><span class="o">),</span> <span class="o">(</span><span class="n">math</span><span class="o">,</span><span class="mf">14.102564102564102</span><span class="o">))</span>
+</span><span class="line"><span class="nc">Similarity</span> <span class="n">to</span> <span class="n">normal</span> <span class="n">vocabulary</span><span class="k">:</span> <span class="err">27</span><span class="kt">.</span><span class="err">564102564102566</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">Testing</span> <span class="kt">typical</span> <span class="kt">guardian</span> <span class="kt">article:</span>
+</span><span class="line"><span class="nc">Article</span> <span class="n">matches</span> <span class="n">category</span><span class="k">:</span> <span class="o">(</span><span class="kt">boring</span><span class="o">,</span><span class="err">30</span><span class="kt">.</span><span class="err">45977011494253</span><span class="o">)</span>
+</span><span class="line"><span class="nc">List</span><span class="o">((</span><span class="n">electronics</span><span class="o">,</span><span class="mf">2.8735632183908044</span><span class="o">),</span> <span class="o">(</span><span class="n">math</span><span class="o">,</span><span class="mf">2.2988505747126435</span><span class="o">),</span> <span class="o">(</span><span class="n">physics</span><span class="o">,</span><span class="mf">2.2988505747126435</span><span class="o">))</span>
+</span><span class="line"><span class="nc">Similarity</span> <span class="n">to</span> <span class="n">normal</span> <span class="n">vocabulary</span><span class="k">:</span> <span class="err">30</span><span class="kt">.</span><span class="err">45977011494253</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
-<p>It took some code, but it&#8217;s actually pretty simple and works well. Scala offers really nice api to work with this kind of problems.</p>
+<p>It took some code, but it’s actually pretty simple and works well. Scala offers really nice api to work with this kind of problems.</p>
 </div>
   
   
@@ -542,15 +525,22 @@ $$</p>
 
   <div class="entry-content"><p>This is a plan of the main campus of my university, Politechnika Warszawska, Warsaw University of Technology, WUT.</p>
 
-<p><img src="https://lh3.googleusercontent.com/-LHRYbwGdPKw/UYpa64V84jI/AAAAAAAABNk/2MLptE4Xdno/w691-h518-no/SAM_0749.JPG"></p>
+<p><img src="https://lh3.googleusercontent.com/-LHRYbwGdPKw/UYpa64V84jI/AAAAAAAABNk/2MLptE4Xdno/w691-h518-no/SAM_0749.JPG" /></p>
 
-<p><img class="left" src="https://lh3.googleusercontent.com/-EDWL2nDetss/UYpa4Kh7x_I/AAAAAAAABNU/HJeOv5fXBQM/w691-h518-no/SAM_0746.JPG" width="250" height="400"></p>
+<p><img class="left" src="https://lh3.googleusercontent.com/-EDWL2nDetss/UYpa4Kh7x_I/AAAAAAAABNU/HJeOv5fXBQM/w691-h518-no/SAM_0746.JPG" width="250" height="400" /> </p>
 
-<p>On the left is a building of faculty of Physics, where I go five times a week. Pretty nice place.</p>
+<p>On the left is a building of faculty of Physics, where I go five times a week. Pretty nice place. </p>
 
-<p><img class="right" src="https://lh6.googleusercontent.com/--4fFZmbWjPM/UYpa8brZY1I/AAAAAAAABNs/0dofxmf17mQ/w691-h518-no/SAM_0750.JPG" width="300" height="600"></p>
+<p><img class="right" src="https://lh6.googleusercontent.com/--4fFZmbWjPM/UYpa8brZY1I/AAAAAAAABNs/0dofxmf17mQ/w691-h518-no/SAM_0750.JPG" width="300" height="600" /> </p>
 
-<p>The bad news is that <a href="hackerspace.pl">Warsaw hackerspace</a> becomes hotter and hotter and our servers don&#8217;t like that :|.</p>
+<table>
+  <tbody>
+    <tr>
+      <td>The bad news is that <a href="hackerspace.pl">Warsaw hackerspace</a> becomes hotter and hotter and our servers don’t like that :</td>
+      <td>.</td>
+    </tr>
+  </tbody>
+</table>
 </div>
   
   
@@ -590,124 +580,118 @@ $$</p>
   </header>
 
 
-  <div class="entry-content"><h3>A&#8230; what?</h3>
-
+  <div class="entry-content"><h3 id="a-what">A… what?</h3>
 <p>Preon is a Java library which aims to provide a framework for dealing with binary encoded data. <a href="https://github.com/preon/preon">Repository</a></p>
 
-<p>Actually reading binary files in Java isn&#8217;t very comfortable. I love a python way to deal with binary files - <a href="http://docs.python.org/2/library/struct.html">struct</a></p>
+<p>Actually reading binary files in Java isn’t very comfortable. I love a python way to deal with binary files - <a href="http://docs.python.org/2/library/struct.html">struct</a></p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>   <span class="kn">import</span> <span class="nn">struct</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>  <span class="c">#How exemplary data is packed</span>
-</span><span class='line'>  <span class="n">format</span> <span class="o">=</span> <span class="s">&quot;&lt;IIH2s&quot;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c">#How long it is</span>
-</span><span class='line'>  <span class="n">how_many_bytes</span> <span class="o">=</span> <span class="n">calcsize</span><span class="p">(</span><span class="n">format</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c">#unpacking</span>
-</span><span class='line'>  <span class="n">something</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">format</span><span class="p">,</span> <span class="n">string_with_binary_data</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c">#packing</span>
-</span><span class='line'>  <span class="n">packed</span> <span class="o">=</span>  <span class="n">pack</span><span class="p">(</span><span class="s">&#39;llh0l&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line">	<span class="kn">import</span> <span class="nn">struct</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">	<span class="c">#How exemplary data is packed</span>
+</span><span class="line">	<span class="n">format</span> <span class="o">=</span> <span class="s">&quot;&lt;IIH2s&quot;</span>
+</span><span class="line">
+</span><span class="line">	<span class="c">#How long it is</span>
+</span><span class="line">	<span class="n">how_many_bytes</span> <span class="o">=</span> <span class="n">calcsize</span><span class="p">(</span><span class="n">format</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">	<span class="c">#unpacking</span>
+</span><span class="line">	<span class="n">something</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">format</span><span class="p">,</span> <span class="n">string_with_binary_data</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">	<span class="c">#packing</span>
+</span><span class="line">	<span class="n">packed</span> <span class="o">=</span>  <span class="n">pack</span><span class="p">(</span><span class="s">&#39;llh0l&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Nice and clean. What about Java? There are many ways to read binary files with Java. Almost all are very tedious. I decided to use preon. <a href="http://www.scribd.com/doc/8128172/Preon-Introduction">Here</a> and <a href="http://www.scribd.com/doc/7988375/Preon-Under-the-Hood">there</a> you can read some publications about preon.</p>
 
-<h3>How to use preon?</h3>
-
+<h3 id="how-to-use-preon">How to use preon?</h3>
 <p>I think that from user point of view, the most important part of preon library are codecs.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="c1">//Create codec based on previously defined class</span>
-</span><span class='line'>  <span class="n">Codec</span><span class="o">&lt;</span><span class="n">EXTHHeader</span><span class="o">&gt;</span> <span class="n">codec</span> <span class="o">=</span> <span class="n">Codecs</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">EXTHHeader</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</span><span class='line'><span class="c1">//Create buffer with data to be read</span>
-</span><span class='line'>  <span class="n">RandomAccessFile</span> <span class="n">fp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="s">&quot;r&quot;</span><span class="o">);</span>
-</span><span class='line'>  <span class="n">fp</span><span class="o">.</span><span class="na">seek</span><span class="o">(</span><span class="n">offset</span><span class="o">);</span>
-</span><span class='line'>  <span class="kt">byte</span><span class="o">[]</span> <span class="n">buff</span><span class="o">=</span> <span class="k">new</span>  <span class="kt">byte</span><span class="o">[</span><span class="n">headers</span><span class="o">.</span><span class="na">size</span><span class="o">];</span>
-</span><span class='line'>  <span class="n">fp</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buff</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">headers</span><span class="o">.</span><span class="na">exthHeaderSize</span><span class="o">);</span>
-</span><span class='line'><span class="c1">//Decode your object from buffer</span>
-</span><span class='line'>  <span class="n">EXTHHeader</span> <span class="n">exthHeader</span> <span class="o">=</span> <span class="n">Codecs</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">codec</span><span class="o">,</span> <span class="n">buff</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="c1">//Create codec based on previously defined class</span>
+</span><span class="line">	<span class="n">Codec</span><span class="o">&lt;</span><span class="n">EXTHHeader</span><span class="o">&gt;</span> <span class="n">codec</span> <span class="o">=</span> <span class="n">Codecs</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">EXTHHeader</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span><span class="line"><span class="c1">//Create buffer with data to be read</span>
+</span><span class="line">	<span class="n">RandomAccessFile</span> <span class="n">fp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="s">&quot;r&quot;</span><span class="o">);</span>
+</span><span class="line">	<span class="n">fp</span><span class="o">.</span><span class="na">seek</span><span class="o">(</span><span class="n">offset</span><span class="o">);</span>
+</span><span class="line">	<span class="kt">byte</span><span class="o">[]</span> <span class="n">buff</span><span class="o">=</span> <span class="k">new</span>  <span class="kt">byte</span><span class="o">[</span><span class="n">headers</span><span class="o">.</span><span class="na">size</span><span class="o">];</span>
+</span><span class="line">	<span class="n">fp</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buff</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">headers</span><span class="o">.</span><span class="na">exthHeaderSize</span><span class="o">);</span>
+</span><span class="line"><span class="c1">//Decode your object from buffer</span>
+</span><span class="line">	<span class="n">EXTHHeader</span> <span class="n">exthHeader</span> <span class="o">=</span> <span class="n">Codecs</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">codec</span><span class="o">,</span> <span class="n">buff</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="kn">import</span> <span class="nn">nl.flotsam.preon.annotation.BoundNumber</span><span class="o">;</span>
+</span><span class="line"><span class="c1">//There is something like big and little endian (default is little)</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">nl.flotsam.preon.buffer.ByteOrder</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EXTHHeader</span> <span class="o">{</span>
+</span><span class="line">	<span class="c1">//I use long with size 32 to represent unsigned 32 bit int</span>
+</span><span class="line">	<span class="c1">//Reading signed int is identical except from using int instead of long</span>
+</span><span class="line">    <span class="nd">@BoundNumber</span><span class="o">(</span><span class="n">size</span><span class="o">=</span><span class="s">&quot;32&quot;</span><span class="o">,</span> <span class="n">byteOrder</span><span class="o">=</span><span class="n">ByteOrder</span><span class="o">.</span><span class="na">BigEndian</span><span class="o">)</span>
+</span><span class="line">    <span class="kt">long</span> <span class="n">identifier</span><span class="o">;</span>
+</span><span class="line">    <span class="nd">@BoundNumber</span><span class="o">(</span><span class="n">size</span><span class="o">=</span><span class="s">&quot;32&quot;</span><span class="o">,</span> <span class="n">byteOrder</span><span class="o">=</span><span class="n">ByteOrder</span><span class="o">.</span><span class="na">BigEndian</span><span class="o">)</span>
+</span><span class="line">    <span class="kt">long</span> <span class="n">headerLength</span><span class="o">;</span>
+</span><span class="line">    <span class="nd">@BoundNumber</span><span class="o">(</span><span class="n">size</span><span class="o">=</span><span class="s">&quot;32&quot;</span><span class="o">,</span> <span class="n">byteOrder</span><span class="o">=</span><span class="n">ByteOrder</span><span class="o">.</span><span class="na">BigEndian</span><span class="o">)</span>
+</span><span class="line">    <span class="kt">long</span> <span class="n">recordCount</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line">	<span class="nd">@Override</span>
+</span><span class="line">	<span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+</span><span class="line">		<span class="k">return</span> <span class="s">&quot;EXTHHeader [identifier=&quot;</span> <span class="o">+</span> <span class="n">identifier</span> <span class="o">+</span> <span class="s">&quot;, headerLength=&quot;</span>
+</span><span class="line">				<span class="o">+</span> <span class="n">headerLength</span> <span class="o">+</span> <span class="s">&quot;, recordCount=&quot;</span> <span class="o">+</span> <span class="n">recordCount</span> <span class="o">+</span> <span class="s">&quot;]&quot;</span><span class="o">;</span>
+</span><span class="line">	<span class="o">}</span>
+</span><span class="line">
+</span><span class="line"><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<p>You can define byte order, size, type… and even lists with size based on value from one of fields. You can also add different methods to class (like toString).</p>
 
+<p>I forgot to mention, Preon has lots of dependencies, you have to include them in your project or it won’t work.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kn">import</span> <span class="nn">nl.flotsam.preon.annotation.BoundNumber</span><span class="o">;</span>
-</span><span class='line'><span class="c1">//There is something like big and little endian (default is little)</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">nl.flotsam.preon.buffer.ByteOrder</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EXTHHeader</span> <span class="o">{</span>
-</span><span class='line'>  <span class="c1">//I use long with size 32 to represent unsigned 32 bit int</span>
-</span><span class='line'>  <span class="c1">//Reading signed int is identical except from using int instead of long</span>
-</span><span class='line'>    <span class="nd">@BoundNumber</span><span class="o">(</span><span class="n">size</span><span class="o">=</span><span class="s">&quot;32&quot;</span><span class="o">,</span> <span class="n">byteOrder</span><span class="o">=</span><span class="n">ByteOrder</span><span class="o">.</span><span class="na">BigEndian</span><span class="o">)</span>
-</span><span class='line'>    <span class="kt">long</span> <span class="n">identifier</span><span class="o">;</span>
-</span><span class='line'>    <span class="nd">@BoundNumber</span><span class="o">(</span><span class="n">size</span><span class="o">=</span><span class="s">&quot;32&quot;</span><span class="o">,</span> <span class="n">byteOrder</span><span class="o">=</span><span class="n">ByteOrder</span><span class="o">.</span><span class="na">BigEndian</span><span class="o">)</span>
-</span><span class='line'>    <span class="kt">long</span> <span class="n">headerLength</span><span class="o">;</span>
-</span><span class='line'>    <span class="nd">@BoundNumber</span><span class="o">(</span><span class="n">size</span><span class="o">=</span><span class="s">&quot;32&quot;</span><span class="o">,</span> <span class="n">byteOrder</span><span class="o">=</span><span class="n">ByteOrder</span><span class="o">.</span><span class="na">BigEndian</span><span class="o">)</span>
-</span><span class='line'>    <span class="kt">long</span> <span class="n">recordCount</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nd">@Override</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">return</span> <span class="s">&quot;EXTHHeader [identifier=&quot;</span> <span class="o">+</span> <span class="n">identifier</span> <span class="o">+</span> <span class="s">&quot;, headerLength=&quot;</span>
-</span><span class='line'>              <span class="o">+</span> <span class="n">headerLength</span> <span class="o">+</span> <span class="s">&quot;, recordCount=&quot;</span> <span class="o">+</span> <span class="n">recordCount</span> <span class="o">+</span> <span class="s">&quot;]&quot;</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>Not so hard, isn’t it? And it has lot’s more functionalities, but those above are the most common ones.</p>
 
-
-<p>You can define byte order, size, type&#8230; and even lists with size based on value from one of fields. You can also add different methods to class (like toString).</p>
-
-<p>I forgot to mention, Preon has lots of dependencies, you have to include them in your project or it won&#8217;t work.</p>
-
-<p>Not so hard, isn&#8217;t it? And it has lot&#8217;s more functionalities, but those above are the most common ones.</p>
 </div>
   
   
@@ -747,63 +731,58 @@ $$</p>
   </header>
 
 
-  <div class="entry-content"><h3>Installation</h3>
-
+  <div class="entry-content"><h3 id="installation">Installation</h3>
 <p>There is a scalafx <a href="https://code.google.com/p/scalafx/">webpage</a> and it has detailed tutorial how to <a href="https://code.google.com/p/scalafx/wiki/GettingStarted">install scalafx and get started</a>. However it is actually even simples as described there. When you have working scala environment (eclipse with scala IDE for example) make sure that you use jdk from oracle (includes javafx by default and you need javafx to use scalafx) and just download scalafx jars and include them in your project.</p>
 
-<h3>Available learning resources</h3>
+<h3 id="available-learning-resources">Available learning resources</h3>
+<p>Creating gui with scalafx isn’t hard when you know how to use it. </p>
 
-<p>Creating gui with scalafx isn&#8217;t hard when you know how to use it.</p>
-
-<p>If you know javafx you&#8217;ve probably seen ProJavaFX book. Good news! There&#8217;s a <a href="https://github.com/jsacha/ProScalaFX/">scalafx equivalent in source code</a></p>
+<p>If you know javafx you’ve probably seen ProJavaFX book. Good news! There’s a <a href="https://github.com/jsacha/ProScalaFX/">scalafx equivalent in source code</a></p>
 
 <p>A better scalafx API overview is <a href="https://github.com/jugchennai/scalafx-ensemble">ensemble project</a>.</p>
 
-<h3>When help from available examples is not enough</h3>
+<h3 id="when-help-from-available-examples-is-not-enough">When help from available examples is not enough</h3>
+<p>Asking google doesn’t provide many helpful examples. I tried to resolve some of my problems, but I couldn’t find right answer usually. Which is different from for example problems with java, because there are usually lots of questions with answers. </p>
 
-<p>Asking google doesn&#8217;t provide many helpful examples. I tried to resolve some of my problems, but I couldn&#8217;t find right answer usually. Which is different from for example problems with java, because there are usually lots of questions with answers.</p>
+<p>But… it’s not so bad. Scalafx source code is available and well written and you can just skim it and get your answers or translate your problem to javafx problem and then look for answer in java community.</p>
 
-<p>But&#8230; it&#8217;s not so bad. Scalafx source code is available and well written and you can just skim it and get your answers or translate your problem to javafx problem and then look for answer in java community.</p>
+<h3 id="mixing-scalafx-with-javafx">Mixing scalafx with javafx</h3>
+<p>I didn’t all issues in my code(I have some problems with responsivness with observable buffers) but I can already tell that scalafx works well with javafx.</p>
 
-<h3>Mixing scalafx with javafx</h3>
+<p>I wanted to add some warning dialogs into my scalafx application, but scalafx or javafx don’t support it by default. I found dialogs library for javafx and tried to use it to show dialog in my scalafx app. Guess what? It worked and doing it was really simple.</p>
 
-<p>I didn&#8217;t all issues in my code(I have some problems with responsivness with observable buffers) but I can already tell that scalafx works well with javafx.</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>splitContentToSentences - MainApp.scala </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">import</span> <span class="nn">javafx.scene.control.Dialogs</span>
+</span><span class="line"><span class="o">(...)</span>
+</span><span class="line"><span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">&quot;Submit&quot;</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">	<span class="n">onAction</span> <span class="k">=</span> <span class="o">{</span><span class="n">e</span><span class="k">:</span> <span class="kt">ActionEvent</span> <span class="o">=&gt;</span>
+</span><span class="line">		<span class="k">val</span> <span class="n">emptyFields</span> <span class="k">=</span> <span class="n">getEmptyFields</span><span class="o">()</span>
+</span><span class="line">		<span class="k">if</span><span class="o">(!</span><span class="n">emptyFields</span><span class="o">.</span><span class="n">isEmpty</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">			<span class="nc">Dialogs</span><span class="o">.</span><span class="n">showWarningDialog</span><span class="o">(</span><span class="n">stage</span><span class="o">,</span>
+</span><span class="line">			 	<span class="n">emptyFields</span><span class="o">.</span><span class="n">mkString</span><span class="o">(</span><span class="s">&quot;, &quot;</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot; cannot be empty.&quot;</span><span class="o">,</span>
+</span><span class="line">			 	<span class="s">&quot;Book couldn&#39;t be added.&quot;</span><span class="o">,</span> <span class="s">&quot;Adding failure&quot;</span><span class="o">);</span>
+</span><span class="line">			<span class="o">}</span>
+</span><span class="line">		<span class="o">}</span>
+</span><span class="line"><span class="o">(...)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>I wanted to add some warning dialogs into my scalafx application, but scalafx or javafx don&#8217;t support it by default. I found dialogs library for javafx and tried to use it to show dialog in my scalafx app. Guess what? It worked and doing it was really simple.</p>
-
-<figure class='code'><figcaption><span>splitContentToSentences - MainApp.scala </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">import</span> <span class="nn">javafx.scene.control.Dialogs</span>
-</span><span class='line'><span class="o">(...)</span>
-</span><span class='line'><span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">&quot;Submit&quot;</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>  <span class="n">onAction</span> <span class="k">=</span> <span class="o">{</span><span class="n">e</span><span class="k">:</span> <span class="kt">ActionEvent</span> <span class="o">=&gt;</span>
-</span><span class='line'>      <span class="k">val</span> <span class="n">emptyFields</span> <span class="k">=</span> <span class="n">getEmptyFields</span><span class="o">()</span>
-</span><span class='line'>      <span class="k">if</span><span class="o">(!</span><span class="n">emptyFields</span><span class="o">.</span><span class="n">isEmpty</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="nc">Dialogs</span><span class="o">.</span><span class="n">showWarningDialog</span><span class="o">(</span><span class="n">stage</span><span class="o">,</span>
-</span><span class='line'>              <span class="n">emptyFields</span><span class="o">.</span><span class="n">mkString</span><span class="o">(</span><span class="s">&quot;, &quot;</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot; cannot be empty.&quot;</span><span class="o">,</span>
-</span><span class='line'>              <span class="s">&quot;Book couldn&#39;t be added.&quot;</span><span class="o">,</span> <span class="s">&quot;Adding failure&quot;</span><span class="o">);</span>
-</span><span class='line'>          <span class="o">}</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'><span class="o">(...)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Here&#8217;s the library: <a href="https://github.com/marcojakob/javafx-ui-sandbox/tree/master/javafx-dialogs">javafx-dialogs</a></p>
+<p>Here’s the library: <a href="https://github.com/marcojakob/javafx-ui-sandbox/tree/master/javafx-dialogs">javafx-dialogs</a></p>
 
 <p>and descriptive <a href="http://edu.makery.ch/blog/2012/10/30/javafx-2-dialogs/">blog post</a> about how to use it.</p>
 
-<p>And I forgot to add - scalafx looks quite well (like javafx) opposed to scala swing which looks just horrible. Scala swing sounds nice, it&#8217;s simple, is available by default, has scaladoc&#8230; but don&#8217;t get deceived. Scala swing looks old, api makes strange suprises, and its development is a lie. Just use something else instead, for example scalafx.</p>
+<p>And I forgot to add - scalafx looks quite well (like javafx) opposed to scala swing which looks just horrible. Scala swing sounds nice, it’s simple, is available by default, has scaladoc… but don’t get deceived. Scala swing looks old, api makes strange suprises, and its development is a lie. Just use something else instead, for example scalafx.</p>
 </div>
   
   
@@ -843,29 +822,26 @@ $$</p>
   </header>
 
 
-  <div class="entry-content"><h3>Java was tiring and painful</h3>
-
-<p>I was developing a small project in Java. It was okay. Java isn&#8217;t very difficult to write in. But I had some strange problems. Mainly with ide, libraries, maven, ant and so on.</p>
+  <div class="entry-content"><h3 id="java-was-tiring-and-painful">Java was tiring and painful</h3>
+<p>I was developing a small project in Java. It was okay. Java isn’t very difficult to write in. But I had some strange problems. Mainly with ide, libraries, maven, ant and so on.</p>
 
 <p>I really hate build.xml. Oh, I do.</p>
 
 <p>I wanted to do something stimulating and mix some scala code into my existing java project to make it more enjoable.</p>
 
-<h3>Mixing scala and java</h3>
+<h3 id="mixing-scala-and-java">Mixing scala and java</h3>
+<p>I can’t see you! It was the main reaction of my netbeans IDE. Actually mixing scala into existing java project isn’t so easy. I installed special plugins for Netbeans but it didn’t work, I got strange ant errors and spent a few hours reading about maven and building with ant.</p>
 
-<p>I can&#8217;t see you! It was the main reaction of my netbeans IDE. Actually mixing scala into existing java project isn&#8217;t so easy. I installed special plugins for Netbeans but it didn&#8217;t work, I got strange ant errors and spent a few hours reading about maven and building with ant.</p>
+<p>It was too much for me. I returned to eclipse and installed ScalaIDE which is very nice, but still I don’t know how to integrate there nicely a testing environment.</p>
 
-<p>It was too much for me. I returned to eclipse and installed ScalaIDE which is very nice, but still I don&#8217;t know how to integrate there nicely a testing environment.</p>
-
-<p>I created new Scala project because I read it&#8217;s a better way than other way round (Scala in java) and added some of my existing java files.</p>
+<p>I created new Scala project because I read it’s a better way than other way round (Scala in java) and added some of my existing java files.</p>
 
 <p>I wanted to integrate a JavaFX, and then ScalaFX, but I had strange problems with those libraries.</p>
 
-<h3>Swinging with scala</h3>
-
+<h3 id="swinging-with-scala">Swinging with scala</h3>
 <p>Scala has swing library and its bindings are very intuitive and concise. So different from JavaFX!</p>
 
-<p>I don&#8217;t know it well yet, but I grasped some basics, write a really simple gui and it WORKED.</p>
+<p>I don’t know it well yet, but I grasped some basics, write a really simple gui and it WORKED. </p>
 
 <p><a href="http://scalatutorial.de/topic177.html">Simple German Swing tutorial</a></p>
 
@@ -873,35 +849,32 @@ $$</p>
 
 <p>Enjoy.</p>
 
-<h3>Concise and functional scala</h3>
-
-<p><a href="http://en.wikipedia.org/wiki/Scala_(programming_language">Scala on wiki</a>)</p>
+<h3 id="concise-and-functional-scala">Concise and functional scala</h3>
+<p><a href="http://en.wikipedia.org/wiki/Scala_(programming_language)">Scala on wiki</a></p>
 
 <p><a href="http://www.scala-lang.org/">Scala website</a></p>
 
-<p>On Scala website are links to learning materials, even free books like &#8220;Scala by example&#8221;. There is also a brief tutorial (20 pages) which I recommend for the beginning, because it is a good overview. (Good start to fall in love with scala ;) )</p>
+<p>On Scala website are links to learning materials, even free books like “Scala by example”. There is also a brief tutorial (20 pages) which I recommend for the beginning, because it is a good overview. (Good start to fall in love with scala ;) )</p>
 
-<p>Reading scala book is quite entertaining, I&#8217;ve never programmed a functional language before (not counting javascript and some lisp) and learning new concepts in such an elegant form as in scala is just a pleasure.</p>
+<p>Reading scala book is quite entertaining, I’ve never programmed a functional language before (not counting javascript and some lisp) and learning new concepts in such an elegant form as in scala is just a pleasure.</p>
 
-<p>It&#8217;s very expressive and still easy to use. Below you can see a small snippet of code I wrote today in the morning.</p>
+<p>It’s very expressive and still easy to use. Below you can see a small snippet of code I wrote today in the morning.</p>
 
-<figure class='code'><figcaption><span>splitContentToSentences - SummaryTool.scala </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">splitContentToSentences</span><span class="o">(</span><span class="n">content</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
-</span><span class='line'>      <span class="n">content</span><span class="o">.</span><span class="n">replaceAll</span><span class="o">(</span><span class="s">&quot;\n&quot;</span><span class="o">,</span> <span class="s">&quot;. &quot;</span><span class="o">).</span><span class="n">split</span><span class="o">(</span><span class="s">&quot;\\. &quot;</span><span class="o">).</span><span class="n">filterNot</span><span class="o">(</span><span class="n">x</span> <span class="k">=&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">matches</span><span class="o">(</span><span class="s">&quot;\\W+&quot;</span><span class="o">)).</span><span class="n">filterNot</span><span class="o">(</span><span class="n">x</span> <span class="k">=&gt;</span> <span class="n">x</span> <span class="o">==</span> <span class="s">&quot;&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>splitContentToSentences - SummaryTool.scala </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">def</span> <span class="n">splitContentToSentences</span><span class="o">(</span><span class="n">content</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class="line">		<span class="n">content</span><span class="o">.</span><span class="n">replaceAll</span><span class="o">(</span><span class="s">&quot;\n&quot;</span><span class="o">,</span> <span class="s">&quot;. &quot;</span><span class="o">).</span><span class="n">split</span><span class="o">(</span><span class="s">&quot;\\. &quot;</span><span class="o">).</span><span class="n">filterNot</span><span class="o">(</span><span class="n">x</span> <span class="k">=&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">matches</span><span class="o">(</span><span class="s">&quot;\\W+&quot;</span><span class="o">)).</span><span class="n">filterNot</span><span class="o">(</span><span class="n">x</span> <span class="k">=&gt;</span> <span class="n">x</span> <span class="o">==</span> <span class="s">&quot;&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p><a href="https://github.com/atteroTheGreatest/laughing-archer/blob/master/src/analysis/SummaryTool.scala">SummaryTool.scala</a></p>
 
-<h3>Overall impression</h3>
+<h3 id="overall-impression">Overall impression</h3>
+<p>Well, scala is cool. Rich type system, amazing api, conciseness make me a growing fan of scala. It’s different from for example python, because it implements static typing which is usually a pain. Especially when writing with text editor not with speciallised IDE which analizes your code on the go. But in scala types are not just superfluous addition, they make code more understandable and functional and due to type inference you usually don’t have to write them!</p>
 
-<p>Well, scala is cool. Rich type system, amazing api, conciseness make me a growing fan of scala. It&#8217;s different from for example python, because it implements static typing which is usually a pain. Especially when writing with text editor not with speciallised IDE which analizes your code on the go. But in scala types are not just superfluous addition, they make code more understandable and functional and due to type inference you usually don&#8217;t have to write them!</p>
-
-<p>Now I&#8217;ll return to scala book written by Oderski (main designer of scala). Only over 600 pages to go!</p>
+<p>Now I’ll return to scala book written by Oderski (main designer of scala). Only over 600 pages to go!</p>
 </div>
   
   
@@ -941,296 +914,290 @@ $$</p>
   </header>
 
 
-  <div class="entry-content"><h3>Motivation</h3>
-
-<p>One of my projects has to written in Java or similar JVM language (not python sadly). It&#8217;s a rich GUI application and I had to choose
+  <div class="entry-content"><h3 id="motivation">Motivation</h3>
+<p>One of my projects has to written in Java or similar JVM language (not python sadly). It’s a rich GUI application and I had to choose 
 appropriate framework to develop user interface. After some research I found JavaFx.</p>
 
-<p>I first wanted to do it in <a href="http://groovy.codehaus.org/">Groovy</a>, dynamic language for JVM, but after I saw documentation of GroovyFx&#8230;
+<p>I first wanted to do it in <a href="http://groovy.codehaus.org/">Groovy</a>, dynamic language for JVM, but after I saw documentation of GroovyFx…
 I decided not to, because lots of subsection of this documentation was simply empty.</p>
 
-<p>My project is not exceptionally ambitious and I wanted to do GUI as easily and fast and possible and then focus on major functionality of my app. I have developed some GUI&#8217;s before
+<p>My project is not exceptionally ambitious and I wanted to do GUI as easily and fast and possible and then focus on major functionality of my app. I have developed some GUI’s before
 in C++ and Python. And it was rather simple and intuitive process (I love <a href="http://qt-project.org/wiki/Category:LanguageBindings::PySide">Pyside</a>!).</p>
 
-<h3>First impressions</h3>
-
-<p>I remember that I had some problems. I encountered very strange behavior of Intellij Ide, it was switching off after attempts to launch javafx project and I still don&#8217;t know why. After some re-installations (SDK from Oracle and Netbeans IDE, which has default support for javafx) I started learning from the book: <a href="http://www.apress.com/9781430268727">Pro JavaFX 2</a> which kindly provides source <a href="http://www.apress.com/downloadable/download/sample/sample_id/1253/">code</a>.</p>
+<h3 id="first-impressions">First impressions</h3>
+<p>I remember that I had some problems. I encountered very strange behavior of Intellij Ide, it was switching off after attempts to launch javafx project and I still don’t know why. After some re-installations (SDK from Oracle and Netbeans IDE, which has default support for javafx) I started learning from the book: <a href="http://www.apress.com/9781430268727">Pro JavaFX 2</a> which kindly provides source <a href="http://www.apress.com/downloadable/download/sample/sample_id/1253/">code</a>.</p>
 
 <p>I had custom installation of a development platform and I followed a tutorial, was it successful? Not. Some of the first examples from this
-book just doesn&#8217;t compile on my computer. I lost lots of time, and found out that further examples works. WUT?</p>
+book just doesn’t compile on my computer. I lost lots of time, and found out that further examples works. WUT?</p>
 
-<h3>Philosophy</h3>
+<h3 id="philosophy">Philosophy</h3>
+<p>I think that’s the main reason why JavaFX is so strange for me it’s its javaland philosophy, which I’m not used to. I prefer thinking in terms of problem not in terms of framework. An approach where framework has so many solutions for me and is itself huge and has its own complicated philosophy is for me overwhelming.</p>
 
-<p>I think that&#8217;s the main reason why JavaFX is so strange for me it&#8217;s its javaland philosophy, which I&#8217;m not used to. I prefer thinking in terms of problem not in terms of framework. An approach where framework has so many solutions for me and is itself huge and has its own complicated philosophy is for me overwhelming.</p>
+<p>Maybe I need more time for learning it and then using will be a piece of cake. I truly hope so. </p>
 
-<p>Maybe I need more time for learning it and then using will be a piece of cake. I truly hope so.</p>
+<h3 id="suprises">Suprises</h3>
+<p>I read Pro JavaFx book to be able to build nice, simple and clean GUI. Documentation of Java libraries is usually not very friendly in my opinion, because it’s usually automatically generated and there’s too small
+signal to noise ratio whith all those classes and methods I usually doesn’t need.</p>
 
-<h3>Suprises</h3>
+<p>Funny thing is that one of the first application examples is a metronome, which uses a lots of transitions, which are quite funny in javafx. There a class and factory for everything. I usually think in terms on 2D canvas, but there it’s implemented in different way. Nodes are binded to transitions and there is no trace of canvas.</p>
 
-<p>I read Pro JavaFx book to be able to build nice, simple and clean GUI. Documentation of Java libraries is usually not very friendly in my opinion, because it&#8217;s usually automatically generated and there&#8217;s too small
-signal to noise ratio whith all those classes and methods I usually doesn&#8217;t need.</p>
+<p>Binding in JavaFx is a bit overwhelming. I’ve seen already at least 60 methods of public api connected with it. Nightmare! But it’s quite useful when you get used to specific way of thinking about dynamic properties, which are observable, have event handlers and so on.</p>
 
-<p>Funny thing is that one of the first application examples is a metronome, which uses a lots of transitions, which are quite funny in javafx. There a class and factory for everything. I usually think in terms on 2D canvas, but there it&#8217;s implemented in different way. Nodes are binded to transitions and there is no trace of canvas.</p>
-
-<p>Binding in JavaFx is a bit overwhelming. I&#8217;ve seen already at least 60 methods of public api connected with it. Nightmare! But it&#8217;s quite useful when you get used to specific way of thinking about dynamic properties, which are observable, have event handlers and so on.</p>
-
-<p>Chaining and builders are quite handy but they&#8217;re not my favorite way of building objects, why not a wisely
-designed constructor? When construction of an object takes 50 lines of code, I simply get lost.</p>
+<p>Chaining and builders are quite handy but they’re not my favorite way of building objects, why not a wisely
+designed constructor? When construction of an object takes 50 lines of code, I simply get lost. </p>
 
 <p>Here is an example of such code:</p>
 
-<figure class='code'><figcaption><span>Some random node written in JavaFx </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-<span class='line-number'>103</span>
-<span class='line-number'>104</span>
-<span class='line-number'>105</span>
-<span class='line-number'>106</span>
-<span class='line-number'>107</span>
-<span class='line-number'>108</span>
-<span class='line-number'>109</span>
-<span class='line-number'>110</span>
-<span class='line-number'>111</span>
-<span class='line-number'>112</span>
-<span class='line-number'>113</span>
-<span class='line-number'>114</span>
-<span class='line-number'>115</span>
-<span class='line-number'>116</span>
-<span class='line-number'>117</span>
-<span class='line-number'>118</span>
-<span class='line-number'>119</span>
-<span class='line-number'>120</span>
-<span class='line-number'>121</span>
-<span class='line-number'>122</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">VBox</span> <span class="n">variousControls</span> <span class="o">=</span> <span class="n">VBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">padding</span><span class="o">(</span><span class="k">new</span> <span class="n">Insets</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">))</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">spacing</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">children</span><span class="o">(</span>
-</span><span class='line'>        <span class="n">ButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;Button&quot;</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>              <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot; occurred on Button&quot;</span><span class="o">);</span>
-</span><span class='line'>              <span class="o">}</span>
-</span><span class='line'>            <span class="o">})</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">checkBox</span> <span class="o">=</span> <span class="n">CheckBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;CheckBox&quot;</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>              <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot; occurred on CheckBox&quot;</span><span class="o">);</span>
-</span><span class='line'>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&quot;, and selectedProperty is: &quot;</span><span class="o">);</span>
-</span><span class='line'>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">checkBox</span><span class="o">.</span><span class="na">selectedProperty</span><span class="o">().</span><span class="na">getValue</span><span class="o">());</span>
-</span><span class='line'>              <span class="o">}</span>
-</span><span class='line'>            <span class="o">})</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">HBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">spacing</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">children</span><span class="o">(</span>
-</span><span class='line'>            <span class="n">RadioButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;RadioButton1&quot;</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">toggleGroup</span><span class="o">(</span><span class="n">radioToggleGroup</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>            <span class="n">RadioButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;RadioButton2&quot;</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">toggleGroup</span><span class="o">(</span><span class="n">radioToggleGroup</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">build</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">HyperlinkBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;Hyperlink&quot;</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>              <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot; occurred on Hyperlink&quot;</span><span class="o">);</span>
-</span><span class='line'>              <span class="o">}</span>
-</span><span class='line'>            <span class="o">})</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">choiceBox</span> <span class="o">=</span> <span class="n">ChoiceBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">items</span><span class="o">(</span><span class="n">model</span><span class="o">.</span><span class="na">choiceBoxItems</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">MenuButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuButton&quot;</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">items</span><span class="o">(</span>
-</span><span class='line'>            <span class="n">MenuItemBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuItem A&quot;</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span>
-</span><span class='line'>                                       <span class="s">&quot; occurred on Menu Item A&quot;</span><span class="o">);</span>
-</span><span class='line'>                  <span class="o">}</span>
-</span><span class='line'>                <span class="o">})</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>            <span class="n">MenuItemBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuItem B&quot;</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">build</span><span class="o">()</span>
-</span><span class='line'>           <span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">SplitMenuButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;SplitMenuButton&quot;</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>            <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>              <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span>
-</span><span class='line'>                                 <span class="s">&quot; occurred on SplitMenuButton&quot;</span><span class="o">);</span>
-</span><span class='line'>            <span class="o">}</span>
-</span><span class='line'>          <span class="o">})</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">items</span><span class="o">(</span>
-</span><span class='line'>            <span class="n">MenuItemBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuItem A&quot;</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span>
-</span><span class='line'>                                       <span class="s">&quot; occurred on Menu Item A&quot;</span><span class="o">);</span>
-</span><span class='line'>                  <span class="o">}</span>
-</span><span class='line'>                <span class="o">})</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>            <span class="n">MenuItemBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuItem B&quot;</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">build</span><span class="o">()</span>
-</span><span class='line'>           <span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">textField</span> <span class="o">=</span> <span class="n">TextFieldBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">promptText</span><span class="o">(</span><span class="s">&quot;Enter user name&quot;</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">prefColumnCount</span><span class="o">(</span><span class="mi">16</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">passwordField</span> <span class="o">=</span> <span class="n">PasswordFieldBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">promptText</span><span class="o">(</span><span class="s">&quot;Enter password&quot;</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">prefColumnCount</span><span class="o">(</span><span class="mi">16</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">HBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">spacing</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">children</span><span class="o">(</span>
-</span><span class='line'>            <span class="k">new</span> <span class="nf">Label</span><span class="o">(</span><span class="s">&quot;TextArea:&quot;</span><span class="o">),</span>
-</span><span class='line'>            <span class="n">textArea</span> <span class="o">=</span> <span class="n">TextAreaBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">prefColumnCount</span><span class="o">(</span><span class="mi">12</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">prefRowCount</span><span class="o">(</span><span class="mi">4</span><span class="o">)</span>
-</span><span class='line'>              <span class="o">.</span><span class="na">build</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">progressIndicator</span> <span class="o">=</span> <span class="n">ProgressIndicatorBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">prefWidth</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">slider</span> <span class="o">=</span> <span class="n">SliderBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">prefWidth</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">min</span><span class="o">(-</span><span class="mi">1</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">model</span><span class="o">.</span><span class="na">maxRpm</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">progressBar</span> <span class="o">=</span> <span class="n">ProgressBarBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">prefWidth</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
-</span><span class='line'>        <span class="n">scrollBar</span> <span class="o">=</span> <span class="n">ScrollBarBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">prefWidth</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">min</span><span class="o">(-</span><span class="mi">1</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">model</span><span class="o">.</span><span class="na">maxKph</span><span class="o">)</span>
-</span><span class='line'>          <span class="o">.</span><span class="na">build</span><span class="o">()</span>
-</span><span class='line'>      <span class="o">)</span>
-</span><span class='line'>      <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Some random node written in JavaFx </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+<span class="line-number">79</span>
+<span class="line-number">80</span>
+<span class="line-number">81</span>
+<span class="line-number">82</span>
+<span class="line-number">83</span>
+<span class="line-number">84</span>
+<span class="line-number">85</span>
+<span class="line-number">86</span>
+<span class="line-number">87</span>
+<span class="line-number">88</span>
+<span class="line-number">89</span>
+<span class="line-number">90</span>
+<span class="line-number">91</span>
+<span class="line-number">92</span>
+<span class="line-number">93</span>
+<span class="line-number">94</span>
+<span class="line-number">95</span>
+<span class="line-number">96</span>
+<span class="line-number">97</span>
+<span class="line-number">98</span>
+<span class="line-number">99</span>
+<span class="line-number">100</span>
+<span class="line-number">101</span>
+<span class="line-number">102</span>
+<span class="line-number">103</span>
+<span class="line-number">104</span>
+<span class="line-number">105</span>
+<span class="line-number">106</span>
+<span class="line-number">107</span>
+<span class="line-number">108</span>
+<span class="line-number">109</span>
+<span class="line-number">110</span>
+<span class="line-number">111</span>
+<span class="line-number">112</span>
+<span class="line-number">113</span>
+<span class="line-number">114</span>
+<span class="line-number">115</span>
+<span class="line-number">116</span>
+<span class="line-number">117</span>
+<span class="line-number">118</span>
+<span class="line-number">119</span>
+<span class="line-number">120</span>
+<span class="line-number">121</span>
+<span class="line-number">122</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="n">VBox</span> <span class="n">variousControls</span> <span class="o">=</span> <span class="n">VBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">      <span class="o">.</span><span class="na">padding</span><span class="o">(</span><span class="k">new</span> <span class="n">Insets</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">,</span> <span class="mi">10</span><span class="o">))</span>
+</span><span class="line">      <span class="o">.</span><span class="na">spacing</span><span class="o">(</span><span class="mi">20</span><span class="o">)</span>
+</span><span class="line">      <span class="o">.</span><span class="na">children</span><span class="o">(</span>
+</span><span class="line">        <span class="n">ButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;Button&quot;</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span><span class="line">              <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot; occurred on Button&quot;</span><span class="o">);</span>
+</span><span class="line">              <span class="o">}</span>
+</span><span class="line">            <span class="o">})</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">checkBox</span> <span class="o">=</span> <span class="n">CheckBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;CheckBox&quot;</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span><span class="line">              <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot; occurred on CheckBox&quot;</span><span class="o">);</span>
+</span><span class="line">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&quot;, and selectedProperty is: &quot;</span><span class="o">);</span>
+</span><span class="line">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">checkBox</span><span class="o">.</span><span class="na">selectedProperty</span><span class="o">().</span><span class="na">getValue</span><span class="o">());</span>
+</span><span class="line">              <span class="o">}</span>
+</span><span class="line">            <span class="o">})</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">HBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">spacing</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">children</span><span class="o">(</span>
+</span><span class="line">            <span class="n">RadioButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;RadioButton1&quot;</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">toggleGroup</span><span class="o">(</span><span class="n">radioToggleGroup</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">            <span class="n">RadioButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;RadioButton2&quot;</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">toggleGroup</span><span class="o">(</span><span class="n">radioToggleGroup</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+</span><span class="line">          <span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">HyperlinkBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;Hyperlink&quot;</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span><span class="line">              <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot; occurred on Hyperlink&quot;</span><span class="o">);</span>
+</span><span class="line">              <span class="o">}</span>
+</span><span class="line">            <span class="o">})</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">choiceBox</span> <span class="o">=</span> <span class="n">ChoiceBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">items</span><span class="o">(</span><span class="n">model</span><span class="o">.</span><span class="na">choiceBoxItems</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">MenuButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuButton&quot;</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">items</span><span class="o">(</span>
+</span><span class="line">            <span class="n">MenuItemBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuItem A&quot;</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span><span class="line">                  <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span>
+</span><span class="line">                                       <span class="s">&quot; occurred on Menu Item A&quot;</span><span class="o">);</span>
+</span><span class="line">                  <span class="o">}</span>
+</span><span class="line">                <span class="o">})</span>
+</span><span class="line">              <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">            <span class="n">MenuItemBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuItem B&quot;</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+</span><span class="line">           <span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">SplitMenuButtonBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;SplitMenuButton&quot;</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span><span class="line">            <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">              <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span>
+</span><span class="line">                                 <span class="s">&quot; occurred on SplitMenuButton&quot;</span><span class="o">);</span>
+</span><span class="line">            <span class="o">}</span>
+</span><span class="line">          <span class="o">})</span>
+</span><span class="line">          <span class="o">.</span><span class="na">items</span><span class="o">(</span>
+</span><span class="line">            <span class="n">MenuItemBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuItem A&quot;</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">onAction</span><span class="o">(</span><span class="k">new</span> <span class="n">EventHandler</span><span class="o">&lt;</span><span class="n">ActionEvent</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span><span class="line">                  <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">handle</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getEventType</span><span class="o">()</span> <span class="o">+</span>
+</span><span class="line">                                       <span class="s">&quot; occurred on Menu Item A&quot;</span><span class="o">);</span>
+</span><span class="line">                  <span class="o">}</span>
+</span><span class="line">                <span class="o">})</span>
+</span><span class="line">              <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">            <span class="n">MenuItemBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">              <span class="o">.</span><span class="na">text</span><span class="o">(</span><span class="s">&quot;MenuItem B&quot;</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+</span><span class="line">           <span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">textField</span> <span class="o">=</span> <span class="n">TextFieldBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">promptText</span><span class="o">(</span><span class="s">&quot;Enter user name&quot;</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">prefColumnCount</span><span class="o">(</span><span class="mi">16</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">passwordField</span> <span class="o">=</span> <span class="n">PasswordFieldBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">promptText</span><span class="o">(</span><span class="s">&quot;Enter password&quot;</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">prefColumnCount</span><span class="o">(</span><span class="mi">16</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">HBoxBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">spacing</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">children</span><span class="o">(</span>
+</span><span class="line">            <span class="k">new</span> <span class="nf">Label</span><span class="o">(</span><span class="s">&quot;TextArea:&quot;</span><span class="o">),</span>
+</span><span class="line">            <span class="n">textArea</span> <span class="o">=</span> <span class="n">TextAreaBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">              <span class="o">.</span><span class="na">prefColumnCount</span><span class="o">(</span><span class="mi">12</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">prefRowCount</span><span class="o">(</span><span class="mi">4</span><span class="o">)</span>
+</span><span class="line">              <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+</span><span class="line">          <span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">progressIndicator</span> <span class="o">=</span> <span class="n">ProgressIndicatorBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">prefWidth</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">slider</span> <span class="o">=</span> <span class="n">SliderBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">prefWidth</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">min</span><span class="o">(-</span><span class="mi">1</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">model</span><span class="o">.</span><span class="na">maxRpm</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">progressBar</span> <span class="o">=</span> <span class="n">ProgressBarBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">prefWidth</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">(),</span>
+</span><span class="line">        <span class="n">scrollBar</span> <span class="o">=</span> <span class="n">ScrollBarBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">()</span>
+</span><span class="line">          <span class="o">.</span><span class="na">prefWidth</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">min</span><span class="o">(-</span><span class="mi">1</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">model</span><span class="o">.</span><span class="na">maxKph</span><span class="o">)</span>
+</span><span class="line">          <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+</span><span class="line">      <span class="o">)</span>
+</span><span class="line">      <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<p>It’s too long and it’s ugly and my head’s starting to ache. </p>
 
-<p>It&#8217;s too long and it&#8217;s ugly and my head&#8217;s starting to ache.</p>
-
-<h3>Summary</h3>
-
-<p>I really start getting used to JavaFx peculiarities. Maybe I&#8217;ll create beautiful GUI with it. I would really try but it may take some time. Stay tuned!</p>
+<h3 id="summary">Summary</h3>
+<p>I really start getting used to JavaFx peculiarities. Maybe I’ll create beautiful GUI with it. I would really try but it may take some time. Stay tuned!</p>
 </div>
   
   
@@ -1270,49 +1237,44 @@ designed constructor? When construction of an object takes 50 lines of code, I s
   </header>
 
 
-  <div class="entry-content"><h2>Problem - how to write a good report</h2>
-
+  <div class="entry-content"><h2 id="problem---how-to-write-a-good-report">Problem - how to write a good report</h2>
 <p>Good report should look at least okay. My (and my partners) reports used to look quite ugly.</p>
 
-<p>They weren&#8217;t well formated and we know nearly nothing about typography and we are usually too busy
+<p>They weren’t well formated and we know nearly nothing about typography and we are usually too busy
 to think about working on details for long hours. Instead we want to focus on computation and diagrams.</p>
 
-<p>Writing lab reports is quite tedious in editors like MS Word or even Libre Writer (I&#8217;m a linux
-user, so I use the second one). There&#8217;s to much clicking and searching for symbols etc.</p>
+<p>Writing lab reports is quite tedious in editors like MS Word or even Libre Writer (I’m a linux
+user, so I use the second one). There’s to much clicking and searching for symbols etc.</p>
 
-<h2>Solution</h2>
-
+<h2 id="solution">Solution</h2>
 <p><a href="http://en.wikipedia.org/wiki/LaTeX">LaTeX</a></p>
 
 <p>I heard from lots of people that latex is a nice tool for writing articles and publications. My partner had even some experience in it.</p>
 
-<p>Two days ago I thought: &#8220;Why not try it now? With this small report?&#8221;. I decided to do it and my partner agreed to help me.</p>
+<p>Two days ago I thought: “Why not try it now? With this small report?”. I decided to do it and my partner agreed to help me.</p>
 
-<p>But as you probably know, latex isn&#8217;t so easy as libre writer&#8230;</p>
+<p>But as you probably know, latex isn’t so easy as libre writer…</p>
 
-<h2>Learning Latex</h2>
-
+<h2 id="learning-latex">Learning Latex</h2>
 <p>It turns out to be lots of resources to learn latex.
 A good example is wikipedia <a href="http://en.wikibooks.org/wiki/LaTeX/Mathematics">wikibook on mathematics in LaTeX</a>.</p>
 
 <p>There are also many websites with tutorials and quite a lot of books.</p>
 
-<p>In my opinion if you are a beginner, it&#8217;s a good idea to install a latex ide. I tried a Texmaker. Texmaker is written in QT and available on all platforms.
-It even was in my repository (and I don&#8217;t have ubuntu, but some odd, rare linux). It&#8217;s got a good documentation and is pretty intuitive. My workflow in latex boosted.</p>
+<p>In my opinion if you are a beginner, it’s a good idea to install a latex ide. I tried a Texmaker. Texmaker is written in QT and available on all platforms.
+It even was in my repository (and I don’t have ubuntu, but some odd, rare linux). It’s got a good documentation and is pretty intuitive. My workflow in latex boosted.</p>
 
-<h2>Problems</h2>
-
-<p>First problem I encountered was encoding. I wrote my report in Polish, a language which contains lots of strange characters i.e. &#8220;ę&#8221;, &#8220;ó&#8221; and they were invisible in pdf I generated.</p>
+<h2 id="problems">Problems</h2>
+<p>First problem I encountered was encoding. I wrote my report in Polish, a language which contains lots of strange characters i.e. “ę”, “ó” and they were invisible in pdf I generated.</p>
 
 <p>Quick search in google helped. There are packages for encoding! One with utf-8 helped.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>\usepackage[utf8]{inputenc}</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">\usepackage[utf8]{inputenc}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>My second problem was inserting tables. I had to create a fancy table with spanning cells and wrapped content.
-Latex is not table friendly by default. I even tried to use my Texmaker ide, which have table wizard, but it was tedious and didn&#8217;t
-give a desired effect. Happily, solution wasn&#8217;t so hard - I found a detailed wikipedia wiki page on tables, which helped a lot!</p>
+Latex is not table friendly by default. I even tried to use my Texmaker ide, which have table wizard, but it was tedious and didn’t
+give a desired effect. Happily, solution wasn’t so hard - I found a detailed wikipedia wiki page on tables, which helped a lot!</p>
 
 <p>It turns out that documentation is very good:
 <a href="http://www.access2science.com/latex/Arrows.html">arrows</a>,
@@ -1325,15 +1287,12 @@ give a desired effect. Happily, solution wasn&#8217;t so hard - I found a detail
 <a href="http://tex.stackexchange.com/questions">tex forum</a>
 because community is huge.</p>
 
-<h2>Results</h2>
-
+<h2 id="results">Results</h2>
 <p>My report look quite impressive.</p>
 
-<p>I learned lots of new things and I&#8217;m not tired of them and wanting more.</p>
-
-<h2>Summary</h2>
-
-<p>Trying out LaTeX was a very good idea.</p>
+<p>I learned lots of new things and I’m not tired of them and wanting more.
+##Summary
+Trying out LaTeX was a very good idea.</p>
 </div>
   
   
@@ -1373,7 +1332,7 @@ because community is huge.</p>
   </header>
 
 
-  <div class="entry-content"><h2>Today morning markdown was for me the same thing as a markup.</h2>
+  <div class="entry-content"><h2 id="today-morning-markdown-was-for-me-the-same-thing-as-a-markup">Today morning markdown was for me the same thing as a markup.</h2>
 
 <p>Just a silly word. However it turns out to be a markup language which is very
 useful in blogging. I tried to learn some of it from wikipedia and
@@ -1382,9 +1341,9 @@ the article which I found was pretty informative.</p>
 <p>Try <a href="http://en.wikipedia.org/wiki/Markdown#Editors">wikipedia article</a>
 or <a href="http://daringfireball.net/projects/markdown/syntax#overview">this</a>.</p>
 
-<h3>Why should I use it?</h3>
+<h3 id="why-should-i-use-it">Why should I use it?</h3>
 
-<p>It&#8217;s simple and easy to write. Writing &lt; and all those html tags can be pretty
+<p>It’s simple and easy to write. Writing &lt; and all those html tags can be pretty
 tedious and you always can miss some, and usually output looks like a mess.
 At least for me. But there are solutions for this problem - markup languages!</p>
 </div>
@@ -1407,7 +1366,7 @@ At least for me. But there are solutions for this problem - markup languages!</p
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/06/18/latex-in-octopress/">latex-in-octopress</a>
+        <a href="/blog/2013/06/18/latex-in-octopress/">Latex in octopress</a>
       </li>
     
       <li class="post">

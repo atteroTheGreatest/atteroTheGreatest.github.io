@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nlp | Tiny struggles of a growing hackaphysicist]]></title>
   <link href="http://atteroTheGreatest.github.com/blog/categories/nlp/atom.xml" rel="self"/>
   <link href="http://atteroTheGreatest.github.com/"/>
-  <updated>2013-06-18T20:24:35+02:00</updated>
+  <updated>2013-06-19T08:26:51+02:00</updated>
   <id>http://atteroTheGreatest.github.com/</id>
   <author>
     <name><![CDATA[Justyna Ilczuk]]></name>
@@ -18,22 +18,19 @@
     <link href="http://atteroTheGreatest.github.com/blog/2013/05/19/categories/"/>
     <updated>2013-05-19T20:05:00+02:00</updated>
     <id>http://atteroTheGreatest.github.com/blog/2013/05/19/categories</id>
-    <content type="html"><![CDATA[<h3>How to classify?</h3>
+    <content type="html"><![CDATA[<h3 id="how-to-classify">How to classify?</h3>
+<p>You can use various methods to classify objects. There are many tools in machine learning and natural language processing packages. But sometimes it’s hard to find one, which suits your problem well. I wanted to write category classifier in scala, making it as simple as possible. I could use <a href="http://www.scalanlp.org/">breeze</a>, but at first glance it’s quite overwhelming and documentation isn’t really user friendly. (I love python <a href="http://scikit-learn.org/stable/">scikit-learn</a>, which is in my opinion the best machine learning library in the world)</p>
 
-<p>You can use various methods to classify objects. There are many tools in machine learning and natural language processing packages. But sometimes it's hard to find one, which suits your problem well. I wanted to write category classifier in scala, making it as simple as possible. I could use <a href="http://www.scalanlp.org/">breeze</a>, but at first glance it's quite overwhelming and documentation isn't really user friendly. (I love python <a href="http://scikit-learn.org/stable/">scikit-learn</a>, which is in my opinion the best machine learning library in the world)</p>
+<p>I decided to implement it all by myself using only basic SDK of scala. </p>
 
-<p>I decided to implement it all by myself using only basic SDK of scala.</p>
+<h3 id="main-idea-behind-my-script">Main idea behind my script</h3>
+<p>In written language exist lots of common words such as: “the”, “and”, “this”, etc. Specialised article or book contains lots of vocabulary connected to the field.</p>
 
-<h3>Main idea behind my script</h3>
+<p>I did some web crawling to collect some articles with typical vocabulary for three basic fields: physics, electronics and mathematics. As a sample of normaly used vocabulary (not conected with any specialised field) I used some random articles from Guardian. </p>
 
-<p>In written language exist lots of common words such as: "the", "and", "this", etc. Specialised article or book contains lots of vocabulary connected to the field.</p>
+<p>After collecting articles I could compute the most common worlds for each category. My classifying algorithm basically chooses a category, which vocabulary has the biggest intersection with given text, if intersection is very small it returns category “boring”.</p>
 
-<p>I did some web crawling to collect some articles with typical vocabulary for three basic fields: physics, electronics and mathematics. As a sample of normaly used vocabulary (not conected with any specialised field) I used some random articles from Guardian.</p>
-
-<p>After collecting articles I could compute the most common worlds for each category. My classifying algorithm basically chooses a category, which vocabulary has the biggest intersection with given text, if intersection is very small it returns category "boring".</p>
-
-<h3>Implementation</h3>
-
+<h3 id="implementation">Implementation</h3>
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>splitContentToSentences - commonVocabulary.scala </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -148,166 +145,124 @@
 <span class='line-number'>111</span>
 <span class='line-number'>112</span>
 <span class='line-number'>113</span>
-<span class='line-number'>114</span>
-<span class='line-number'>115</span>
-<span class='line-number'>116</span>
-<span class='line-number'>117</span>
-<span class='line-number'>118</span>
-<span class='line-number'>119</span>
-<span class='line-number'>120</span>
-<span class='line-number'>121</span>
-<span class='line-number'>122</span>
-<span class='line-number'>123</span>
-<span class='line-number'>124</span>
-<span class='line-number'>125</span>
-<span class='line-number'>126</span>
-<span class='line-number'>127</span>
-<span class='line-number'>128</span>
-<span class='line-number'>129</span>
-<span class='line-number'>130</span>
-<span class='line-number'>131</span>
-<span class='line-number'>132</span>
-<span class='line-number'>133</span>
-<span class='line-number'>134</span>
 </pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">import</span> <span class="nn">java.io.RandomAccessFile</span>
 </span><span class='line'><span class="k">import</span> <span class="nn">scala.collection.mutable.HashMap</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="n">removePunctuation</span><span class="o">(</span><span class="n">text</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="n">removePunctuation</span><span class="o">(</span><span class="n">text</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>	<span class="k">val</span> <span class="n">punct</span> <span class="k">=</span> <span class="err">“</span><span class="o">,.?;:!</span><span class="s">&quot;”</span>
+</span><span class='line'><span class="s">	text.toList.filterNot(char =&amp;gt; punct contains char).mkString(“”)</span>
+</span><span class='line'><span class="s">}&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">val</span> <span class="n">punct</span> <span class="k">=</span> <span class="s">&quot;,.?;:!\&quot;&quot;</span>
-</span><span class='line'><span class="n">text</span><span class="o">.</span><span class="n">toList</span><span class="o">.</span><span class="n">filterNot</span><span class="o">(</span><span class="n">char</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="n">punct</span> <span class="n">contains</span> <span class="n">char</span><span class="o">).</span><span class="n">mkString</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'><span class="s">&lt;p&gt;def getWordsFromRawText(text: String) = {</span>
+</span><span class='line'><span class="s">	removePunctuation(text).toLowerCase.split(“\s+”).toList</span>
+</span><span class='line'><span class="s">}&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="s">&lt;p&gt;def getAllWords(basePath: String) = {</span>
+</span><span class='line'><span class="s">	import java.io.File</span>
+</span><span class='line'><span class="s">	val baseDir = new File(basePath)</span>
+</span><span class='line'><span class="s">	val paths = baseDir.listFiles.toList.sorted</span>
+</span><span class='line'><span class="s">	var words = List&lt;a href=&quot;&quot;&gt;String&lt;/a&gt;</span>
+</span><span class='line'><span class="s">	for( path &amp;lt;- paths) {</span>
+</span><span class='line'><span class="s">		val raf = new RandomAccessFile(path, “r”)</span>
+</span><span class='line'><span class="s">		val buff = new Array&lt;a href=&quot;</span><span class="n">raf</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">toInt</span><span class="s">&quot;&gt;Byte&lt;/a&gt;</span>
+</span><span class='line'><span class="s">		raf.readFully(buff)</span>
+</span><span class='line'><span class="s">		words = words ++: getWordsFromRawText(new String(buff))</span>
+</span><span class='line'><span class="s">	}</span>
+</span><span class='line'><span class="s">	words</span>
+</span><span class='line'><span class="s">}&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="n">getWordsFromRawText</span><span class="o">(</span><span class="n">text</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="s">&lt;p&gt;def rankWords(words: List[String], normalVocabulary: Set[String]) = {</span>
+</span><span class='line'><span class="s">	var wordOccurences = new HashMap&lt;a href=&quot;&quot;&gt;String, Int&lt;/a&gt;</span>
+</span><span class='line'><span class="s">	for(word &amp;lt;- words if !( normalVocabulary contains word) ){</span>
+</span><span class='line'><span class="s">		if (wordOccurences contains word) {</span>
+</span><span class='line'><span class="s">			wordOccurences(word) += 1</span>
+</span><span class='line'><span class="s">		}</span>
+</span><span class='line'><span class="s">		else</span>
+</span><span class='line'><span class="s">			wordOccurences(word) = 1</span>
+</span><span class='line'><span class="s">	}</span>
+</span><span class='line'><span class="s">	wordOccurences.toList.sortBy(&lt;em&gt;.&lt;/em&gt;2).reverse</span>
+</span><span class='line'><span class="s">}&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">removePunctuation</span><span class="o">(</span><span class="n">text</span><span class="o">).</span><span class="n">toLowerCase</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">&quot;\\s+&quot;</span><span class="o">).</span><span class="n">toList</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'><span class="s">&lt;p&gt;val basePath = “articles/physics/”</span>
+</span><span class='line'><span class="s">val normalVocabulary = getAllWords(“articles/random/”)&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="s">&lt;p&gt;val commonNormalVoc = (for {word &amp;lt;- </span>
+</span><span class='line'><span class="s">	rankWords(normalVocabulary, Set(“”)).slice(0, 400)}</span>
+</span><span class='line'><span class="s">	 yield word._1).toSet&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="n">getAllWords</span><span class="o">(</span><span class="n">basePath</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="s">&lt;p&gt;val physicsVocabulary = getAllWords(“articles/physics/”)</span>
+</span><span class='line'><span class="s">val commonPhysicsVoc = (for {word &amp;lt;- rankWords(physicsVocabulary, </span>
+</span><span class='line'><span class="s">	commonNormalVoc).slice(0, 400)} yield word._1).toSet&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">import</span> <span class="nn">java.io.File</span>
-</span><span class='line'><span class="k">val</span> <span class="n">baseDir</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">basePath</span><span class="o">)</span>
-</span><span class='line'><span class="k">val</span> <span class="n">paths</span> <span class="k">=</span> <span class="n">baseDir</span><span class="o">.</span><span class="n">listFiles</span><span class="o">.</span><span class="n">toList</span><span class="o">.</span><span class="n">sorted</span>
-</span><span class='line'><span class="k">var</span> <span class="n">words</span> <span class="k">=</span> <span class="nc">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]()</span>
-</span><span class='line'><span class="k">for</span><span class="o">(</span> <span class="n">path</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;-</span> <span class="n">paths</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>    <span class="k">val</span> <span class="n">raf</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">RandomAccessFile</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="s">&quot;r&quot;</span><span class="o">)</span>
-</span><span class='line'>    <span class="k">val</span> <span class="n">buff</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Array</span><span class="o">[</span><span class="kt">Byte</span><span class="o">](</span><span class="n">raf</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">toInt</span><span class="o">)</span>
-</span><span class='line'>    <span class="n">raf</span><span class="o">.</span><span class="n">readFully</span><span class="o">(</span><span class="n">buff</span><span class="o">)</span>
-</span><span class='line'>    <span class="n">words</span> <span class="k">=</span> <span class="n">words</span> <span class="o">++:</span> <span class="n">getWordsFromRawText</span><span class="o">(</span><span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="n">buff</span><span class="o">))</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="n">words</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'><span class="s">&lt;p&gt;val electronicsVocabulary = getAllWords(“articles/electronics/”)</span>
+</span><span class='line'><span class="s">val commonElectronicsVoc = (for {word &amp;lt;- </span>
+</span><span class='line'><span class="s">	rankWords(electronicsVocabulary, </span>
+</span><span class='line'><span class="s">	commonNormalVoc).slice(0, 400)} yield word._1).toSet&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="s">&lt;p&gt;val mathVocabulary = getAllWords(“articles/math/”)</span>
+</span><span class='line'><span class="s">val commonMathVoc = (for {word &amp;lt;- rankWords(mathVocabulary,</span>
+</span><span class='line'><span class="s"> commonNormalVoc).slice(0, 400)} yield word._1).toSet&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="n">rankWords</span><span class="o">(</span><span class="n">words</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">],</span> <span class="n">normalVocabulary</span><span class="k">:</span> <span class="kt">Set</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="k">=</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">var</span> <span class="n">wordOccurences</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">[</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">]()</span>
-</span><span class='line'><span class="k">for</span><span class="o">(</span><span class="n">word</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;-</span> <span class="n">words</span> <span class="k">if</span> <span class="o">!(</span> <span class="n">normalVocabulary</span> <span class="n">contains</span> <span class="n">word</span><span class="o">)</span> <span class="o">){</span>
-</span><span class='line'>    <span class="k">if</span> <span class="o">(</span><span class="n">wordOccurences</span> <span class="n">contains</span> <span class="n">word</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">wordOccurences</span><span class="o">(</span><span class="n">word</span><span class="o">)</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>    <span class="k">else</span>
-</span><span class='line'>        <span class="n">wordOccurences</span><span class="o">(</span><span class="n">word</span><span class="o">)</span> <span class="k">=</span> <span class="mi">1</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'><span class="n">wordOccurences</span><span class="o">.</span><span class="n">toList</span><span class="o">.</span><span class="n">sortBy</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">_2</span><span class="o">).</span><span class="n">reverse</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">val</span> <span class="n">basePath</span> <span class="k">=</span> <span class="s">&quot;articles/physics/&quot;</span>
-</span><span class='line'><span class="k">val</span> <span class="n">normalVocabulary</span> <span class="k">=</span> <span class="n">getAllWords</span><span class="o">(</span><span class="s">&quot;articles/random/&quot;</span><span class="o">)&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">val</span> <span class="n">commonNormalVoc</span> <span class="k">=</span> <span class="o">(</span><span class="k">for</span> <span class="o">{</span><span class="n">word</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;-&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">rankWords</span><span class="o">(</span><span class="n">normalVocabulary</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">)).</span><span class="n">slice</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">400</span><span class="o">)}</span>
-</span><span class='line'> <span class="k">yield</span> <span class="n">word</span><span class="o">.</span><span class="n">_1</span><span class="o">).</span><span class="n">toSet</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">val</span> <span class="n">physicsVocabulary</span> <span class="k">=</span> <span class="n">getAllWords</span><span class="o">(</span><span class="s">&quot;articles/physics/&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="k">val</span> <span class="n">commonPhysicsVoc</span> <span class="k">=</span> <span class="o">(</span><span class="k">for</span> <span class="o">{</span><span class="n">word</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;-</span> <span class="n">rankWords</span><span class="o">(</span><span class="n">physicsVocabulary</span><span class="o">,&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">slice</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">400</span><span class="o">)}</span> <span class="k">yield</span> <span class="n">word</span><span class="o">.</span><span class="n">_1</span><span class="o">).</span><span class="n">toSet</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">val</span> <span class="n">electronicsVocabulary</span> <span class="k">=</span> <span class="n">getAllWords</span><span class="o">(</span><span class="s">&quot;articles/electronics/&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="k">val</span> <span class="n">commonElectronicsVoc</span> <span class="k">=</span> <span class="o">(</span><span class="k">for</span> <span class="o">{</span><span class="n">word</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;-&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">rankWords</span><span class="o">(</span><span class="n">electronicsVocabulary</span><span class="o">,</span>
-</span><span class='line'><span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">slice</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">400</span><span class="o">)}</span> <span class="k">yield</span> <span class="n">word</span><span class="o">.</span><span class="n">_1</span><span class="o">).</span><span class="n">toSet</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">val</span> <span class="n">mathVocabulary</span> <span class="k">=</span> <span class="n">getAllWords</span><span class="o">(</span><span class="s">&quot;articles/math/&quot;</span><span class="o">)</span>
-</span><span class='line'><span class="k">val</span> <span class="n">commonMathVoc</span> <span class="k">=</span> <span class="o">(</span><span class="k">for</span> <span class="o">{</span><span class="n">word</span> <span class="o">&amp;</span><span class="n">lt</span><span class="o">;-</span> <span class="n">rankWords</span><span class="o">(</span><span class="n">mathVocabulary</span><span class="o">,</span>
-</span><span class='line'> <span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">slice</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">400</span><span class="o">)}</span> <span class="k">yield</span> <span class="n">word</span><span class="o">.</span><span class="n">_1</span><span class="o">).</span><span class="n">toSet</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">val</span> <span class="n">testArticleAboutPhysics</span> <span class="k">=</span> <span class="s">&quot;&quot;&quot;</span>
-</span><span class='line'><span class="s">Thermodynamics is a branch of natural science</span>
-</span><span class='line'><span class="s">concerned (...) or statistical mechanics, gave</span>
-</span><span class='line'><span class="s"> explanations of macroscopic thermodynamics by</span>
-</span><span class='line'><span class="s"> statistical predictions of the collective motion</span>
-</span><span class='line'><span class="s"> of particles based on the mechanics of their</span>
+</span><span class='line'><span class="s">&lt;p&gt;val testArticleAboutPhysics = “””</span>
+</span><span class='line'><span class="s">Thermodynamics is a branch of natural science </span>
+</span><span class='line'><span class="s">concerned (…) or statistical mechanics, gave</span>
+</span><span class='line'><span class="s"> explanations of macroscopic thermodynamics by </span>
+</span><span class='line'><span class="s"> statistical predictions of the collective motion </span>
+</span><span class='line'><span class="s"> of particles based on the mechanics of their </span>
 </span><span class='line'><span class="s"> microscopic behavior.</span>
-</span><span class='line'><span class="s">&quot;&quot;&quot;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="s">“””&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">val</span> <span class="n">testArticleAboutMath</span> <span class="k">=</span> <span class="s">&quot;&quot;&quot;</span>
-</span><span class='line'><span class="s">Algebra can essentially be considered</span>
-</span><span class='line'><span class="s">as doing computations (...) a polynomial</span>
+</span><span class='line'><span class="s">&lt;p&gt;val testArticleAboutMath = “””</span>
+</span><span class='line'><span class="s">Algebra can essentially be considered </span>
+</span><span class='line'><span class="s">as doing computations (…) a polynomial </span>
 </span><span class='line'><span class="s">in a single variable.</span>
-</span><span class='line'><span class="s">&quot;&quot;&quot;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="s">“””&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">val</span> <span class="n">testArticleAboutElectronics</span> <span class="k">=</span> <span class="s">&quot;&quot;&quot;</span>
+</span><span class='line'><span class="s">&lt;p&gt;val testArticleAboutElectronics = “””</span>
 </span><span class='line'><span class="s">Wheatstone bridge</span>
-</span><span class='line'><span class="s">(...) zero the voltage.</span>
-</span><span class='line'><span class="s">&quot;&quot;&quot;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="s">(…) zero the voltage.</span>
+</span><span class='line'><span class="s">“””&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">val</span> <span class="n">typicalGuardianArticle</span> <span class="k">=</span> <span class="s">&quot;&quot;&quot;</span>
-</span><span class='line'><span class="s">The French president, (...) have legalised same-sex marriage.</span>
-</span><span class='line'><span class="s">&quot;&quot;&quot;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="s">&lt;p&gt;val typicalGuardianArticle = “””</span>
+</span><span class='line'><span class="s">The French president, (…) have legalised same-sex marriage.</span>
+</span><span class='line'><span class="s">“””&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="n">matchCategory</span><span class="o">(</span><span class="n">text</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="s">&lt;p&gt;def matchCategory(text: String) = {</span>
+</span><span class='line'><span class="s">	val words = getWordsFromRawText(text).toSet</span>
+</span><span class='line'><span class="s">	val wordsCount = words.size</span>
+</span><span class='line'><span class="s">	val categories =  HashMap(“physics” -&amp;gt;</span>
+</span><span class='line'><span class="s">	 (words intersect commonPhysicsVoc).size.toDouble / </span>
+</span><span class='line'><span class="s">	 wordsCount * 100,</span>
+</span><span class='line'><span class="s">	“electronics” -&amp;gt; (words intersect commonElectronicsVoc).size.toDouble </span>
+</span><span class='line'><span class="s">	/ wordsCount * 100,</span>
+</span><span class='line'><span class="s">	“math” -&amp;gt; (words intersect commonMathVoc).size.toDouble /</span>
+</span><span class='line'><span class="s">	 wordsCount * 100).toList.sortBy(&lt;em&gt;.&lt;/em&gt;2).reverse&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">val</span> <span class="n">words</span> <span class="k">=</span> <span class="n">getWordsFromRawText</span><span class="o">(</span><span class="n">text</span><span class="o">).</span><span class="n">toSet</span>
-</span><span class='line'><span class="k">val</span> <span class="n">wordsCount</span> <span class="k">=</span> <span class="n">words</span><span class="o">.</span><span class="n">size</span>
-</span><span class='line'><span class="k">val</span> <span class="n">categories</span> <span class="k">=</span>  <span class="nc">HashMap</span><span class="o">(</span><span class="s">&quot;physics&quot;</span> <span class="o">-&amp;</span><span class="n">gt</span><span class="o">;</span>
-</span><span class='line'> <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonPhysicsVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span> <span class="o">/</span>
-</span><span class='line'> <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">,</span>
-</span><span class='line'><span class="s">&quot;electronics&quot;</span> <span class="o">-&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonElectronicsVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span>
-</span><span class='line'><span class="o">/</span> <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">,</span>
-</span><span class='line'><span class="s">&quot;math&quot;</span> <span class="o">-&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonMathVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span> <span class="o">/</span>
-</span><span class='line'> <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">).</span><span class="n">toList</span><span class="o">.</span><span class="n">sortBy</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">_2</span><span class="o">).</span><span class="n">reverse</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">val</span> <span class="n">winningCategory</span> <span class="k">=</span> <span class="k">if</span> <span class="o">(</span><span class="n">categories</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="n">_2</span> <span class="o">&amp;</span><span class="n">gt</span><span class="o">;</span> <span class="mi">10</span><span class="o">)</span>
-</span><span class='line'> <span class="n">categories</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'>    <span class="o">(</span><span class="s">&quot;boring&quot;</span><span class="o">,</span> <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span>
-</span><span class='line'>     <span class="o">/</span> <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">)</span>
-</span><span class='line'><span class="n">println</span><span class="o">(</span><span class="s">&quot;Article matches category: &quot;</span> <span class="o">+</span> <span class="n">winningCategory</span><span class="o">)</span>
+</span><span class='line'><span class="s">&lt;pre&gt;&lt;code&gt;val winningCategory = if (categories(0)._2 &amp;gt; 10)</span>
+</span><span class='line'><span class="s"> categories(0) </span>
+</span><span class='line'><span class="s">else </span>
+</span><span class='line'><span class="s">	(&quot;</span><span class="n">boring</span><span class="s">&quot;, (words intersect commonNormalVoc).size.toDouble</span>
+</span><span class='line'><span class="s">	 / wordsCount * 100)</span>
+</span><span class='line'><span class="s">println(&quot;</span><span class="nc">Article</span> <span class="n">matches</span> <span class="n">category</span><span class="k">:</span> <span class="err">&quot;</span> <span class="kt">+</span> <span class="kt">winningCategory</span><span class="o">)</span>
 </span><span class='line'><span class="n">println</span><span class="o">(</span><span class="n">categories</span><span class="o">)</span>
 </span><span class='line'><span class="n">println</span><span class="o">(</span><span class="s">&quot;Similarity to normal vocabulary: &quot;</span> <span class="o">+</span>
 </span><span class='line'> <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span>
-</span><span class='line'> <span class="o">/</span> <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">)</span>
+</span><span class='line'> <span class="o">/</span> <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">)</span> <span class="o">}</span>
 </span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;}&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">println</span><span class="o">(</span><span class="s">&quot;Testing article about physics:&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">println</span><span class="o">(</span><span class="err">“</span><span class="nc">Testing</span> <span class="n">article</span> <span class="n">about</span> <span class="n">physics</span><span class="k">:</span><span class="err">”</span><span class="o">)</span>
 </span><span class='line'><span class="n">matchCategory</span><span class="o">(</span><span class="n">testArticleAboutPhysics</span><span class="o">)</span>
-</span><span class='line'><span class="n">println</span><span class="o">(</span><span class="s">&quot;\nTesting article about math:&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="n">println</span><span class="o">(</span><span class="err">“</span><span class="o">\</span><span class="n">nTesting</span> <span class="n">article</span> <span class="n">about</span> <span class="n">math</span><span class="k">:</span><span class="err">”</span><span class="o">)</span>
 </span><span class='line'><span class="n">matchCategory</span><span class="o">(</span><span class="n">testArticleAboutMath</span><span class="o">)</span>
-</span><span class='line'><span class="n">println</span><span class="o">(</span><span class="s">&quot;\nTesting article about electronics:&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="n">println</span><span class="o">(</span><span class="err">“</span><span class="o">\</span><span class="n">nTesting</span> <span class="n">article</span> <span class="n">about</span> <span class="n">electronics</span><span class="k">:</span><span class="err">”</span><span class="o">)</span>
 </span><span class='line'><span class="n">matchCategory</span><span class="o">(</span><span class="n">testArticleAboutElectronics</span><span class="o">)</span>
-</span><span class='line'><span class="n">println</span><span class="o">(</span><span class="s">&quot;\nTesting typical guardian article:&quot;</span><span class="o">)</span>
+</span><span class='line'><span class="n">println</span><span class="o">(</span><span class="err">“</span><span class="o">\</span><span class="n">nTesting</span> <span class="n">typical</span> <span class="n">guardian</span> <span class="n">article</span><span class="k">:</span><span class="err">”</span><span class="o">)</span>
 </span><span class='line'><span class="n">matchCategory</span><span class="o">(</span><span class="n">typicalGuardianArticle</span><span class="o">)</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>I stored collected articles in directory "articles/{category}" and used them to generate vocabulary sets.</p>
+<p>I stored collected articles in directory “articles/{category}” and used them to generate vocabulary sets.</p>
 
-<p>There are two important functions in this code: "rankWords" and "match category". Ranking is based of how many times given word occurs in the text. Matching categories using set intersections to estimate which category suits the best.</p>
+<p>There are two important functions in this code: “rankWords” and “match category”. Ranking is based of how many times given word occurs in the text. Matching categories using set intersections to estimate which category suits the best.</p>
 
 <p>Here is the output of this script (test files were much longer):</p>
 
@@ -356,7 +311,7 @@
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>It took some code, but it's actually pretty simple and works well. Scala offers really nice api to work with this kind of problems.</p>
+<p>It took some code, but it’s actually pretty simple and works well. Scala offers really nice api to work with this kind of problems.</p>
 ]]></content>
   </entry>
   
