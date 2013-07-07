@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: coffee | Tiny struggles of a growing hackaphysicist]]></title>
+  <link href="http://atteroTheGreatest.github.com/blog/categories/coffee/atom.xml" rel="self"/>
+  <link href="http://atteroTheGreatest.github.com/"/>
+  <updated>2013-07-07T21:48:30+02:00</updated>
+  <id>http://atteroTheGreatest.github.com/</id>
+  <author>
+    <name><![CDATA[Justyna Ilczuk]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Canvas with javascript and coffee]]></title>
+    <link href="http://atteroTheGreatest.github.com/blog/2013/06/30/canvas-coffee-java/"/>
+    <updated>2013-06-30T16:21:00+02:00</updated>
+    <id>http://atteroTheGreatest.github.com/blog/2013/06/30/canvas-coffee-java</id>
+    <content type="html"><![CDATA[<p>Javascript is a bit awkward. The language itself is pretty powerful, but it has an obscure syntax. This week I decided to learn some coffee script which is a cure for javascript ugliness.</p>
+
+<h1 id="resources">Resources</h1>
+<p>Coffee has good learning resources, try:</p>
+
+<p><a href="http://coffeescript.org/">official site</a></p>
+
+<p><a href="http://autotelicum.github.io/Smooth-CoffeeScript/">interactive ebook</a></p>
+
+<p>and plenty of websites such as:
+<a href="http://www.ibm.com/developerworks/library/wa-coffeescriptcanvas/">this one</a> where you are creating game of life on canvas.</p>
+
+<h1 id="beauty">Beauty</h1>
+<p>Coffee is really pretty. Syntax is pretty simple and has lots of sugar. It uses whitespace semantically, similar to python. It make it more elegant and readable, however it can’t be compressed easily. By compression I mean cluttered source code which is often used in web-development production code.</p>
+
+<p>List comprehensions and classes syntax is also very nice. It speeds up development and makes code more readable. </p>
+
+<h1 id="availability">Availability</h1>
+<p>It can be embedded in browser directly or first compiled to js and then embedded as a regular js file.</p>
+
+<p>Installing coffee is easy. You only need nodejs and npm.</p>
+
+<p>For complete beginners <a href="http://blog.teamtreehouse.com/the-absolute-beginners-guide-to-coffeescript">this</a> can be a nice starting point.</p>
+
+<h1 id="canvas">Canvas</h1>
+<p>Canvas makes js and coffee real fun.</p>
+
+<p>For the beginning I recommend this <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Canvas_tutorial"> tutorial </a></p>
+
+<p>My goal was to build a tetris on a canvas with coffescript. I made some progress and actually built a simplified version - which was at least resembling real tetris ;), but it needs polishing and second thought. </p>
+
+<p>I learned that using classes in coffee script isn’t usually the best idea. It can be tricky if you are used to classical concept of classes such as in C++ and python. Coffee is more functional oriented and it should be our approach.</p>
+
+<h1 id="alternatives">Alternatives</h1>
+<p>You should be aware that there are also different <a href="http://jster.net/blog/js-alternatives-coffeescript-dart-typescript#.UdnEHJB8SZo">choices</a>, which one is the best? It’s hard to guess and even harder to try them all.</p>
+
+<p>For example I recently stumbled upon <a href="http://ckknight.github.io/gorillascript/">gorilla-script</a>.</p>
+
+<p>It’s easy to get overwhelmed by all these possibilities, but actually this abundance can help us to find a language which really suits us the best.</p>
+]]></content>
+  </entry>
+  
+</feed>
