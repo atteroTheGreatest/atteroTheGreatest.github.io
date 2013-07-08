@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: files | Tiny struggles of a growing hackaphysicist]]></title>
+  <link href="http://atteroTheGreatest.github.com/blog/categories/files/atom.xml" rel="self"/>
+  <link href="http://atteroTheGreatest.github.com/"/>
+  <updated>2013-07-08T12:22:51+02:00</updated>
+  <id>http://atteroTheGreatest.github.com/</id>
+  <author>
+    <name><![CDATA[Justyna Ilczuk]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[My first confrontation with mutt]]></title>
+    <link href="http://atteroTheGreatest.github.com/blog/2013/07/07/mutt-first-confrontation/"/>
+    <updated>2013-07-07T21:56:00+02:00</updated>
+    <id>http://atteroTheGreatest.github.com/blog/2013/07/07/mutt-first-confrontation</id>
+    <content type="html"><![CDATA[<h1 id="i-dont-like-most-of-mail-clients">I don’t like most of mail clients</h1>
+
+<p>Why is it so? They are usually overcomplicated and break my workflow. My main mail client is Thunderbird (I haven’t done complete transition yet). I use it to check mails from all of my email addresses. And there are actually lots of them, five that I use nearly everyday. My primary adress is a gmail one. I wanted to get rid of google gmail web app, but it was so much more intuitive and better designed than thunderbird, that I ceased to do it.</p>
+
+<p>Actually thunderbird is a real riddle for me. I now how to change them, install plug-ins, create new events in calendar, configure facebook-chat and so on, but I am still unable to make my email browsing comfortable. A disaster!</p>
+
+<p>Why not gmail then? I don’t want to give all of my correspondence into google hands. I wouldn’t feel good with it. Next thing is - browsing emails in web browser is pretty distracting for me. I want to chat to my friends, I click on google plus. I also tend to stay on google gmail page way to long. </p>
+
+<p>I use KDE as primary windows manager and default mail client is a kmail. I admit that I haven’t tried it. However I heard that it is similar to thunderbird(some of my friend claim that it is even worse), but I don’t want to be forced to use a specific windows manager in the future, because I don’t really know how would my future configuration look like.</p>
+
+<p>It turns out that among my linux-using friends the highest esteem has a mutt.</p>
+
+<h1 id="what-is-mutt">What is mutt?</h1>
+<p>Mutt is a console mail client which is really good at what it does and nothing else. Its <a href="http://www.mutt.org/">homepage</a> isn’t really appealing. More useful for beginners can be this <a href="http://mutt.blackfish.org.uk/">overview</a></p>
+
+<p>Actually to handle emails with mutt, you need something more than mutt. That might be surprising, because we are used to all-doing applications, but if we look at it from linux perspective it makes perfect sense.</p>
+
+<p>You will need to:</p>
+
+<ul>
+  <li>fetch your emails</li>
+  <li>sort/categorize/filter your emails</li>
+  <li>see your emails</li>
+  <li>edit them</li>
+  <li>send</li>
+</ul>
+
+<p>and mutt of course :).
+Pretty much stuff and every element might fail. </p>
+
+<h1 id="mutt-with-gmail">Mutt with gmail</h1>
+<p>I wanted to configure my mutt to work with emails, that I get on my gmail account. I was looking for some easy solution in the internet, because it’s much easier to start with something than doing everything from scratch.</p>
+
+<p>This <a href="http://www.andrews-corner.org/mutt.html">tutorial</a> was most helpful for me. I did all those steps and ended up with pretty usable mutt but without my emails. The biggest problem for me was actually configuring procmail. It has regular expressions to sort emails and path to directories which aren’t really intuitive - I’ve spent too much time to do it right and actually get some emails. One source of my problems was just plain ignorance - like using ‘~/’ instead of ‘/home/me/’. This magic simply didn’t work. </p>
+
+<h1 id="elements">Elements</h1>
+
+<p>So I ended up with <a href="http://fetchmail.berlios.de/">fetchmail</a>, <a href="http://www.procmail.org/">procmail</a>, mutt, <a href="http://msmtp.sourceforge.net/">msmtp</a> and some not so bad <a href="http://therandymon.com/woodnotes/mutt/node58.html">color configuration</a>.</p>
+
+<p>Some people recommend <a href="http://www.courier-mta.org/maildrop/">maildrop</a> instead of procmail. I don’t know yet what is better. However I know that procmail configuration syntax can be ugly and isn’t intuitive at all, at least for me, so maybe in the future I would <a href="http://www.wonkity.com/~wblock/docs/html/maildrop.html">migrate</a> to maildrop.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>If you use your console terminal a lot, you would probably really enjoy mutt, because it’s convenient to use in console pane/window, especially with <a href="http://tmux.sourceforge.net/">tmux</a> which I started using recently. Mutt is really nice and does what it is supposed to do. Everything is really intuitive and easy and to do most common task you only use some simple keystrokes, no more unnecessary clicking!</p>
+]]></content>
+  </entry>
+  
+</feed>

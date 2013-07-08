@@ -1,0 +1,211 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My first confrontation with mutt - Tiny struggles of a growing hackaphysicist</title>
+	<meta name="author" content="Justyna Ilczuk">
+
+	
+	<meta name="description" content="I don’t like most of mail clients Why is it so? They are usually overcomplicated and break my workflow. My main mail client is Thunderbird (I haven’t &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Tiny struggles of a growing hackaphysicist" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Tiny struggles of a growing hackaphysicist</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:atteroTheGreatest.github.com">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/atteroTheGreatest" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+    
+	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:atteroTheGreatest.github.com">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">My First Confrontation With Mutt</h2>
+	<div class="entry-content"><h1 id="i-dont-like-most-of-mail-clients">I don’t like most of mail clients</h1>
+
+<p>Why is it so? They are usually overcomplicated and break my workflow. My main mail client is Thunderbird (I haven’t done complete transition yet). I use it to check mails from all of my email addresses. And there are actually lots of them, five that I use nearly everyday. My primary adress is a gmail one. I wanted to get rid of google gmail web app, but it was so much more intuitive and better designed than thunderbird, that I ceased to do it.</p>
+
+<p>Actually thunderbird is a real riddle for me. I now how to change them, install plug-ins, create new events in calendar, configure facebook-chat and so on, but I am still unable to make my email browsing comfortable. A disaster!</p>
+
+<p>Why not gmail then? I don’t want to give all of my correspondence into google hands. I wouldn’t feel good with it. Next thing is - browsing emails in web browser is pretty distracting for me. I want to chat to my friends, I click on google plus. I also tend to stay on google gmail page way to long. </p>
+
+<p>I use KDE as primary windows manager and default mail client is a kmail. I admit that I haven’t tried it. However I heard that it is similar to thunderbird(some of my friend claim that it is even worse), but I don’t want to be forced to use a specific windows manager in the future, because I don’t really know how would my future configuration look like.</p>
+
+<p>It turns out that among my linux-using friends the highest esteem has a mutt.</p>
+
+<h1 id="what-is-mutt">What is mutt?</h1>
+<p>Mutt is a console mail client which is really good at what it does and nothing else. Its <a href="http://www.mutt.org/">homepage</a> isn’t really appealing. More useful for beginners can be this <a href="http://mutt.blackfish.org.uk/">overview</a></p>
+
+<p>Actually to handle emails with mutt, you need something more than mutt. That might be surprising, because we are used to all-doing applications, but if we look at it from linux perspective it makes perfect sense.</p>
+
+<p>You will need to:</p>
+
+<ul>
+  <li>fetch your emails</li>
+  <li>sort/categorize/filter your emails</li>
+  <li>see your emails</li>
+  <li>edit them</li>
+  <li>send</li>
+</ul>
+
+<p>and mutt of course :).
+Pretty much stuff and every element might fail. </p>
+
+<h1 id="mutt-with-gmail">Mutt with gmail</h1>
+<p>I wanted to configure my mutt to work with emails, that I get on my gmail account. I was looking for some easy solution in the internet, because it’s much easier to start with something than doing everything from scratch.</p>
+
+<p>This <a href="http://www.andrews-corner.org/mutt.html">tutorial</a> was most helpful for me. I did all those steps and ended up with pretty usable mutt but without my emails. The biggest problem for me was actually configuring procmail. It has regular expressions to sort emails and path to directories which aren’t really intuitive - I’ve spent too much time to do it right and actually get some emails. One source of my problems was just plain ignorance - like using ‘~/’ instead of ‘/home/me/’. This magic simply didn’t work. </p>
+
+<h1 id="elements">Elements</h1>
+
+<p>So I ended up with <a href="http://fetchmail.berlios.de/">fetchmail</a>, <a href="http://www.procmail.org/">procmail</a>, mutt, <a href="http://msmtp.sourceforge.net/">msmtp</a> and some not so bad <a href="http://therandymon.com/woodnotes/mutt/node58.html">color configuration</a>.</p>
+
+<p>Some people recommend <a href="http://www.courier-mta.org/maildrop/">maildrop</a> instead of procmail. I don’t know yet what is better. However I know that procmail configuration syntax can be ugly and isn’t intuitive at all, at least for me, so maybe in the future I would <a href="http://www.wonkity.com/~wblock/docs/html/maildrop.html">migrate</a> to maildrop.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>If you use your console terminal a lot, you would probably really enjoy mutt, because it’s convenient to use in console pane/window, especially with <a href="http://tmux.sourceforge.net/">tmux</a> which I started using recently. Mutt is really nice and does what it is supposed to do. Everything is really intuitive and easy and to do most common task you only use some simple keystrokes, no more unnecessary clicking!</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-07T21:56:00+02:00" pubdate data-updated="true">Jul 7<span>th</span>, 2013</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/dot-muttrc/'>.muttrc</a>, <a class='category' href='/blog/categories/configuration/'>configuration</a>, <a class='category' href='/blog/categories/files/'>files</a>, <a class='category' href='/blog/categories/gmail/'>gmail</a>, <a class='category' href='/blog/categories/mail/'>mail</a>, <a class='category' href='/blog/categories/mutt/'>mutt</a>
+
+
+</div>
+	
+	<div class="comments"><a href="#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		<a class="addthis_button_tweet"></a>
+		
+		
+		<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+		
+		
+	</div>
+	
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2013
+
+    Justyna Ilczuk
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'atterohacking';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://atteroTheGreatest.github.com/blog/2013/07/07/mutt-first-confrontation/';
+        var disqus_url = 'http://atteroTheGreatest.github.com/blog/2013/07/07/mutt-first-confrontation/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+</body>
+</html>
