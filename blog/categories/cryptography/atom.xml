@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: cryptography, | Tiny struggles]]></title>
+  <link href="http://atteroTheGreatest.github.com/blog/categories/cryptography/atom.xml" rel="self"/>
+  <link href="http://atteroTheGreatest.github.com/"/>
+  <updated>2013-08-02T22:57:38+02:00</updated>
+  <id>http://atteroTheGreatest.github.com/</id>
+  <author>
+    <name><![CDATA[Justyna Ilczuk]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[cryptography engineering]]></title>
+    <link href="http://atteroTheGreatest.github.com/blog/2013/08/02/cryptography-engineering/"/>
+    <updated>2013-08-02T19:13:00+02:00</updated>
+    <id>http://atteroTheGreatest.github.com/blog/2013/08/02/cryptography-engineering</id>
+    <content type="html"><![CDATA[<h3 id="importance-of-cryptography">Importance of cryptography</h3>
+
+<p>I really haven’t thought much about cryptography untill now. Also about a security as a whole. I treated paranoia of some of my sysops friend as just another quirk of their unusual behaviour or whatever.</p>
+
+<p>I just push it out of my mind unconsiously. It’s not my job. I don’t know it, I don’t really want to worry about and event try to think about what bad could happen. It would stress me out, wouldn’t it? I’m not a good Dr Doom.</p>
+
+<p>However it’s extremly naive and I can see that. I encountered this behaviour in different fields so many times - I wanted to be in my comfort zone. Luckilly, my different part of personality loves challenges and rationalism too much to have stable comfort zone.</p>
+
+<p>Recently I read an <a href="link">article</a> on hackernews about cryptography and it inspired me, to change my attitude, learn about cryptography and think about security of systems I build and maintain.</p>
+
+<h3 id="cryptography-enineering">Cryptography enineering</h3>
+
+<p>I started reading this <a href="http://www.amazon.com/Cryptography-Engineering-Principles-Practical-Applications/dp/0470474246">book</a>. I read first chapter and it sounded pretty sane and interesting too me. This book can be treated as a course material, there are even recomendations of how to divide in in 10, 12 or 6 weeks.</p>
+
+<p>I enjoyed the text. It’s pleasure to read. It’s clear and well structured. </p>
+
+<p>Excercises! Yes, this book offers nice excercises to practice your new acquired skills. I was surprised by the elaborate manual of writing report for excercise and at least a bit overhelmed by it and amount of excercises, because I’m naturally lazy and new too subject - so it’s double hard. But I plan to take my time and do them, if not all, at least a representive half.</p>
+
+<p>Thinking about methods to break securities and commit crimes without punishment and not feeling wrong about it (think like your enemy) could be really refreshing and insightful.</p>
+
+<h3 id="world-isnt-only-books">World isn’t only books</h3>
+
+<p>The real test of thinking well in security domain would be building real system that would satisfy at least basic security demands.</p>
+]]></content>
+  </entry>
+  
+</feed>
