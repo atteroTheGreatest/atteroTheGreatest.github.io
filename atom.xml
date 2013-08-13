@@ -4,7 +4,7 @@
   <title><![CDATA[Tiny struggles]]></title>
   <link href="http://atteroTheGreatest.github.com/atom.xml" rel="self"/>
   <link href="http://atteroTheGreatest.github.com/"/>
-  <updated>2013-08-02T23:21:42+02:00</updated>
+  <updated>2013-08-13T20:17:32+02:00</updated>
   <id>http://atteroTheGreatest.github.com/</id>
   <author>
     <name><![CDATA[Justyna Ilczuk]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Now your tools - Sublime Text]]></title>
+    <link href="http://atteroTheGreatest.github.com/blog/2013/08/13/now-your-tools-sublime-text/"/>
+    <updated>2013-08-13T19:21:00+02:00</updated>
+    <id>http://atteroTheGreatest.github.com/blog/2013/08/13/now-your-tools-sublime-text</id>
+    <content type="html"><![CDATA[<h1 id="why-do-i-need-a-text-editor">Why do I need a text editor?</h1>
+
+<p>I earn a living writing the code. I want to make my programming workflow as smooth as possible. I used several IDE’s and text editors and I usually wasn’t happy about my productivity and comfort during writing and developing.</p>
+
+<p>Sophisiticated IDE’s usually try to do too much and they aren’t perfect in what they’re doing. I used to develop on JVM and I used Netbeans, Intellij Idea and Eclipse and had problems on all of them. Some where rather tough and took a lot of my time. I agree that smart IDE’s can be really helpful - especially with java - handling all dependecies, running your tests and app, and suggesting you what should you write - autocompletion, spotting your coding errors. It makes your life somewhat easier, but can make you pretty stupid. You can program and don’t care about errors, just looking if there is something red there. You shouldn’t! And running your code only in your ide separates you from your OS, which isn’t good at all.</p>
+
+<p>There is a simpler alternative - text editors. Let’s begin with the best known ones - vim and emacs. I like Vim, but I never mastered it. Emacs scares me out. Maybe I’ll give it a try one day. But not know - know I just want to write text.</p>
+
+<p>Sublime text is a text editor for coders - but it’s also very good for general purpose writing. I write this blogpost in it! I also write some latex here.</p>
+
+<p><a href="http://www.sublimetext.com/">Get your free sublime text</a>!</p>
+
+<h1 id="package-control">Package control</h1>
+
+<p>It’s probably the first plugin you should install in your Sublime Text editor - if you haven’t - go on <a href="https://sublime.wbond.net/">this page</a> and do it now, you won’t regret.</p>
+
+<p>It makes easy organizing your plugins. After installing type: ‘Ctrl+Shift+P inst [tab]’ and browse lots of available packages. Plugins in sublime text are pretty cool.</p>
+
+<h1 id="shortcuts">Shortcuts</h1>
+
+<p>The most important shortcuts in sublime starts with control key:</p>
+
+<ul>
+  <li>Ctrl+Shift+P - command prompt</li>
+  <li>Ctrl+P - go to any file (just type some words you are looking for in filepath)</li>
+  <li>Ctrl+F - find in open file</li>
+  <li>Ctrl+Shift+F - find in all files - opens file with results - snippets with line numbers you can just click and they redirect you to file with text you wanted to find</li>
+  <li>Ctrl+G - go to line</li>
+  <li>Ctrl+R - go to definition</li>
+  <li>Alt+Number - switching between tabs</li>
+</ul>
+
+<p><a href="https://sublime.wbond.net/">More of useful shortcuts</a></p>
+
+<h1 id="snippets">Snippets</h1>
+<p>Have you written your <a href="http://www.hongkiat.com/blog/sublime-code-snippets/">snippets</a> already?</p>
+
+<p>Snippets are small amounts of code you can write by triggering a trigger, they’re great if you using some code over and over again like: “import ipdb; ipdb.set_trace()”. </p>
+
+<p>They are really easy to use, and you can use snippets written by somebody else to - I have lots of installed html snippets.</p>
+
+<h1 id="summary">Summary</h1>
+<p>That’s all for now. I wouldn’t recommend installing too many plugins at once, because they can cause real problems with your editor - such as sudden segmentation faults or hanging.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Hack design]]></title>

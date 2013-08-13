@@ -9,7 +9,7 @@
   <meta name="author" content="Justyna Ilczuk">
 
   
-  <meta name="description" content="The course Few weeks ago I started a hack design course. It looked like a startup-ish thing, but I thought that I would give it a chance… Yep, I’m a &hellip;">
+  <meta name="description" content="Why do I need a text editor? I earn a living writing the code. I want to make my programming workflow as smooth as possible. I used several IDE’s and &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +63,86 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/13/now-your-tools-sublime-text/">Now Your Tools - Sublime Text</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-13T19:21:00+02:00" pubdate data-updated="true">Aug 13<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/08/13/now-your-tools-sublime-text/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1 id="why-do-i-need-a-text-editor">Why do I need a text editor?</h1>
+
+<p>I earn a living writing the code. I want to make my programming workflow as smooth as possible. I used several IDE’s and text editors and I usually wasn’t happy about my productivity and comfort during writing and developing.</p>
+
+<p>Sophisiticated IDE’s usually try to do too much and they aren’t perfect in what they’re doing. I used to develop on JVM and I used Netbeans, Intellij Idea and Eclipse and had problems on all of them. Some where rather tough and took a lot of my time. I agree that smart IDE’s can be really helpful - especially with java - handling all dependecies, running your tests and app, and suggesting you what should you write - autocompletion, spotting your coding errors. It makes your life somewhat easier, but can make you pretty stupid. You can program and don’t care about errors, just looking if there is something red there. You shouldn’t! And running your code only in your ide separates you from your OS, which isn’t good at all.</p>
+
+<p>There is a simpler alternative - text editors. Let’s begin with the best known ones - vim and emacs. I like Vim, but I never mastered it. Emacs scares me out. Maybe I’ll give it a try one day. But not know - know I just want to write text.</p>
+
+<p>Sublime text is a text editor for coders - but it’s also very good for general purpose writing. I write this blogpost in it! I also write some latex here.</p>
+
+<p><a href="http://www.sublimetext.com/">Get your free sublime text</a>!</p>
+
+<h1 id="package-control">Package control</h1>
+
+<p>It’s probably the first plugin you should install in your Sublime Text editor - if you haven’t - go on <a href="https://sublime.wbond.net/">this page</a> and do it now, you won’t regret.</p>
+
+<p>It makes easy organizing your plugins. After installing type: ‘Ctrl+Shift+P inst [tab]’ and browse lots of available packages. Plugins in sublime text are pretty cool.</p>
+
+<h1 id="shortcuts">Shortcuts</h1>
+
+<p>The most important shortcuts in sublime starts with control key:</p>
+
+<ul>
+  <li>Ctrl+Shift+P - command prompt</li>
+  <li>Ctrl+P - go to any file (just type some words you are looking for in filepath)</li>
+  <li>Ctrl+F - find in open file</li>
+  <li>Ctrl+Shift+F - find in all files - opens file with results - snippets with line numbers you can just click and they redirect you to file with text you wanted to find</li>
+  <li>Ctrl+G - go to line</li>
+  <li>Ctrl+R - go to definition</li>
+  <li>Alt+Number - switching between tabs</li>
+</ul>
+
+<p><a href="https://sublime.wbond.net/">More of useful shortcuts</a></p>
+
+<h1 id="snippets">Snippets</h1>
+<p>Have you written your <a href="http://www.hongkiat.com/blog/sublime-code-snippets/">snippets</a> already?</p>
+
+<p>Snippets are small amounts of code you can write by triggering a trigger, they’re great if you using some code over and over again like: “import ipdb; ipdb.set_trace()”. </p>
+
+<p>They are really easy to use, and you can use snippets written by somebody else to - I have lots of installed html snippets.</p>
+
+<h1 id="summary">Summary</h1>
+<p>That’s all for now. I wouldn’t recommend installing too many plugins at once, because they can cause real problems with your editor - such as sudden segmentation faults or hanging.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1014,96 +1094,6 @@ Now I have my tools. Stay tuned.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/29/new-love/">New Love</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-29T19:56:00+02:00" pubdate data-updated="true">Apr 29<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/04/29/new-love/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3 id="java-was-tiring-and-painful">Java was tiring and painful</h3>
-<p>I was developing a small project in Java. It was okay. Java isn’t very difficult to write in. But I had some strange problems. Mainly with ide, libraries, maven, ant and so on.</p>
-
-<p>I really hate build.xml. Oh, I do.</p>
-
-<p>I wanted to do something stimulating and mix some scala code into my existing java project to make it more enjoable.</p>
-
-<h3 id="mixing-scala-and-java">Mixing scala and java</h3>
-<p>I can’t see you! It was the main reaction of my netbeans IDE. Actually mixing scala into existing java project isn’t so easy. I installed special plugins for Netbeans but it didn’t work, I got strange ant errors and spent a few hours reading about maven and building with ant.</p>
-
-<p>It was too much for me. I returned to eclipse and installed ScalaIDE which is very nice, but still I don’t know how to integrate there nicely a testing environment.</p>
-
-<p>I created new Scala project because I read it’s a better way than other way round (Scala in java) and added some of my existing java files.</p>
-
-<p>I wanted to integrate a JavaFX, and then ScalaFX, but I had strange problems with those libraries.</p>
-
-<h3 id="swinging-with-scala">Swinging with scala</h3>
-<p>Scala has swing library and its bindings are very intuitive and concise. So different from JavaFX!</p>
-
-<p>I don’t know it well yet, but I grasped some basics, write a really simple gui and it WORKED. </p>
-
-<p><a href="http://scalatutorial.de/topic177.html">Simple German Swing tutorial</a></p>
-
-<p><a href="https://lampsvn.epfl.ch/trac/scala/browser/scala/trunk/src/swing/scala/swing/test?order=name">Working Sources</a></p>
-
-<p>Enjoy.</p>
-
-<h3 id="concise-and-functional-scala">Concise and functional scala</h3>
-<p><a href="http://en.wikipedia.org/wiki/Scala_(programming_language)">Scala on wiki</a></p>
-
-<p><a href="http://www.scala-lang.org/">Scala website</a></p>
-
-<p>On Scala website are links to learning materials, even free books like “Scala by example”. There is also a brief tutorial (20 pages) which I recommend for the beginning, because it is a good overview. (Good start to fall in love with scala ;) )</p>
-
-<p>Reading scala book is quite entertaining, I’ve never programmed a functional language before (not counting javascript and some lisp) and learning new concepts in such an elegant form as in scala is just a pleasure.</p>
-
-<p>It’s very expressive and still easy to use. Below you can see a small snippet of code I wrote today in the morning.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>splitContentToSentences - SummaryTool.scala </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">def</span> <span class="n">splitContentToSentences</span><span class="o">(</span><span class="n">content</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
-</span><span class="line">		<span class="n">content</span><span class="o">.</span><span class="n">replaceAll</span><span class="o">(</span><span class="s">&quot;\n&quot;</span><span class="o">,</span> <span class="s">&quot;. &quot;</span><span class="o">).</span><span class="n">split</span><span class="o">(</span><span class="s">&quot;\\. &quot;</span><span class="o">).</span><span class="n">filterNot</span><span class="o">(</span><span class="n">x</span> <span class="k">=&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">matches</span><span class="o">(</span><span class="s">&quot;\\W+&quot;</span><span class="o">)).</span><span class="n">filterNot</span><span class="o">(</span><span class="n">x</span> <span class="k">=&gt;</span> <span class="n">x</span> <span class="o">==</span> <span class="s">&quot;&quot;</span><span class="o">)</span>
-</span><span class="line"><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><a href="https://github.com/atteroTheGreatest/laughing-archer/blob/master/src/analysis/SummaryTool.scala">SummaryTool.scala</a></p>
-
-<h3 id="overall-impression">Overall impression</h3>
-<p>Well, scala is cool. Rich type system, amazing api, conciseness make me a growing fan of scala. It’s different from for example python, because it implements static typing which is usually a pain. Especially when writing with text editor not with speciallised IDE which analizes your code on the go. But in scala types are not just superfluous addition, they make code more understandable and functional and due to type inference you usually don’t have to write them!</p>
-
-<p>Now I’ll return to scala book written by Oderski (main designer of scala). Only over 600 pages to go!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1129,6 +1119,10 @@ Now I have my tools. Stay tuned.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/08/13/now-your-tools-sublime-text/">Now your tools - Sublime Text</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/08/02/hacker-design/">Hack design</a>
       </li>
     
@@ -1142,10 +1136,6 @@ Now I have my tools. Stay tuned.</p>
     
       <li class="post">
         <a href="/blog/2013/06/30/canvas-coffee-java/">Canvas with javascript and coffee</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/18/latex-in-octopress/">Latex in octopress</a>
       </li>
     
   </ul>
