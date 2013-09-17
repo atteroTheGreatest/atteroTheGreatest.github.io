@@ -9,8 +9,8 @@
   <meta name="author" content="Justyna Ilczuk">
 
   
-  <meta name="description" content="Java was tiring and painful
-I was developing a small project in Java. It was okay. Java isn’t very difficult to write in. But I had some strange &hellip;">
+  <meta name="description" content="Installation
+There is a scalafx webpage and it has detailed tutorial how to install scalafx and get started. However it is actually even simples as &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,95 @@ I was developing a small project in Java. It was okay. Java isn’t very difficu
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/06/scalafx-gui-development/">GUI Development in Scalafx</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-06T18:05:00+02:00" pubdate data-updated="true">May 6<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/05/06/scalafx-gui-development/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3 id="installation">Installation</h3>
+<p>There is a scalafx <a href="https://code.google.com/p/scalafx/">webpage</a> and it has detailed tutorial how to <a href="https://code.google.com/p/scalafx/wiki/GettingStarted">install scalafx and get started</a>. However it is actually even simples as described there. When you have working scala environment (eclipse with scala IDE for example) make sure that you use jdk from oracle (includes javafx by default and you need javafx to use scalafx) and just download scalafx jars and include them in your project.</p>
+
+<h3 id="available-learning-resources">Available learning resources</h3>
+<p>Creating gui with scalafx isn’t hard when you know how to use it. </p>
+
+<p>If you know javafx you’ve probably seen ProJavaFX book. Good news! There’s a <a href="https://github.com/jsacha/ProScalaFX/">scalafx equivalent in source code</a></p>
+
+<p>A better scalafx API overview is <a href="https://github.com/jugchennai/scalafx-ensemble">ensemble project</a>.</p>
+
+<h3 id="when-help-from-available-examples-is-not-enough">When help from available examples is not enough</h3>
+<p>Asking google doesn’t provide many helpful examples. I tried to resolve some of my problems, but I couldn’t find right answer usually. Which is different from for example problems with java, because there are usually lots of questions with answers. </p>
+
+<p>But… it’s not so bad. Scalafx source code is available and well written and you can just skim it and get your answers or translate your problem to javafx problem and then look for answer in java community.</p>
+
+<h3 id="mixing-scalafx-with-javafx">Mixing scalafx with javafx</h3>
+<p>I didn’t all issues in my code(I have some problems with responsivness with observable buffers) but I can already tell that scalafx works well with javafx.</p>
+
+<p>I wanted to add some warning dialogs into my scalafx application, but scalafx or javafx don’t support it by default. I found dialogs library for javafx and tried to use it to show dialog in my scalafx app. Guess what? It worked and doing it was really simple.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>splitContentToSentences - MainApp.scala </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">import</span> <span class="nn">javafx.scene.control.Dialogs</span>
+</span><span class="line"><span class="o">(...)</span>
+</span><span class="line"><span class="k">new</span> <span class="nc">Button</span><span class="o">(</span><span class="s">&quot;Submit&quot;</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">	<span class="n">onAction</span> <span class="k">=</span> <span class="o">{</span><span class="n">e</span><span class="k">:</span> <span class="kt">ActionEvent</span> <span class="o">=&gt;</span>
+</span><span class="line">		<span class="k">val</span> <span class="n">emptyFields</span> <span class="k">=</span> <span class="n">getEmptyFields</span><span class="o">()</span>
+</span><span class="line">		<span class="k">if</span><span class="o">(!</span><span class="n">emptyFields</span><span class="o">.</span><span class="n">isEmpty</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">			<span class="nc">Dialogs</span><span class="o">.</span><span class="n">showWarningDialog</span><span class="o">(</span><span class="n">stage</span><span class="o">,</span>
+</span><span class="line">			 	<span class="n">emptyFields</span><span class="o">.</span><span class="n">mkString</span><span class="o">(</span><span class="s">&quot;, &quot;</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot; cannot be empty.&quot;</span><span class="o">,</span>
+</span><span class="line">			 	<span class="s">&quot;Book couldn&#39;t be added.&quot;</span><span class="o">,</span> <span class="s">&quot;Adding failure&quot;</span><span class="o">);</span>
+</span><span class="line">			<span class="o">}</span>
+</span><span class="line">		<span class="o">}</span>
+</span><span class="line"><span class="o">(...)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Here’s the library: <a href="https://github.com/marcojakob/javafx-ui-sandbox/tree/master/javafx-dialogs">javafx-dialogs</a></p>
+
+<p>and descriptive <a href="http://edu.makery.ch/blog/2012/10/30/javafx-2-dialogs/">blog post</a> about how to use it.</p>
+
+<p>And I forgot to add - scalafx looks quite well (like javafx) opposed to scala swing which looks just horrible. Scala swing sounds nice, it’s simple, is available by default, has scaladoc… but don’t get deceived. Scala swing looks old, api makes strange suprises, and its development is a lie. Just use something else instead, for example scalafx.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -645,6 +734,10 @@ At least for me. But there are solutions for this problem - markup languages!</p
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/09/14/projects-of-individual/">projects of a busy individual</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/08/13/now-your-tools-sublime-text/">Now your tools - Sublime Text</a>
       </li>
     
@@ -658,10 +751,6 @@ At least for me. But there are solutions for this problem - markup languages!</p
     
       <li class="post">
         <a href="/blog/2013/07/07/mutt-first-confrontation/">My first confrontation with mutt</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/30/canvas-coffee-java/">Canvas with javascript and coffee</a>
       </li>
     
   </ul>

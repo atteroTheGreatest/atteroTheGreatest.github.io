@@ -4,7 +4,7 @@
   <title><![CDATA[Tiny struggles]]></title>
   <link href="http://atteroTheGreatest.github.com/atom.xml" rel="self"/>
   <link href="http://atteroTheGreatest.github.com/"/>
-  <updated>2013-08-14T07:33:49+02:00</updated>
+  <updated>2013-09-16T23:44:05+02:00</updated>
   <id>http://atteroTheGreatest.github.com/</id>
   <author>
     <name><![CDATA[Justyna Ilczuk]]></name>
@@ -12,6 +12,75 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[projects of a busy individual]]></title>
+    <link href="http://atteroTheGreatest.github.com/blog/2013/09/14/projects-of-individual/"/>
+    <updated>2013-09-14T16:14:00+02:00</updated>
+    <id>http://atteroTheGreatest.github.com/blog/2013/09/14/projects-of-individual</id>
+    <content type="html"><![CDATA[<h1 id="one-or-many">One or many</h1>
+
+<p>Recently I’ve come accross issue of managment of side projects. I love creating new things
+and pursuing my ideas.</p>
+
+<p>They are different, there are lots of them and they aren’t usually extremely successful, but:</p>
+
+<ul>
+  <li>I love creation</li>
+  <li>I learn new things this way</li>
+  <li>I build things which I can later on use or show (or laugh at ;)</li>
+</ul>
+
+<p>However, sometimes I can’t decide what I want to do. My projects aren’t taken care of and
+I’m in doubt.</p>
+
+<h1 id="the-more-the-merier">The more the merier</h1>
+<p>I prefer doing more than one projects because,
+I cannot be stuck on one thing for too long (asynchronous io).
+I can switch focus between them and gain fresh energy.
+It’s more stimulating to have to tackle different kinds of problems.</p>
+
+<h1 id="less-is-more">Less is more</h1>
+<p>However it has many drawbacks such us:</p>
+
+<ul>
+  <li>loss of focus</li>
+  <li>projects not progressing (other projects take my time or I cannot do anything because I’m out of focus, whatever)</li>
+  <li>tending to start infinite number of projects</li>
+  <li>when other things are around it’s hard to have time for them all</li>
+</ul>
+
+<h1 id="discussion">Discussion</h1>
+
+<p>I talked with a friend about having many projects. Actually he has one 
+project and he has been spending time on it for at least half a year
+without any big sign of progress. This project actually totally doesn’t
+appeal to me, it’s an analog electronics projects with trivial application.</p>
+
+<p>I couldn’t do such thing. Simply, I would defenestrate the thing after few days
+without a real progress (maybe it’s a reason, why I don’t end many electronics projects).</p>
+
+<p>I need many, various stimulating ideas, because getting bored or tired is a real issue for me.</p>
+
+<p>It’s not that I cannot focus on anything a bit deeper, it’s not. I love reading about
+complicated stuff - mathematics, CS, physics. But I get sleepy If I pour into myself too much knowledge,
+I need changes, creation.</p>
+
+<p>My friend argued about being able to focus. He claimed that real focus is possible with only one project.</p>
+
+<p>It’s a strange approach to me, because I was always tackling with many things at once (which was usually
+much more stressful than normal execution) and didn’t have issues with changing focus.</p>
+
+<p>However, recently I’ve fallen in love in taking my time. 8 hours in a row, mainly for one project is
+so damn awesome. The awareness, that I don’t have to care about anything except from my projects is amazing.</p>
+
+<p>Sadly, shortly I’ll start my studies after a summer break and time without worries will be gone, but
+I plan to take my time on my projects (and real work and local hackerspace and lots of other important
+things… (focusing issues? - No!)) no matter what.</p>
+
+<p>And there will be lot’s of them.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Now your tools - Sublime Text]]></title>
