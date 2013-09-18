@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Providing providers - Tiny struggles</title>
+  <meta name="author" content="Justyna Ilczuk">
+
+  
+  <meta name="description" content="Remote with root access It’s just amazing to have your own remote server, where you can do whatever
+you like. I’m used to use servers set up by &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://atteroTheGreatest.github.com/blog/2013/09/18/providing-providers/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+   <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Tiny struggles" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+</hgroup>
+
+</header>
+  <!-- <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:atteroTheGreatest.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav> -->
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Providing Providers</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-18T22:52:00+02:00" pubdate data-updated="true">Sep 18<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h1 id="remote-with-root-access">Remote with root access</h1>
+
+<p>It’s just amazing to have your own remote server, where you can do whatever
+you like. I’m used to use servers set up by someone else, which is usually
+pretty comfortable - everything works and if not, someone else is worrying about it.</p>
+
+<p>However, the day with my own servers has come.</p>
+
+<h1 id="where">Where</h1>
+
+<p>In short period of time i tried: Amazon AWS, OVH, DigitalOcean and Hetzner.
+I had problems on each of listed above.
+In the nearest future I’m going to set up a virtual machine on Linode.</p>
+
+<h1 id="ec2">EC2</h1>
+
+<p>Amazon AWS gives everyone free tier for one year. This is pretty cool. You can have a small
+instance for free, running all the time! However, bigger instances are getting pretty expensive,
+I think that I would recommend EC2 for ad hoc big needs, rather than normal servers.</p>
+
+<p>Installing Ubuntu is pretty simple there. User interfaces aren’t the most user friendly, but i’m
+sure, that you can handle them after reading the manuals (lots of manuals!).</p>
+
+<h1 id="ovh">OVH</h1>
+
+<p>They couldn’t set up my machine. That sucks. I cancelled the deal after nearly a month of waiting.</p>
+
+<h1 id="digital-ocean">Digital ocean</h1>
+
+<p>I was pretty unlucky and set an instance on which I couldn’t ssh. I tried a lots of times.
+Further investigation proved the problem with Digital ocean routing. I asked support for help and got
+answer pretty soon. There was an error during setup. Changing location to Amsterdam helped.</p>
+
+<p>Over all, the digital ocean droplet(their naming scheme for virtual servers is pretty strange, but 
+you would quickly get used to it) just works nicely and I’m really satisfied for what I get, paying
+so little.</p>
+
+<h1 id="hetzner">Hetzner</h1>
+
+<p>They try to be nice, but have some serious problems with their infrastructure. I need rock-solid
+service and they wouldn’t able to provide it. I run into problems with my server after
+trying to install gentoo from rescue cd. It didn’t boot. Probably some issues with network configuration.</p>
+
+<p>Probably… I wasn’t able to check. Their console, which would be a real salvation, if it worked, was
+just failing and failing. I had problems with everything, using interface, passwords and logging to my
+own dedicated server.</p>
+
+<p>Rough times.</p>
+
+<h1 id="is-there-any-hope">Is there any hope?</h1>
+
+<p>Overall it was a good idea to try all this providers. I gained some experience, I have configured instances
+where I can deploy whatever I want and just try things out.</p>
+
+<p>I plan to try out linode now. But having a
+good, cheap instance on digital ocean is real win. I also enjoy my free tier on amazon aws (and other bonuses).</p>
+
+<p>I also tried collocation by friends. Yep… my server ‘skarpetka’ hosted in Warsaw Hackerspace is currently down.
+God knows why.</p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Justyna Ilczuk</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-18T22:52:00+02:00" pubdate data-updated="true">Sep 18<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/dedicated-server/'>dedicated-server</a>, <a class='category' href='/blog/categories/devops/'>devops</a>, <a class='category' href='/blog/categories/hosting/'>hosting</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/servers/'>servers</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://atteroTheGreatest.github.com/blog/2013/09/18/providing-providers/" data-via="" data-counturl="http://atteroTheGreatest.github.com/blog/2013/09/18/providing-providers/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/09/14/projects-of-individual/" title="Previous Post: projects of a busy individual">&laquo; projects of a busy individual</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <ul id="recent_posts">
+      <li class="post">
+      <a href="http://atteroTheGreatest.github.com" alt="Home"><img src="/images/Home.png"></a>
+      <a href="http://atteroTheGreatest.github.com/archives/" alt="Archives"><img src="/images/Calendar.png"></a>
+      
+      <a href="http://atteroTheGreatest.github.com/atom.xml" alt="subscribe feed"><img src="/images/rss.png"></a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/09/18/providing-providers/">Providing providers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/09/14/projects-of-individual/">projects of a busy individual</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/13/now-your-tools-sublime-text/">Now your tools - Sublime Text</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/02/hacker-design/">Hack design</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/02/cryptography-engineering/">cryptography engineering</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/atteroTheGreatest">@atteroTheGreatest</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'atteroTheGreatest',
+            count: 6,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Justyna Ilczuk -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'atterohacking';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://atteroTheGreatest.github.com/blog/2013/09/18/providing-providers/';
+        var disqus_url = 'http://atteroTheGreatest.github.com/blog/2013/09/18/providing-providers/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

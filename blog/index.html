@@ -9,8 +9,8 @@
   <meta name="author" content="Justyna Ilczuk">
 
   
-  <meta name="description" content="One or many Recently I’ve come accross issue of managment of side projects. I love creating new things
-and pursuing my ideas. They are different, &hellip;">
+  <meta name="description" content="Remote with root access It’s just amazing to have your own remote server, where you can do whatever
+you like. I’m used to use servers set up by &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +63,101 @@ and pursuing my ideas. They are different, &hellip;">
   <div id="main">
     <div id="content">
       
+
+
+    <article class="post">
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/18/providing-providers/">Providing Providers</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-18T22:52:00+02:00" pubdate data-updated="true">Sep 18<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/09/18/providing-providers/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1 id="remote-with-root-access">Remote with root access</h1>
+
+<p>It’s just amazing to have your own remote server, where you can do whatever
+you like. I’m used to use servers set up by someone else, which is usually
+pretty comfortable - everything works and if not, someone else is worrying about it.</p>
+
+<p>However, the day with my own servers has come.</p>
+
+<h1 id="where">Where</h1>
+
+<p>In short period of time i tried: Amazon AWS, OVH, DigitalOcean and Hetzner.
+I had problems on each of listed above.
+In the nearest future I’m going to set up a virtual machine on Linode.</p>
+
+<h1 id="ec2">EC2</h1>
+
+<p>Amazon AWS gives everyone free tier for one year. This is pretty cool. You can have a small
+instance for free, running all the time! However, bigger instances are getting pretty expensive,
+I think that I would recommend EC2 for ad hoc big needs, rather than normal servers.</p>
+
+<p>Installing Ubuntu is pretty simple there. User interfaces aren’t the most user friendly, but i’m
+sure, that you can handle them after reading the manuals (lots of manuals!).</p>
+
+<h1 id="ovh">OVH</h1>
+
+<p>They couldn’t set up my machine. That sucks. I cancelled the deal after nearly a month of waiting.</p>
+
+<h1 id="digital-ocean">Digital ocean</h1>
+
+<p>I was pretty unlucky and set an instance on which I couldn’t ssh. I tried a lots of times.
+Further investigation proved the problem with Digital ocean routing. I asked support for help and got
+answer pretty soon. There was an error during setup. Changing location to Amsterdam helped.</p>
+
+<p>Over all, the digital ocean droplet(their naming scheme for virtual servers is pretty strange, but 
+you would quickly get used to it) just works nicely and I’m really satisfied for what I get, paying
+so little.</p>
+
+<h1 id="hetzner">Hetzner</h1>
+
+<p>They try to be nice, but have some serious problems with their infrastructure. I need rock-solid
+service and they wouldn’t able to provide it. I run into problems with my server after
+trying to install gentoo from rescue cd. It didn’t boot. Probably some issues with network configuration.</p>
+
+<p>Probably… I wasn’t able to check. Their console, which would be a real salvation, if it worked, was
+just failing and failing. I had problems with everything, using interface, passwords and logging to my
+own dedicated server.</p>
+
+<p>Rough times.</p>
+
+<h1 id="is-there-any-hope">Is there any hope?</h1>
+
+<p>Overall it was a good idea to try all this providers. I gained some experience, I have configured instances
+where I can deploy whatever I want and just try things out.</p>
+
+<p>I plan to try out linode now. But having a
+good, cheap instance on digital ocean is real win. I also enjoy my free tier on amazon aws (and other bonuses).</p>
+
+<p>I also tried collocation by friends. Yep… my server ‘skarpetka’ hosted in Warsaw Hackerspace is currently down.
+God knows why.</p>
+
+</div>
+  
+  
+
+</article>
 
 
     <article class="post">
@@ -941,153 +1036,6 @@ Now I have my tools. Stay tuned.</p>
     </tr>
   </tbody>
 </table>
-</div>
-  
-  
-
-</article>
-
-
-    <article class="post">
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/08/readingwithpreon/">Reading With Preon</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-08T16:00:00+02:00" pubdate data-updated="true">May 8<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/05/08/readingwithpreon/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3 id="a-what">A… what?</h3>
-<p>Preon is a Java library which aims to provide a framework for dealing with binary encoded data. <a href="https://github.com/preon/preon">Repository</a></p>
-
-<p>Actually reading binary files in Java isn’t very comfortable. I love a python way to deal with binary files - <a href="http://docs.python.org/2/library/struct.html">struct</a></p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-</pre></td><td class="code"><pre><code class="python"><span class="line">	<span class="kn">import</span> <span class="nn">struct</span>
-</span><span class="line">
-</span><span class="line">
-</span><span class="line">	<span class="c">#How exemplary data is packed</span>
-</span><span class="line">	<span class="n">format</span> <span class="o">=</span> <span class="s">&quot;&lt;IIH2s&quot;</span>
-</span><span class="line">
-</span><span class="line">	<span class="c">#How long it is</span>
-</span><span class="line">	<span class="n">how_many_bytes</span> <span class="o">=</span> <span class="n">calcsize</span><span class="p">(</span><span class="n">format</span><span class="p">)</span>
-</span><span class="line">
-</span><span class="line">	<span class="c">#unpacking</span>
-</span><span class="line">	<span class="n">something</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">format</span><span class="p">,</span> <span class="n">string_with_binary_data</span><span class="p">)</span>
-</span><span class="line">
-</span><span class="line">	<span class="c">#packing</span>
-</span><span class="line">	<span class="n">packed</span> <span class="o">=</span>  <span class="n">pack</span><span class="p">(</span><span class="s">&#39;llh0l&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Nice and clean. What about Java? There are many ways to read binary files with Java. Almost all are very tedious. I decided to use preon. <a href="http://www.scribd.com/doc/8128172/Preon-Introduction">Here</a> and <a href="http://www.scribd.com/doc/7988375/Preon-Under-the-Hood">there</a> you can read some publications about preon.</p>
-
-<h3 id="how-to-use-preon">How to use preon?</h3>
-<p>I think that from user point of view, the most important part of preon library are codecs.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="c1">//Create codec based on previously defined class</span>
-</span><span class="line">	<span class="n">Codec</span><span class="o">&lt;</span><span class="n">EXTHHeader</span><span class="o">&gt;</span> <span class="n">codec</span> <span class="o">=</span> <span class="n">Codecs</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">EXTHHeader</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</span><span class="line"><span class="c1">//Create buffer with data to be read</span>
-</span><span class="line">	<span class="n">RandomAccessFile</span> <span class="n">fp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="s">&quot;r&quot;</span><span class="o">);</span>
-</span><span class="line">	<span class="n">fp</span><span class="o">.</span><span class="na">seek</span><span class="o">(</span><span class="n">offset</span><span class="o">);</span>
-</span><span class="line">	<span class="kt">byte</span><span class="o">[]</span> <span class="n">buff</span><span class="o">=</span> <span class="k">new</span>  <span class="kt">byte</span><span class="o">[</span><span class="n">headers</span><span class="o">.</span><span class="na">size</span><span class="o">];</span>
-</span><span class="line">	<span class="n">fp</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buff</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">headers</span><span class="o">.</span><span class="na">exthHeaderSize</span><span class="o">);</span>
-</span><span class="line"><span class="c1">//Decode your object from buffer</span>
-</span><span class="line">	<span class="n">EXTHHeader</span> <span class="n">exthHeader</span> <span class="o">=</span> <span class="n">Codecs</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">codec</span><span class="o">,</span> <span class="n">buff</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="kn">import</span> <span class="nn">nl.flotsam.preon.annotation.BoundNumber</span><span class="o">;</span>
-</span><span class="line"><span class="c1">//There is something like big and little endian (default is little)</span>
-</span><span class="line"><span class="kn">import</span> <span class="nn">nl.flotsam.preon.buffer.ByteOrder</span><span class="o">;</span>
-</span><span class="line">
-</span><span class="line">
-</span><span class="line"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EXTHHeader</span> <span class="o">{</span>
-</span><span class="line">	<span class="c1">//I use long with size 32 to represent unsigned 32 bit int</span>
-</span><span class="line">	<span class="c1">//Reading signed int is identical except from using int instead of long</span>
-</span><span class="line">    <span class="nd">@BoundNumber</span><span class="o">(</span><span class="n">size</span><span class="o">=</span><span class="s">&quot;32&quot;</span><span class="o">,</span> <span class="n">byteOrder</span><span class="o">=</span><span class="n">ByteOrder</span><span class="o">.</span><span class="na">BigEndian</span><span class="o">)</span>
-</span><span class="line">    <span class="kt">long</span> <span class="n">identifier</span><span class="o">;</span>
-</span><span class="line">    <span class="nd">@BoundNumber</span><span class="o">(</span><span class="n">size</span><span class="o">=</span><span class="s">&quot;32&quot;</span><span class="o">,</span> <span class="n">byteOrder</span><span class="o">=</span><span class="n">ByteOrder</span><span class="o">.</span><span class="na">BigEndian</span><span class="o">)</span>
-</span><span class="line">    <span class="kt">long</span> <span class="n">headerLength</span><span class="o">;</span>
-</span><span class="line">    <span class="nd">@BoundNumber</span><span class="o">(</span><span class="n">size</span><span class="o">=</span><span class="s">&quot;32&quot;</span><span class="o">,</span> <span class="n">byteOrder</span><span class="o">=</span><span class="n">ByteOrder</span><span class="o">.</span><span class="na">BigEndian</span><span class="o">)</span>
-</span><span class="line">    <span class="kt">long</span> <span class="n">recordCount</span><span class="o">;</span>
-</span><span class="line">
-</span><span class="line">	<span class="nd">@Override</span>
-</span><span class="line">	<span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
-</span><span class="line">		<span class="k">return</span> <span class="s">&quot;EXTHHeader [identifier=&quot;</span> <span class="o">+</span> <span class="n">identifier</span> <span class="o">+</span> <span class="s">&quot;, headerLength=&quot;</span>
-</span><span class="line">				<span class="o">+</span> <span class="n">headerLength</span> <span class="o">+</span> <span class="s">&quot;, recordCount=&quot;</span> <span class="o">+</span> <span class="n">recordCount</span> <span class="o">+</span> <span class="s">&quot;]&quot;</span><span class="o">;</span>
-</span><span class="line">	<span class="o">}</span>
-</span><span class="line">
-</span><span class="line"><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>You can define byte order, size, type… and even lists with size based on value from one of fields. You can also add different methods to class (like toString).</p>
-
-<p>I forgot to mention, Preon has lots of dependencies, you have to include them in your project or it won’t work.</p>
-
-<p>Not so hard, isn’t it? And it has lot’s more functionalities, but those above are the most common ones.</p>
-
 </div>
   
   

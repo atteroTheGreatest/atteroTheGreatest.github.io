@@ -9,8 +9,8 @@
   <meta name="author" content="Justyna Ilczuk">
 
   
-  <meta name="description" content="Installation
-There is a scalafx webpage and it has detailed tutorial how to install scalafx and get started. However it is actually even simples as &hellip;">
+  <meta name="description" content="A… what?
+Preon is a Java library which aims to provide a framework for dealing with binary encoded data. Repository Actually reading binary files in &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,155 @@ There is a scalafx webpage and it has detailed tutorial how to install scalafx a
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/08/readingwithpreon/">Reading With Preon</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-08T16:00:00+02:00" pubdate data-updated="true">May 8<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/05/08/readingwithpreon/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3 id="a-what">A… what?</h3>
+<p>Preon is a Java library which aims to provide a framework for dealing with binary encoded data. <a href="https://github.com/preon/preon">Repository</a></p>
+
+<p>Actually reading binary files in Java isn’t very comfortable. I love a python way to deal with binary files - <a href="http://docs.python.org/2/library/struct.html">struct</a></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line">	<span class="kn">import</span> <span class="nn">struct</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">	<span class="c">#How exemplary data is packed</span>
+</span><span class="line">	<span class="n">format</span> <span class="o">=</span> <span class="s">&quot;&lt;IIH2s&quot;</span>
+</span><span class="line">
+</span><span class="line">	<span class="c">#How long it is</span>
+</span><span class="line">	<span class="n">how_many_bytes</span> <span class="o">=</span> <span class="n">calcsize</span><span class="p">(</span><span class="n">format</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">	<span class="c">#unpacking</span>
+</span><span class="line">	<span class="n">something</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">format</span><span class="p">,</span> <span class="n">string_with_binary_data</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">	<span class="c">#packing</span>
+</span><span class="line">	<span class="n">packed</span> <span class="o">=</span>  <span class="n">pack</span><span class="p">(</span><span class="s">&#39;llh0l&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Nice and clean. What about Java? There are many ways to read binary files with Java. Almost all are very tedious. I decided to use preon. <a href="http://www.scribd.com/doc/8128172/Preon-Introduction">Here</a> and <a href="http://www.scribd.com/doc/7988375/Preon-Under-the-Hood">there</a> you can read some publications about preon.</p>
+
+<h3 id="how-to-use-preon">How to use preon?</h3>
+<p>I think that from user point of view, the most important part of preon library are codecs.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="c1">//Create codec based on previously defined class</span>
+</span><span class="line">	<span class="n">Codec</span><span class="o">&lt;</span><span class="n">EXTHHeader</span><span class="o">&gt;</span> <span class="n">codec</span> <span class="o">=</span> <span class="n">Codecs</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">EXTHHeader</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span><span class="line"><span class="c1">//Create buffer with data to be read</span>
+</span><span class="line">	<span class="n">RandomAccessFile</span> <span class="n">fp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RandomAccessFile</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="s">&quot;r&quot;</span><span class="o">);</span>
+</span><span class="line">	<span class="n">fp</span><span class="o">.</span><span class="na">seek</span><span class="o">(</span><span class="n">offset</span><span class="o">);</span>
+</span><span class="line">	<span class="kt">byte</span><span class="o">[]</span> <span class="n">buff</span><span class="o">=</span> <span class="k">new</span>  <span class="kt">byte</span><span class="o">[</span><span class="n">headers</span><span class="o">.</span><span class="na">size</span><span class="o">];</span>
+</span><span class="line">	<span class="n">fp</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buff</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">headers</span><span class="o">.</span><span class="na">exthHeaderSize</span><span class="o">);</span>
+</span><span class="line"><span class="c1">//Decode your object from buffer</span>
+</span><span class="line">	<span class="n">EXTHHeader</span> <span class="n">exthHeader</span> <span class="o">=</span> <span class="n">Codecs</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">codec</span><span class="o">,</span> <span class="n">buff</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="kn">import</span> <span class="nn">nl.flotsam.preon.annotation.BoundNumber</span><span class="o">;</span>
+</span><span class="line"><span class="c1">//There is something like big and little endian (default is little)</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">nl.flotsam.preon.buffer.ByteOrder</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">EXTHHeader</span> <span class="o">{</span>
+</span><span class="line">	<span class="c1">//I use long with size 32 to represent unsigned 32 bit int</span>
+</span><span class="line">	<span class="c1">//Reading signed int is identical except from using int instead of long</span>
+</span><span class="line">    <span class="nd">@BoundNumber</span><span class="o">(</span><span class="n">size</span><span class="o">=</span><span class="s">&quot;32&quot;</span><span class="o">,</span> <span class="n">byteOrder</span><span class="o">=</span><span class="n">ByteOrder</span><span class="o">.</span><span class="na">BigEndian</span><span class="o">)</span>
+</span><span class="line">    <span class="kt">long</span> <span class="n">identifier</span><span class="o">;</span>
+</span><span class="line">    <span class="nd">@BoundNumber</span><span class="o">(</span><span class="n">size</span><span class="o">=</span><span class="s">&quot;32&quot;</span><span class="o">,</span> <span class="n">byteOrder</span><span class="o">=</span><span class="n">ByteOrder</span><span class="o">.</span><span class="na">BigEndian</span><span class="o">)</span>
+</span><span class="line">    <span class="kt">long</span> <span class="n">headerLength</span><span class="o">;</span>
+</span><span class="line">    <span class="nd">@BoundNumber</span><span class="o">(</span><span class="n">size</span><span class="o">=</span><span class="s">&quot;32&quot;</span><span class="o">,</span> <span class="n">byteOrder</span><span class="o">=</span><span class="n">ByteOrder</span><span class="o">.</span><span class="na">BigEndian</span><span class="o">)</span>
+</span><span class="line">    <span class="kt">long</span> <span class="n">recordCount</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line">	<span class="nd">@Override</span>
+</span><span class="line">	<span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+</span><span class="line">		<span class="k">return</span> <span class="s">&quot;EXTHHeader [identifier=&quot;</span> <span class="o">+</span> <span class="n">identifier</span> <span class="o">+</span> <span class="s">&quot;, headerLength=&quot;</span>
+</span><span class="line">				<span class="o">+</span> <span class="n">headerLength</span> <span class="o">+</span> <span class="s">&quot;, recordCount=&quot;</span> <span class="o">+</span> <span class="n">recordCount</span> <span class="o">+</span> <span class="s">&quot;]&quot;</span><span class="o">;</span>
+</span><span class="line">	<span class="o">}</span>
+</span><span class="line">
+</span><span class="line"><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>You can define byte order, size, type… and even lists with size based on value from one of fields. You can also add different methods to class (like toString).</p>
+
+<p>I forgot to mention, Preon has lots of dependencies, you have to include them in your project or it won’t work.</p>
+
+<p>Not so hard, isn’t it? And it has lot’s more functionalities, but those above are the most common ones.</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -734,6 +883,10 @@ At least for me. But there are solutions for this problem - markup languages!</p
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/09/18/providing-providers/">Providing providers</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/09/14/projects-of-individual/">projects of a busy individual</a>
       </li>
     
@@ -747,10 +900,6 @@ At least for me. But there are solutions for this problem - markup languages!</p
     
       <li class="post">
         <a href="/blog/2013/08/02/cryptography-engineering/">cryptography engineering</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/07/mutt-first-confrontation/">My first confrontation with mutt</a>
       </li>
     
   </ul>
