@@ -4,7 +4,7 @@
   <title><![CDATA[Tiny struggles]]></title>
   <link href="http://atteroTheGreatest.github.com/atom.xml" rel="self"/>
   <link href="http://atteroTheGreatest.github.com/"/>
-  <updated>2013-10-19T23:34:05+02:00</updated>
+  <updated>2013-10-19T23:37:20+02:00</updated>
   <id>http://atteroTheGreatest.github.com/</id>
   <author>
     <name><![CDATA[Justyna Ilczuk]]></name>
@@ -14,10 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Open science]]></title>
-    <link href="http://atteroTheGreatest.github.com/blog/2013/10/13/closed-science/"/>
+    <title type="html"><![CDATA[Closed vs Open science]]></title>
+    <link href="http://atteroTheGreatest.github.com/blog/2013/10/13/closed-vs-open-science/"/>
     <updated>2013-10-13T22:22:00+02:00</updated>
-    <id>http://atteroTheGreatest.github.com/blog/2013/10/13/closed-science</id>
+    <id>http://atteroTheGreatest.github.com/blog/2013/10/13/closed-vs-open-science</id>
     <content type="html"><![CDATA[<h3 id="i-hate-closed-science">I hate closed science</h3>
 
 <p>I study physics at WUT. I want to read articles about subjects which interest me or just to learn if I’m really interested in them or not.</p>
