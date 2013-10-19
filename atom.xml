@@ -4,7 +4,7 @@
   <title><![CDATA[Tiny struggles]]></title>
   <link href="http://atteroTheGreatest.github.com/atom.xml" rel="self"/>
   <link href="http://atteroTheGreatest.github.com/"/>
-  <updated>2013-09-18T23:41:17+02:00</updated>
+  <updated>2013-10-19T23:34:05+02:00</updated>
   <id>http://atteroTheGreatest.github.com/</id>
   <author>
     <name><![CDATA[Justyna Ilczuk]]></name>
@@ -12,6 +12,125 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Open science]]></title>
+    <link href="http://atteroTheGreatest.github.com/blog/2013/10/13/closed-science/"/>
+    <updated>2013-10-13T22:22:00+02:00</updated>
+    <id>http://atteroTheGreatest.github.com/blog/2013/10/13/closed-science</id>
+    <content type="html"><![CDATA[<h3 id="i-hate-closed-science">I hate closed science</h3>
+
+<p>I study physics at WUT. I want to read articles about subjects which interest me or just to learn if I’m really interested in them or not.</p>
+
+<p>But I usually can’t.</p>
+
+<p>And I feel bad about it. Today I was interested in researching some various fields of physics, because I have to choose my next project. There are various options, many of which I haven’t heard of before.</p>
+
+<p>First step is usually googling new thing. There is something there usually. But there is a wall. Wall of paywall which is pretty outrageus. I want to check out 30 subjects (it’s a number of basic options I have). But
+one article costs aproximatelly $40. How am I supposed to read this? I don’t have 30 * $40 = $1200 just to check out some new fields of interest which could change my carrier.</p>
+
+<p>With computer science/engineering it’s a completely different matter. At least in my past experience, I could easily learn amazingly lot of different things without paying a cent. And I actually don’t mind paying, if the sum isn’t bizzare of course. But, as young person I didn’t have many possibilities to earn enough money in the past. And my learning/researching desires are insatiable and usually imminent.</p>
+
+<p>There are amazing resources about learning programming languages, you can learn this way python, erlang, haskell, lisp, lua and many others. Also - there are amazing courses at coursera, udacity, edx, and similar platforms.</p>
+
+<h3 id="open-science">Open science</h3>
+
+<p>There are some initiatives to open our closed science such as: 
+<a href="http://open-science.pen.io/">open-science.pen.io</a>,
+<a href="http://www.openscience.org/blog/?p=269">opensience.org</a></p>
+
+<h4 id="but-shortly-what-is-open-science">But shortly, what is open science:</h4>
+
+<blockquote>
+  <p>Open science is the umbrella term of the movement to make scientific research,
+data and dissemination accessible to all levels of an inquiring society, amateur or professional.
+It encompasses practices such as publishing open research, campaigning for open access,
+encouraging scientists to practice open notebook science,
+and generally making it easier to publish and communicate scientific knowledge.</p>
+</blockquote>
+
+<p>Quote from <a href="http://en.wikipedia.org/wiki/Open_science">wikipedia</a>.</p>
+
+<h3 id="why-is-it-important">Why is it important?</h3>
+
+<ul>
+  <li>
+    <p>Everybody should be able to check if what other people tell her is true or even make sense.
+ 	- evaluation of methods
+ 	- evaluation of data
+ 	- evaluation of conclusions</p>
+  </li>
+  <li>People can learn from other researchers
+ 	- less reinventing the wheel
+    <ul>
+      <li>good practices emerge
+        <ul>
+          <li>know how of research</li>
+        </ul>
+      </li>
+      <li>sharing tools</li>
+    </ul>
+  </li>
+  <li>Everyone should be able to easily find information about results,
+ both summary and whole information needed to understand and reproduce given research</li>
+</ul>
+
+<h4 id="without-it">Without it:</h4>
+
+<ul>
+  <li>doing proper science is much more difficult for begginners and not affiliated groups</li>
+  <li>there is a space for malpractice</li>
+  <li>waste of resources (not reproducible research, lots of time spent on developing poor tools)</li>
+  <li>unhealthy environment</li>
+  <li>blocking development</li>
+</ul>
+
+<h3 id="what-could-we-do">What could we do?</h3>
+
+<ul>
+  <li>
+    <p>Make our research <a href="http://en.wikipedia.org/wiki/Open_research">open</a>.</p>
+  </li>
+  <li>
+    <p>We need <a href="http://marciovm.com/i-want-a-github-of-science/">github for science</a>.</p>
+  </li>
+  <li>
+    <p>Publish on <a href="http://en.wikipedia.org/wiki/Open_access">open access</a> - and there is simply explained <a href="http://www.youtube.com/watch?v=L5rVH1KGBCY">why</a>.</p>
+  </li>
+  <li>
+    <p>Create <a href="http://en.wikipedia.org/wiki/Open_notebook_science">open notebooks</a>.</p>
+  </li>
+</ul>
+
+<p>From wikipedia:</p>
+
+<blockquote>
+  <p>Open Notebook Science is the practice of making the entire primary record of a research project publicly available online as it is recorded. This involves placing the personal, or laboratory, notebook of the researcher online along with all raw and processed data, and any associated material, as this material is generated. The approach may be summed up by the slogan ‘no insider information’.</p>
+</blockquote>
+
+<p>I love it. It’s the way I would really enjoy to learn how experiments and research are done in such a way.
+I just didn’t even know that such notebooks exit. Now I plan to use it for my future research to learn some good practices.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>I started writing this article being outraged by closed science around me. Now I’m pretty excited about open science, which we can develop together.</p>
+
+<p>Starting something new or just different is usually pretty hard. However,
+we are not alone, we have amazing tools to our disposal such as:</p>
+
+<ul>
+  <li><a href="https://github.com/">github</a></li>
+  <li><a href="http://www.scipy.org/about.html">scipy stack</a></li>
+  <li><a href="http://www.r-project.org/">R</a></li>
+  <li>wikipedia</li>
+</ul>
+
+<p>And lots of others, it would be impossible to list them all.</p>
+
+<p>Probably the hardest thing is changing people’s habits.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Providing providers]]></title>
