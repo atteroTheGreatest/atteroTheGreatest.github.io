@@ -9,7 +9,7 @@
   <meta name="author" content="Justyna Ilczuk">
 
   
-  <meta name="description" content="This is a plan of the main campus of my university, Politechnika Warszawska, Warsaw University of Technology, WUT. On the left is a building of &hellip;">
+  <meta name="description" content="Oh well, it should be latex. I used this post: supporting latex in octopress To enable this, I used kramdown and mathjax, look at changing markdown &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,6 +63,388 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/18/latex-in-octopress/">Latex in Octopress</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-18T20:18:00+02:00" pubdate data-updated="true">Jun 18<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/06/18/latex-in-octopress/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1 id="oh-well-it-should-be-latex">Oh well, it should be latex.</h1>
+
+<p>I used this post: <a href="http://chuchao333.github.io/blog/2012/08/18/supporting-latex-in-octopress/">supporting latex in octopress</a></p>
+
+<p>To enable this, I used kramdown and mathjax, look at <a href="://jeffvautin.com/blog/2012/12/30/changing-the-octopress-markdown-engine/">changing markdown to kramdown http</a></p>
+
+<p>Here is a very simple example of latex:</p>
+
+<script type="math/tex; mode=display">
+ \xi = 15 \\
+ \frac{d^2f}{dx^2} = 6xf - 88
+</script>
+
+<p>I love writing articles in latex and after writing some recently, I thought about reposting it here.
+Now I have my tools. Stay tuned.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/19/categories/">Fitting Text Into Categories</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-19T20:05:00+02:00" pubdate data-updated="true">May 19<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/05/19/categories/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3 id="how-to-classify">How to classify?</h3>
+<p>You can use various methods to classify objects. There are many tools in machine learning and natural language processing packages. But sometimes it’s hard to find one, which suits your problem well. I wanted to write category classifier in scala, making it as simple as possible. I could use <a href="http://www.scalanlp.org/">breeze</a>, but at first glance it’s quite overwhelming and documentation isn’t really user friendly. (I love python <a href="http://scikit-learn.org/stable/">scikit-learn</a>, which is in my opinion the best machine learning library in the world)</p>
+
+<p>I decided to implement it all by myself using only basic SDK of scala. </p>
+
+<h3 id="main-idea-behind-my-script">Main idea behind my script</h3>
+<p>In written language exist lots of common words such as: “the”, “and”, “this”, etc. Specialised article or book contains lots of vocabulary connected to the field.</p>
+
+<p>I did some web crawling to collect some articles with typical vocabulary for three basic fields: physics, electronics and mathematics. As a sample of normaly used vocabulary (not conected with any specialised field) I used some random articles from Guardian. </p>
+
+<p>After collecting articles I could compute the most common worlds for each category. My classifying algorithm basically chooses a category, which vocabulary has the biggest intersection with given text, if intersection is very small it returns category “boring”.</p>
+
+<h3 id="implementation">Implementation</h3>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>splitContentToSentences - commonVocabulary.scala </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+<span class="line-number">79</span>
+<span class="line-number">80</span>
+<span class="line-number">81</span>
+<span class="line-number">82</span>
+<span class="line-number">83</span>
+<span class="line-number">84</span>
+<span class="line-number">85</span>
+<span class="line-number">86</span>
+<span class="line-number">87</span>
+<span class="line-number">88</span>
+<span class="line-number">89</span>
+<span class="line-number">90</span>
+<span class="line-number">91</span>
+<span class="line-number">92</span>
+<span class="line-number">93</span>
+<span class="line-number">94</span>
+<span class="line-number">95</span>
+<span class="line-number">96</span>
+<span class="line-number">97</span>
+<span class="line-number">98</span>
+<span class="line-number">99</span>
+<span class="line-number">100</span>
+<span class="line-number">101</span>
+<span class="line-number">102</span>
+<span class="line-number">103</span>
+<span class="line-number">104</span>
+<span class="line-number">105</span>
+<span class="line-number">106</span>
+<span class="line-number">107</span>
+<span class="line-number">108</span>
+<span class="line-number">109</span>
+<span class="line-number">110</span>
+<span class="line-number">111</span>
+<span class="line-number">112</span>
+<span class="line-number">113</span>
+<span class="line-number">114</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="k">import</span> <span class="nn">java.io.RandomAccessFile</span>
+</span><span class="line"><span class="k">import</span> <span class="nn">scala.collection.mutable.HashMap</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="n">removePunctuation</span><span class="o">(</span><span class="n">text</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class="line">	<span class="k">val</span> <span class="n">punct</span> <span class="k">=</span> <span class="s">&quot;,.?;:!\&quot;&quot;</span>
+</span><span class="line">	<span class="n">text</span><span class="o">.</span><span class="n">toList</span><span class="o">.</span><span class="n">filterNot</span><span class="o">(</span><span class="n">char</span> <span class="k">=&gt;</span> <span class="n">punct</span> <span class="n">contains</span> <span class="n">char</span><span class="o">).</span><span class="n">mkString</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="o">}</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="n">getWordsFromRawText</span><span class="o">(</span><span class="n">text</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class="line">	<span class="n">removePunctuation</span><span class="o">(</span><span class="n">text</span><span class="o">).</span><span class="n">toLowerCase</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">&quot;\\s+&quot;</span><span class="o">).</span><span class="n">toList</span>
+</span><span class="line"><span class="o">}</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="n">getAllWords</span><span class="o">(</span><span class="n">basePath</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class="line">	<span class="k">import</span> <span class="nn">java.io.File</span>
+</span><span class="line">	<span class="k">val</span> <span class="n">baseDir</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">basePath</span><span class="o">)</span>
+</span><span class="line">	<span class="k">val</span> <span class="n">paths</span> <span class="k">=</span> <span class="n">baseDir</span><span class="o">.</span><span class="n">listFiles</span><span class="o">.</span><span class="n">toList</span><span class="o">.</span><span class="n">sorted</span>
+</span><span class="line">	<span class="k">var</span> <span class="n">words</span> <span class="k">=</span> <span class="nc">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]()</span>
+</span><span class="line">	<span class="k">for</span><span class="o">(</span> <span class="n">path</span> <span class="k">&lt;-</span> <span class="n">paths</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">		<span class="k">val</span> <span class="n">raf</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">RandomAccessFile</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="s">&quot;r&quot;</span><span class="o">)</span>
+</span><span class="line">		<span class="k">val</span> <span class="n">buff</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Array</span><span class="o">[</span><span class="kt">Byte</span><span class="o">](</span><span class="n">raf</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">toInt</span><span class="o">)</span>
+</span><span class="line">		<span class="n">raf</span><span class="o">.</span><span class="n">readFully</span><span class="o">(</span><span class="n">buff</span><span class="o">)</span>
+</span><span class="line">		<span class="n">words</span> <span class="k">=</span> <span class="n">words</span> <span class="o">++:</span> <span class="n">getWordsFromRawText</span><span class="o">(</span><span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="n">buff</span><span class="o">))</span>
+</span><span class="line">	<span class="o">}</span>
+</span><span class="line">	<span class="n">words</span>
+</span><span class="line"><span class="o">}</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="n">rankWords</span><span class="o">(</span><span class="n">words</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">],</span> <span class="n">normalVocabulary</span><span class="k">:</span> <span class="kt">Set</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class="line">	<span class="k">var</span> <span class="n">wordOccurences</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">[</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">]()</span>
+</span><span class="line">	<span class="k">for</span><span class="o">(</span><span class="n">word</span> <span class="k">&lt;-</span> <span class="n">words</span> <span class="k">if</span> <span class="o">!(</span> <span class="n">normalVocabulary</span> <span class="n">contains</span> <span class="n">word</span><span class="o">)</span> <span class="o">){</span>
+</span><span class="line">		<span class="k">if</span> <span class="o">(</span><span class="n">wordOccurences</span> <span class="n">contains</span> <span class="n">word</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">			<span class="n">wordOccurences</span><span class="o">(</span><span class="n">word</span><span class="o">)</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class="line">		<span class="o">}</span>
+</span><span class="line">		<span class="k">else</span>
+</span><span class="line">			<span class="n">wordOccurences</span><span class="o">(</span><span class="n">word</span><span class="o">)</span> <span class="k">=</span> <span class="mi">1</span>
+</span><span class="line">	<span class="o">}</span>
+</span><span class="line">	<span class="n">wordOccurences</span><span class="o">.</span><span class="n">toList</span><span class="o">.</span><span class="n">sortBy</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">_2</span><span class="o">).</span><span class="n">reverse</span>
+</span><span class="line"><span class="o">}</span>
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="n">basePath</span> <span class="k">=</span> <span class="s">&quot;articles/physics/&quot;</span>
+</span><span class="line"><span class="k">val</span> <span class="n">normalVocabulary</span> <span class="k">=</span> <span class="n">getAllWords</span><span class="o">(</span><span class="s">&quot;articles/random/&quot;</span><span class="o">)</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="n">commonNormalVoc</span> <span class="k">=</span> <span class="o">(</span><span class="k">for</span> <span class="o">{</span><span class="n">word</span> <span class="k">&lt;-</span>
+</span><span class="line">	<span class="n">rankWords</span><span class="o">(</span><span class="n">normalVocabulary</span><span class="o">,</span> <span class="nc">Set</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">)).</span><span class="n">slice</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">400</span><span class="o">)}</span>
+</span><span class="line">	 <span class="k">yield</span> <span class="n">word</span><span class="o">.</span><span class="n">_1</span><span class="o">).</span><span class="n">toSet</span>
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="n">physicsVocabulary</span> <span class="k">=</span> <span class="n">getAllWords</span><span class="o">(</span><span class="s">&quot;articles/physics/&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="k">val</span> <span class="n">commonPhysicsVoc</span> <span class="k">=</span> <span class="o">(</span><span class="k">for</span> <span class="o">{</span><span class="n">word</span> <span class="k">&lt;-</span> <span class="n">rankWords</span><span class="o">(</span><span class="n">physicsVocabulary</span><span class="o">,</span>
+</span><span class="line">	<span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">slice</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">400</span><span class="o">)}</span> <span class="k">yield</span> <span class="n">word</span><span class="o">.</span><span class="n">_1</span><span class="o">).</span><span class="n">toSet</span>
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="n">electronicsVocabulary</span> <span class="k">=</span> <span class="n">getAllWords</span><span class="o">(</span><span class="s">&quot;articles/electronics/&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="k">val</span> <span class="n">commonElectronicsVoc</span> <span class="k">=</span> <span class="o">(</span><span class="k">for</span> <span class="o">{</span><span class="n">word</span> <span class="k">&lt;-</span>
+</span><span class="line">	<span class="n">rankWords</span><span class="o">(</span><span class="n">electronicsVocabulary</span><span class="o">,</span>
+</span><span class="line">	<span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">slice</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">400</span><span class="o">)}</span> <span class="k">yield</span> <span class="n">word</span><span class="o">.</span><span class="n">_1</span><span class="o">).</span><span class="n">toSet</span>
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="n">mathVocabulary</span> <span class="k">=</span> <span class="n">getAllWords</span><span class="o">(</span><span class="s">&quot;articles/math/&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="k">val</span> <span class="n">commonMathVoc</span> <span class="k">=</span> <span class="o">(</span><span class="k">for</span> <span class="o">{</span><span class="n">word</span> <span class="k">&lt;-</span> <span class="n">rankWords</span><span class="o">(</span><span class="n">mathVocabulary</span><span class="o">,</span>
+</span><span class="line"> <span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">slice</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">400</span><span class="o">)}</span> <span class="k">yield</span> <span class="n">word</span><span class="o">.</span><span class="n">_1</span><span class="o">).</span><span class="n">toSet</span>
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="n">testArticleAboutPhysics</span> <span class="k">=</span> <span class="s">&quot;&quot;&quot;</span>
+</span><span class="line"><span class="s">Thermodynamics is a branch of natural science </span>
+</span><span class="line"><span class="s">concerned (...) or statistical mechanics, gave</span>
+</span><span class="line"><span class="s"> explanations of macroscopic thermodynamics by </span>
+</span><span class="line"><span class="s"> statistical predictions of the collective motion </span>
+</span><span class="line"><span class="s"> of particles based on the mechanics of their </span>
+</span><span class="line"><span class="s"> microscopic behavior.</span>
+</span><span class="line"><span class="s">&quot;&quot;&quot;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="n">testArticleAboutMath</span> <span class="k">=</span> <span class="s">&quot;&quot;&quot;</span>
+</span><span class="line"><span class="s">Algebra can essentially be considered </span>
+</span><span class="line"><span class="s">as doing computations (...) a polynomial </span>
+</span><span class="line"><span class="s">in a single variable.</span>
+</span><span class="line"><span class="s">&quot;&quot;&quot;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="n">testArticleAboutElectronics</span> <span class="k">=</span> <span class="s">&quot;&quot;&quot;</span>
+</span><span class="line"><span class="s">Wheatstone bridge</span>
+</span><span class="line"><span class="s">(...) zero the voltage.</span>
+</span><span class="line"><span class="s">&quot;&quot;&quot;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">val</span> <span class="n">typicalGuardianArticle</span> <span class="k">=</span> <span class="s">&quot;&quot;&quot;</span>
+</span><span class="line"><span class="s">The French president, (...) have legalised same-sex marriage.</span>
+</span><span class="line"><span class="s">&quot;&quot;&quot;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="n">matchCategory</span><span class="o">(</span><span class="n">text</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class="line">	<span class="k">val</span> <span class="n">words</span> <span class="k">=</span> <span class="n">getWordsFromRawText</span><span class="o">(</span><span class="n">text</span><span class="o">).</span><span class="n">toSet</span>
+</span><span class="line">	<span class="k">val</span> <span class="n">wordsCount</span> <span class="k">=</span> <span class="n">words</span><span class="o">.</span><span class="n">size</span>
+</span><span class="line">	<span class="k">val</span> <span class="n">categories</span> <span class="k">=</span>  <span class="nc">HashMap</span><span class="o">(</span><span class="s">&quot;physics&quot;</span> <span class="o">-&gt;</span>
+</span><span class="line">	 <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonPhysicsVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span> <span class="o">/</span>
+</span><span class="line">	 <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">,</span>
+</span><span class="line">	<span class="s">&quot;electronics&quot;</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonElectronicsVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span>
+</span><span class="line">	<span class="o">/</span> <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">,</span>
+</span><span class="line">	<span class="s">&quot;math&quot;</span> <span class="o">-&gt;</span> <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonMathVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span> <span class="o">/</span>
+</span><span class="line">	 <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">).</span><span class="n">toList</span><span class="o">.</span><span class="n">sortBy</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">_2</span><span class="o">).</span><span class="n">reverse</span>
+</span><span class="line">	
+</span><span class="line">	<span class="k">val</span> <span class="n">winningCategory</span> <span class="k">=</span> <span class="k">if</span> <span class="o">(</span><span class="n">categories</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="n">_2</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="o">)</span>
+</span><span class="line">	 <span class="n">categories</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span>
+</span><span class="line">	<span class="k">else</span>
+</span><span class="line">		<span class="o">(</span><span class="s">&quot;boring&quot;</span><span class="o">,</span> <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span>
+</span><span class="line">		 <span class="o">/</span> <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">)</span>
+</span><span class="line">	<span class="n">println</span><span class="o">(</span><span class="s">&quot;Article matches category: &quot;</span> <span class="o">+</span> <span class="n">winningCategory</span><span class="o">)</span>
+</span><span class="line">	<span class="n">println</span><span class="o">(</span><span class="n">categories</span><span class="o">)</span>
+</span><span class="line">	<span class="n">println</span><span class="o">(</span><span class="s">&quot;Similarity to normal vocabulary: &quot;</span> <span class="o">+</span>
+</span><span class="line">	 <span class="o">(</span><span class="n">words</span> <span class="n">intersect</span> <span class="n">commonNormalVoc</span><span class="o">).</span><span class="n">size</span><span class="o">.</span><span class="n">toDouble</span>
+</span><span class="line">	 <span class="o">/</span> <span class="n">wordsCount</span> <span class="o">*</span> <span class="mi">100</span><span class="o">)</span>
+</span><span class="line"><span class="o">}</span>
+</span><span class="line">
+</span><span class="line"><span class="n">println</span><span class="o">(</span><span class="s">&quot;Testing article about physics:&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="n">matchCategory</span><span class="o">(</span><span class="n">testArticleAboutPhysics</span><span class="o">)</span>
+</span><span class="line"><span class="n">println</span><span class="o">(</span><span class="s">&quot;\nTesting article about math:&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="n">matchCategory</span><span class="o">(</span><span class="n">testArticleAboutMath</span><span class="o">)</span>
+</span><span class="line"><span class="n">println</span><span class="o">(</span><span class="s">&quot;\nTesting article about electronics:&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="n">matchCategory</span><span class="o">(</span><span class="n">testArticleAboutElectronics</span><span class="o">)</span>
+</span><span class="line"><span class="n">println</span><span class="o">(</span><span class="s">&quot;\nTesting typical guardian article:&quot;</span><span class="o">)</span>
+</span><span class="line"><span class="n">matchCategory</span><span class="o">(</span><span class="n">typicalGuardianArticle</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>I stored collected articles in directory “articles/{category}” and used them to generate vocabulary sets.</p>
+
+<p>There are two important functions in this code: “rankWords” and “match category”. Ranking is based of how many times given word occurs in the text. Matching categories using set intersections to estimate which category suits the best.</p>
+
+<p>Here is the output of this script (test files were much longer):</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>commonVocabulary.scala output</span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td><td class="code"><pre><code class="scala"><span class="line"><span class="nc">Testing</span> <span class="n">article</span> <span class="n">about</span> <span class="n">physics</span><span class="k">:</span>
+</span><span class="line"><span class="kt">Article</span> <span class="kt">matches</span> <span class="kt">category:</span> <span class="o">(</span><span class="kt">physics</span><span class="o">,</span><span class="err">34</span><span class="kt">.</span><span class="err">66666666666667</span><span class="o">)</span>
+</span><span class="line"><span class="nc">List</span><span class="o">((</span><span class="n">physics</span><span class="o">,</span><span class="mf">34.66666666666667</span><span class="o">),</span> <span class="o">(</span><span class="n">electronics</span><span class="o">,</span><span class="mf">10.222222222222223</span><span class="o">),</span> <span class="o">(</span><span class="n">math</span><span class="o">,</span><span class="mf">8.0</span><span class="o">))</span>
+</span><span class="line"><span class="nc">Similarity</span> <span class="n">to</span> <span class="n">normal</span> <span class="n">vocabulary</span><span class="k">:</span> <span class="err">23</span><span class="kt">.</span><span class="err">11111111111111</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">Testing</span> <span class="kt">article</span> <span class="kt">about</span> <span class="kt">math:</span>
+</span><span class="line"><span class="nc">Article</span> <span class="n">matches</span> <span class="n">category</span><span class="k">:</span> <span class="o">(</span><span class="kt">math</span><span class="o">,</span><span class="err">26</span><span class="kt">.</span><span class="err">01880877742947</span><span class="o">)</span>
+</span><span class="line"><span class="nc">List</span><span class="o">((</span><span class="n">math</span><span class="o">,</span><span class="mf">26.01880877742947</span><span class="o">),</span> <span class="o">(</span><span class="n">physics</span><span class="o">,</span><span class="mf">21.003134796238246</span><span class="o">),</span> <span class="o">(</span><span class="n">electronics</span><span class="o">,</span><span class="mf">13.793103448275861</span><span class="o">))</span>
+</span><span class="line"><span class="nc">Similarity</span> <span class="n">to</span> <span class="n">normal</span> <span class="n">vocabulary</span><span class="k">:</span> <span class="err">23</span><span class="kt">.</span><span class="err">824451410658305</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">Testing</span> <span class="kt">article</span> <span class="kt">about</span> <span class="kt">electronics:</span>
+</span><span class="line"><span class="nc">Article</span> <span class="n">matches</span> <span class="n">category</span><span class="k">:</span> <span class="o">(</span><span class="kt">electronics</span><span class="o">,</span><span class="err">23</span><span class="kt">.</span><span class="err">717948717948715</span><span class="o">)</span>
+</span><span class="line"><span class="nc">List</span><span class="o">((</span><span class="n">electronics</span><span class="o">,</span><span class="mf">23.717948717948715</span><span class="o">),</span> <span class="o">(</span><span class="n">physics</span><span class="o">,</span><span class="mf">16.666666666666664</span><span class="o">),</span> <span class="o">(</span><span class="n">math</span><span class="o">,</span><span class="mf">14.102564102564102</span><span class="o">))</span>
+</span><span class="line"><span class="nc">Similarity</span> <span class="n">to</span> <span class="n">normal</span> <span class="n">vocabulary</span><span class="k">:</span> <span class="err">27</span><span class="kt">.</span><span class="err">564102564102566</span>
+</span><span class="line">
+</span><span class="line"><span class="kt">Testing</span> <span class="kt">typical</span> <span class="kt">guardian</span> <span class="kt">article:</span>
+</span><span class="line"><span class="nc">Article</span> <span class="n">matches</span> <span class="n">category</span><span class="k">:</span> <span class="o">(</span><span class="kt">boring</span><span class="o">,</span><span class="err">30</span><span class="kt">.</span><span class="err">45977011494253</span><span class="o">)</span>
+</span><span class="line"><span class="nc">List</span><span class="o">((</span><span class="n">electronics</span><span class="o">,</span><span class="mf">2.8735632183908044</span><span class="o">),</span> <span class="o">(</span><span class="n">math</span><span class="o">,</span><span class="mf">2.2988505747126435</span><span class="o">),</span> <span class="o">(</span><span class="n">physics</span><span class="o">,</span><span class="mf">2.2988505747126435</span><span class="o">))</span>
+</span><span class="line"><span class="nc">Similarity</span> <span class="n">to</span> <span class="n">normal</span> <span class="n">vocabulary</span><span class="k">:</span> <span class="err">30</span><span class="kt">.</span><span class="err">45977011494253</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>It took some code, but it’s actually pretty simple and works well. Scala offers really nice api to work with this kind of problems.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -937,6 +1319,14 @@ At least for me. But there are solutions for this problem - markup languages!</p
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/11/10/ipython-now-your-tools/">ipython-now-your-tools</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/10/internet-deprivation/">Internet deprivation</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/10/13/closed-vs-open-science/">Closed vs Open science</a>
       </li>
     
@@ -946,14 +1336,6 @@ At least for me. But there are solutions for this problem - markup languages!</p
     
       <li class="post">
         <a href="/blog/2013/09/14/projects-of-individual/">projects of a busy individual</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/13/now-your-tools-sublime-text/">Now your tools - Sublime Text</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/02/hacker-design/">Hack design</a>
       </li>
     
   </ul>
