@@ -4,7 +4,7 @@
   <title><![CDATA[Category: programming | Tiny struggles]]></title>
   <link href="http://atteroTheGreatest.github.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://atteroTheGreatest.github.com/"/>
-  <updated>2013-11-11T14:57:48+01:00</updated>
+  <updated>2013-11-11T15:00:18+01:00</updated>
   <id>http://atteroTheGreatest.github.com/</id>
   <author>
     <name><![CDATA[Justyna Ilczuk]]></name>
@@ -12,6 +12,102 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ipython - now your tools]]></title>
+    <link href="http://atteroTheGreatest.github.com/blog/2013/11/10/ipython-now-your-tools/"/>
+    <updated>2013-11-10T12:58:00+01:00</updated>
+    <id>http://atteroTheGreatest.github.com/blog/2013/11/10/ipython-now-your-tools</id>
+    <content type="html"><![CDATA[<p>Recently I made a talk about IPython. During preparation I came across a lot of really good materials.</p>
+
+<p>And I know much more, than before.</p>
+
+<h3 id="ipython-whats-that">IPython? What’s that?</h3>
+<p><img src="http://ipython.org/ipython-doc/dev/_static/logo.png" alt="IPython logo" /></p>
+
+<p>IPython provides a <strong>rich architecture</strong> for interactive computing with:</p>
+
+<ul>
+  <li>Powerful interactive shells (terminal and Qt-based).</li>
+  <li>A browser-based notebook with support for code, text, mathematical expressions, inline plots and other rich media.</li>
+  <li>Support for interactive data visualization </li>
+  <li>Flexible, embeddable interpreters to load into your own projects.</li>
+  <li>Easy to use, high performance tools for parallel computing.</li>
+</ul>
+
+<p>Let’s grab some screenshots, not to just talk about imaginative things:</p>
+
+<h5 id="terminal-client">Terminal client</h5>
+
+<p><img src="http://i.imgur.com/dbkddMN.png" alt="terminal" /></p>
+
+<h5 id="browser-client-called-notebook">Browser client (called notebook)</h5>
+
+<p><img src="http://nbviewer.ipython.org/urls/raw.github.com/ellisonbg/talk-strata2013/master/files/figures/ipython-notebook-specgram-2.png" alt="notebook" /></p>
+
+<h3 id="why-should-you-use-ipython-5-reasons">Why should you use IPython? 5 reasons</h3>
+
+<h4 id="if-you-are-a-programmer">If you are a programmer:</h4>
+
+<ol>
+  <li>Better python shell - terminal ipython client</li>
+  <li>Amazing platform for experimenting and learning new things and interactive work, which can be easily transform to ‘normal’ production code</li>
+  <li>Programming notebook:
+    <ul>
+      <li>documenting your code as you write it</li>
+      <li>inline execution</li>
+      <li>easy sharing - nbviewer</li>
+    </ul>
+  </li>
+  <li>Parallel execution and easy clustering, elaborate tutorial <a href="http://minrk.github.io/scipy-tutorial-2011/">here</a></li>
+  <li>Easy way to change your code to different formats, amazing for showing your work using <a href="http://ipython.org/ipython-doc/rel-1.0.0/interactive/nbconvert.html">convert</a>:
+    <ul>
+      <li>html</li>
+      <li>reveal slides</li>
+      <li>pdf and more</li>
+    </ul>
+  </li>
+</ol>
+
+<p>It a well designed and actively developed tool with amazing community.</p>
+
+<h4 id="if-you-are-a-researcher">If you are a researcher:</h4>
+
+<ol>
+  <li>in one tool you can do:
+    <ul>
+      <li>data analysis</li>
+      <li>computation</li>
+      <li>visualisation</li>
+      <li>write publication</li>
+    </ul>
+  </li>
+  <li>amazing support for scientific libraries</li>
+  <li>easy clustering - number crunching in star cluster</li>
+  <li>recomputable science</li>
+  <li>scientific notebook
+    <ul>
+      <li>sharing of your experimental method</li>
+      <li>version control</li>
+      <li>easy colaboration</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Look at those <a href="https://github.com/ipython/ipython/wiki/A-gallery-of-interesting-IPython-Notebooks">notebooks</a>.</p>
+
+<p>All of this is pretty amazing, not just amount of features, but also how it is implemented and great community surrounding IPython. It’s really easy to grab some tutorials and learn about new functionality, because of lots of great docs, tutorials and example.</p>
+
+<h3 id="how-do-i-start-using-ipython-effectively">How do I start using IPython effectively?</h3>
+
+<p>Your use cases may be different. I would start from installing IPython and reading the introductory docs.</p>
+
+<p>If you have it installed, spend some time playing around. Lot’s of features seems to be pretty intuitive, but it’s easy to get stuck, knowing a very thin subset of ipython’s functionality.</p>
+
+<p>I highly recommend watching <a href="http://www.youtube.com/watch?v=k9BzHApo994">“Ipython In Depth”</a> and cloning it’s <a href="https://github.com/ipython/ipython-in-depth">repo</a>, full of amazing notebooks.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Canvas with javascript and coffee]]></title>
